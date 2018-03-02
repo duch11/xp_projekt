@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Adventure Alley</title>
 </head>
 <body>
-
+    <h1 align="center">Adventure Alley</h1>
+    <div class="topnav">
+        <a class="active" href="/index">Forside</a>
+        <a href="/create"> Opret Aktivitet</a>
+    </div>
+    <table align="center">
+        <tr>
+            <td th:each="Activity : ${Activity}" >
+                <input type="image" src="${Activity.image}" width="200" height="200"/>
+                <h2 th:text="${Activity.name}"/>
+                <!--<input type="image" src="https://static.dgda.dk/media/4861/gokart-aarhus-racehall-8.jpg?width=848&height=563&mode=crop" width="200" height="200"/>
+                <h2 align="center">Gokart</h2>-->
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
