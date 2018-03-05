@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://java.sun.com/xml/ns/persistence/orm">
 <head>
     <meta charset="UTF-8"/>
     <title>Adventure Alley</title>
@@ -7,7 +7,7 @@
 <body>
     <h1 align="center">Adventure Alley</h1>
     <div class="topnav">
-        <a class="active" href="/index">Forside</a>
+        <a class="active" href="/">Forside</a>
         <a href="/create"> Opret Aktivitet</a>
     </div>
     <h2 align="center">Aktiviteter</h2>
@@ -21,7 +21,7 @@
                 <h3 align="center" th:text="${activities.get(index).getName()}"></h3>
             </td>
             <td>
-                <div th:if="${index + 1 < activities.size()}">
+                <div th:if="${index + 1 lt activities.size()}">
                     <a th:href="@{/activity.html}" class="btn-image">
                         <img th:src="${activities.get(index + 1).getImagePath()}" th:alt="${activities.get(index + 1).getImagePath()}" onclick=""
                              height="175px" width="175px"/>
@@ -30,7 +30,7 @@
                 </div>
             </td>
             <td>
-                <div th:if="${index + 2 < activities.size()}">
+                <div th:if="${index + 2 lt activities.size()}">
                     <a th:href="@{/activity.html}" class="btn-image">
                         <img th:src="${activities.get(index + 2).getImagePath()}" th:alt="${activities.get(index + 1).getImagePath()}" onclick=""
                              height="175px" width="175px"/>

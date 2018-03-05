@@ -1,5 +1,8 @@
 package dk.adventurealley.app.Controllers;
 
+import dk.adventurealley.app.DAO.ActivityRepository;
+import dk.adventurealley.app.Models.Activity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +13,15 @@ import java.util.ArrayList;
 @Controller
 public class HomeController {
 
-    //ArrayList<Activity> activities = activityRepo.getActivityList();
+    @Autowired
+    ActivityRepository activityRepo = new ActivityRepository();
+
+    ArrayList<Activity> activities = new ArrayList<>();
 
     @GetMapping("/")
     public String index(Model model){
+        activities = activityRepo.readAll();
         model.addAttribute("activities", activities);
         return "index";
     }
-
 }
