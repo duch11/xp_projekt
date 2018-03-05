@@ -10,13 +10,33 @@
         <a class="active" href="/index">Forside</a>
         <a href="/create"> Opret Aktivitet</a>
     </div>
-    <table align="center">
-        <tr>
-            <td th:each="Activity : ${Activity}" >
-                <input type="image" src="${Activity.image}" width="200" height="200"/>
-                <h2 th:text="${Activity.name}"/>
-                <!--<input type="image" src="https://static.dgda.dk/media/4861/gokart-aarhus-racehall-8.jpg?width=848&height=563&mode=crop" width="200" height="200"/>
-                <h2 align="center">Gokart</h2>-->
+    <h2 align="center">Aktiviteter</h2>
+    <table align="center" th:if="${activities.size() > 0}">
+        <tr th:each="index : ${#numbers.sequence(0, activities.size(), 3)}">
+            <td>
+                <a th:href="@{/activity.html}" class="btn-image"> <!-- Vælg hvor billede skal linke til her -->
+                    <img th:src="${activities.get(index).getImagePath()}" th:alt="${activities.get(index).getImagePath()}" onclick=""
+                         height="175px" width="175px"/>
+                </a>
+                <h3 align="center" th:text="${activities.get(index).getName()}"></h3>
+            </td>
+            <td>
+                <div th:if="${index + 1 < activities.size()}">
+                    <a th:href="@{/activity.html}" class="btn-image">
+                        <img th:src="${activities.get(index + 1).getImagePath()}" th:alt="${activities.get(index + 1).getImagePath()}" onclick=""
+                             height="175px" width="175px"/>
+                    </a>
+                    <h3 align="center" th:text="${activities.get(index+1).getName()}"></h3>
+                </div>
+            </td>
+            <td>
+                <div th:if="${index + 2 < activities.size()}">
+                    <a th:href="@{/activity.html}" class="btn-image">
+                        <img th:src="${activities.get(index + 2).getImagePath()}" th:alt="${activities.get(index + 1).getImagePath()}" onclick=""
+                             height="175px" width="175px"/>
+                    </a>
+                    <h3 align="center" th:text="${activities.get(index+2).getName()}"></h3>
+                </div>
             </td>
         </tr>
     </table>
