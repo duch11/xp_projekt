@@ -1,18 +1,24 @@
 package dk.adventurealley.app.Model.Entities;
 
+import java.util.ArrayList;
+
 public class Activity {
 
     private int id;
     private String name;
     private String equipment;
+    private String imagePath;
+    private ArrayList<Requirements> activityReq;
 
     public Activity() {
     }
 
-    public Activity(int id, String name, String equipment) {
+    public Activity(int id, String name, String equipment, String imagePath, ArrayList<Requirements> activityReq) {
         this.id = id;
         this.name = name;
         this.equipment = equipment;
+        this.imagePath = imagePath;
+        this.activityReq = activityReq;
     }
 
     public int getId() {
@@ -37,5 +43,21 @@ public class Activity {
 
     public void setEquipment(String equipment) {
         this.equipment = equipment;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public ArrayList<Requirements> getActivityReq() {
+        return activityReq;
+    }
+
+    public void setActivityReq(ArrayList<Requirements> activityReq) {
+        this.activityReq = activityReq;
     }
 }
