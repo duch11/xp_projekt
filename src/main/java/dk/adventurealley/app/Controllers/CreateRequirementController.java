@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class CreateActivityController {
+public class CreateRequirementController {
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String createActivity(Model model){
 
-    return "createActivity";
+    return "createRequirement";
   }
 
 }
