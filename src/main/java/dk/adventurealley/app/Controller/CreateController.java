@@ -29,15 +29,15 @@ public class CreateController {
     }
 
     @RequestMapping(value = "/createActivity", method = RequestMethod.GET)
-    public String createActivity(Model model, Model model1) {
+    public String createActivity(Model model) {
         model.addAttribute("activity", new Activity());
-        model1.addAttribute("req", new Requirements());
+        model.addAttribute("req", new Requirements());
         return "createActivity";
     }
 
     @PostMapping("/createA")
     public String activityCreate(@ModelAttribute Activity activity, Requirements requirement) {
-        activityRepo.create(activity);
+        //activityRepo.create(activity);
         System.out.println("Tilføjet activity: " + activity.getName());
         System.out.println("Tilføjet krav: " + requirement.toString());
         return "index";
