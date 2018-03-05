@@ -3,17 +3,17 @@ package dk.adventurealley.app.Model.Entities;
 public class Requirements {
 
     private int id;
-    private int players;
-    private int age;
-    private int height;
-    private int weight;
+    private String players;
+    private String age;
+    private String height;
+    private String weight;
     private String rules;
 
     public Requirements() {
 
     }
 
-    public Requirements(int id, int players, int age, int height, int weight, String rules) {
+    public Requirements(int id, String players, String age, String height, String weight, String rules) {
         this.id = id;
         this.players = players;
         this.age = age;
@@ -30,35 +30,35 @@ public class Requirements {
         this.id = id;
     }
 
-    public int getPlayers() {
+    public String getPlayers() {
         return players;
     }
 
-    public void setPlayers(int players) {
+    public void setPlayers(String players) {
         this.players = players;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public int getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
@@ -74,10 +74,10 @@ public class Requirements {
     public String toString() {
         return "Requirements{" +
                 "id=" + id +
-                ", players=" + players +
-                ", age=" + age +
-                ", height=" + height +
-                ", weight=" + weight +
+                ", players='" + players + '\'' +
+                ", age='" + age + '\'' +
+                ", height='" + height + '\'' +
+                ", weight='" + weight + '\'' +
                 ", rules='" + rules + '\'' +
                 '}';
     }

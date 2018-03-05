@@ -17,7 +17,7 @@ public class CreateController {
     ArrayList<Activity> activities = new ArrayList<>();
     ArrayList<Requirements> requirements  = new ArrayList<>();
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(){
         return "index";
     }
