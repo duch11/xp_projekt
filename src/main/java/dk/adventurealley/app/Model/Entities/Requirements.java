@@ -3,22 +3,22 @@ package dk.adventurealley.app.Model.Entities;
 public class Requirements {
 
     private int id;
+    private int players;
     private int age;
     private int height;
     private int weight;
-    private String equipment;
     private String rules;
 
     public Requirements() {
 
     }
 
-    public Requirements(int id, int age, int height, int weight, String equipment, String rules) {
+    public Requirements(int id, int players, int age, int height, int weight, String rules) {
         this.id = id;
+        this.players = players;
         this.age = age;
         this.height = height;
         this.weight = weight;
-        this.equipment = equipment;
         this.rules = rules;
     }
 
@@ -28,6 +28,14 @@ public class Requirements {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(int players) {
+        this.players = players;
     }
 
     public int getAge() {
@@ -54,14 +62,6 @@ public class Requirements {
         this.weight = weight;
     }
 
-    public String getEquipment() {
-        return equipment;
-    }
-
-    public void setEquipment(String equipment) {
-        this.equipment = equipment;
-    }
-
     public String getRules() {
         return rules;
     }
@@ -74,10 +74,10 @@ public class Requirements {
     public String toString() {
         return "Requirements{" +
                 "id=" + id +
+                ", players=" + players +
                 ", age=" + age +
                 ", height=" + height +
                 ", weight=" + weight +
-                ", equipment='" + equipment + '\'' +
                 ", rules='" + rules + '\'' +
                 '}';
     }
