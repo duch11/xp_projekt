@@ -14,7 +14,7 @@ public class CreateRequirementController {
     }
 
     @RequestMapping(value = "/createrequirement", method = RequestMethod.POST)
-    public String createRequirement(Model model, @ModelAttribute String name, @ModelAttribute String value){
+    public String createRequirement(Model model, @RequestParam String name, @RequestParam String value){
         System.out.println("værdi:" + name + " " + value);
         return "createRequirement";
     }
