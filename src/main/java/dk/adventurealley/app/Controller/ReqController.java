@@ -12,7 +12,7 @@ public class ReqController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(){
 
-        return "index";
+        return "ActivityPage";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
