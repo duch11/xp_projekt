@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Create Requirement</title>
+</head>
+<body>
+<a href="/">Tilbage</a>
+<h1>Lav et nyt Krav</h1>
+<form method="POST" action="/createrequirement">
+    <label>Titel: <input type="text" th:name="name"/></label>
+    <label>Værdi: <input type="text" th:name="value"/></label>
+    <input type="submit" value="opret krav"/>
+</form>
+
+</body>
+</html>
