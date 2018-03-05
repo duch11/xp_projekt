@@ -56,6 +56,7 @@ CREATE TABLE `activities` (
   `name` varchar(200) NOT NULL,
   `equipment` varchar(500) DEFAULT NULL,
   `image_path` varchar(500) NOT NULL,
+  `description` varchar(500) NOT NULL,
   PRIMARY KEY (`name`),
   UNIQUE KEY `activities_name_uindex` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -102,4 +103,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-02 14:04:25
+-- Dump completed on 2018-03-05 12:41:20
