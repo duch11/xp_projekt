@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.20, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: adventure_alley_db
 -- ------------------------------------------------------
--- Server version	5.7.20-log
+-- Server version	5.7.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -67,6 +67,7 @@ CREATE TABLE `activities` (
 
 LOCK TABLES `activities` WRITE;
 /*!40000 ALTER TABLE `activities` DISABLE KEYS */;
+INSERT INTO `activities` VALUES ('BasketballTest','Bold','http://a.espncdn.com/combiner/i?img=/redesign/assets/img/icons/ESPN-icon-basketball.png&w=288&h=288&transparent=true'),('GokartTest','Hjelm','https://img.grouponcdn.com/deal/htzFHaEQ5LVhwTgFS9ZR/5t-1500x900/v1/c700x420.jpg'),('Mini-GolfTest','Kølle','https://www.jesperhus.dk/media/581399/minigolf2016_Galleri.jpg'),('PaintballTest','Hjelm, Våben og Rustning','http://hevansscent.com/wp-content/uploads/2016/06/paintball.jpg'),('Sumo-WrestlingTest','Ble','https://i.ytimg.com/vi/s2i841E1DFQ/maxresdefault.jpg');
 /*!40000 ALTER TABLE `activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,4 +103,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-02 14:04:25
+-- Dump completed on 2018-03-06 14:39:56
