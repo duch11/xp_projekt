@@ -1,5 +1,6 @@
 package dk.adventurealley.app.DAO;
 
+import dk.adventurealley.app.*;
 import dk.adventurealley.app.Model.Entities.Activity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,5 +23,9 @@ public class ActivityRepository {
             activityList.add(new Activity(rs.getString("name"), rs.getString("image_path")));
         }
         return activityList;
+    }
+
+    public void deleteActivity(String name){
+        jdbc.update("DELETE FROM activities WHERE name='"+name+"'");
     }
 }

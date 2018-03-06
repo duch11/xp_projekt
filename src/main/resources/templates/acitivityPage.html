@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>DescriptionPage</title>
+
+
+</head>
+
+<body>
+<h1>Gokarts</h1>
+<br>
+
+<button type="button">Forside</button>
+<button type="button">Edit</button>
+<button th:action="@{/deleteActivity}" method="post" type="button">Slet</button>
+<br>
+
+<textarea readonly name="Requirments" rows="10" cols="90">
+Write requirment stuff here
+</textarea>
+
+<img src="https://img.grouponcdn.com/deal/htzFHaEQ5LVhwTgFS9ZR/5t-1500x900/v1/c700x420.jpg" style="float: right">
+
+<br>
+<textarea readonly name="Description" rows="10" cols="90">
+Write description stuff here
+</textarea>
+<br>
+<textarea readonly name="Equipment" rows="10" cols="90">
+Write Equipment stuff here
+</textarea>
+
+
+
+</body>
+</html>

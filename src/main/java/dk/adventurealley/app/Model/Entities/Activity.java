@@ -1,7 +1,8 @@
-package dk.adventurealley.app.Entities;
+package dk.adventurealley.app.Model.Entities;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import dk.adventurealley.app.Model.Entities.*;
 
 /**
  * Created by Ejer on 05-03-2018.
@@ -13,6 +14,9 @@ public class Activity {
     private String imagePath;
     private String description;
 
+    public Activity() {
+    }
+
     public Activity(String name, ArrayList<Requirements> regList, String equipment, String imagePath, String description) {
         this.name = name;
         this.regList = regList;
@@ -21,7 +25,9 @@ public class Activity {
         this.description = description;
     }
 
-    public Activity() {
+    public Activity(String name, String imagePath){
+        this.name = name;
+        this.imagePath = imagePath;
     }
 
     @Override
