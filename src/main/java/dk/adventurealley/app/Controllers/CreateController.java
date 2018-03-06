@@ -1,4 +1,4 @@
-package dk.adventurealley.app.Controller;
+package dk.adventurealley.app.Controllers;
 
 import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Requirements;

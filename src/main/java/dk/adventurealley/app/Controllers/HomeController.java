@@ -1,7 +1,7 @@
 package dk.adventurealley.app.Controllers;
 
 import dk.adventurealley.app.DAO.ActivityRepository;
-import dk.adventurealley.app.Models.Activity;
+import dk.adventurealley.app.Model.Entities.Activity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
 package dk.adventurealley.app.DAO;
 
-import dk.adventurealley.app.Models.Activity;
+import dk.adventurealley.app.Model.Entities.Activity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -19,7 +19,7 @@ public class ActivityRepository {
         activityList.clear();
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM adventure_alley_db.activities");
         while(rs.next()){
-            activityList.add(new Activity(rs.getString("name"), rs.getString("equipment"), rs.getString("image_path")));
+            activityList.add(new Activity(rs.getString("name"), rs.getString("image_path")));
         }
         return activityList;
     }
