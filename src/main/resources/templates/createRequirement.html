@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+      <title>Lav en ny kravs type</title>
+    </head>
+    <body>
+
+        <!-- LAVET AF ANDREAS OG JONAS -->
+        <a href="/">Tilbage</a>
+        <h1>Lav en ny Kravstype</h1>
+
+        <form th:action="@{/createrequirement}" method="post">
+            <label for="name">Titel:</label>
+            <input type="text" id="name" th:name="name"/>
+            <input type="submit" value="opret krav"/>
+        </form>
+    </body>
+</html>
