@@ -1,19 +1,18 @@
 package dk.adventurealley.app.Model.Entities;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 /**
  * Created by Ejer on 05-03-2018.
  */
 public class Activity {
     private String name;
-    private ArrayList<Requirements> regList;
+    private ArrayList<Requirement> regList;
     private String equipment;
     private String imagePath;
     private String description;
 
-    public Activity(String name, ArrayList<Requirements> regList, String equipment, String imagePath, String description) {
+    public Activity(String name, ArrayList<Requirement> regList, String equipment, String imagePath, String description) {
         this.name = name;
         this.regList = regList;
         this.equipment = equipment;
@@ -55,11 +54,11 @@ public class Activity {
         this.name = name;
     }
 
-    public ArrayList<Requirements> getRegList() {
+    public ArrayList<Requirement> getRegList() {
         return regList;
     }
 
-    public void setRegList(ArrayList<Requirements> regList) {
+    public void setRegList(ArrayList<Requirement> regList) {
         this.regList = regList;
     }
 

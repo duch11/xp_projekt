@@ -1,13 +1,10 @@
 package dk.adventurealley.app.Controllers;
 
 import dk.adventurealley.app.Model.Entities.Activity;
-import dk.adventurealley.app.Model.Entities.Requirements;
+import dk.adventurealley.app.Model.Entities.Requirement;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -15,22 +12,17 @@ import java.util.ArrayList;
 public class CreateController {
 
     ArrayList<Activity> activities = new ArrayList<>();
-    ArrayList<Requirements> requirements  = new ArrayList<>();
+    ArrayList<Requirement> requirements  = new ArrayList<>();
 
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String index(){
-        return "index";
-    }
-
-    @RequestMapping(value = "/createActivity", method = RequestMethod.GET)
-    public String createActivity(Model model, Model model1) {
+    @GetMapping("/createactivity")
+    public String createActivity(Model model) {
         model.addAttribute("activity", new Activity());
-        model1.addAttribute("req", new Requirements());
+        model.addAttribute("req", new Requirement());
         return "createActivity";
     }
 
     @PostMapping("/createA")
-    public String activityCreate(@ModelAttribute Activity activity, Requirements requirement) {
+    public String activityCreate(@ModelAttribute Activity activity, Requirement requirement) {
         System.out.println("Tilføjet activity: " + activity.getName());
         System.out.println("Tilføjet krav: " + requirement.toString());
         return "index";

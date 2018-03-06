@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class CreateRequirementController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/createrequirement", method = RequestMethod.GET)
     public String showCreateReqView(Model model){
 
         return "createRequirement";
     }
 
     @RequestMapping(value = "/createrequirement", method = RequestMethod.POST)
-    public String createRequirement(Model model, @RequestParam String name, @RequestParam String value){
-        System.out.println("værdi:" + name + " " + value);
+    public String createRequirement(Model model, @RequestParam String name){
+        System.out.println("værdi:" + name);
         return "createRequirement";
     }
 }
