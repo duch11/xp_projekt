@@ -1,4 +1,4 @@
-package dk.adventurealley.app.Entities;
+package dk.adventurealley.app.Model.Entities;
 
 /**
  * Created by Ejer on 05-03-2018.
