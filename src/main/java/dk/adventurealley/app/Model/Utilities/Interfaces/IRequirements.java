@@ -1,8 +1,6 @@
-package dk.adventurealley.app.Model.Services.Interfaces;
+package dk.adventurealley.app.Model.Utilities.Interfaces;
 
 import dk.adventurealley.app.Model.Entities.Requirements;
-
-import java.util.ArrayList;
 
 public interface IRequirements {
 

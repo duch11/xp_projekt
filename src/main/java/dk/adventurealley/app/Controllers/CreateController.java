@@ -1,9 +1,9 @@
-package dk.adventurealley.app.Controller;
+package dk.adventurealley.app.Controllers;
 
 import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Requirements;
-import dk.adventurealley.app.Model.Services.ActivityRepository;
-import dk.adventurealley.app.Model.Services.Interfaces.IActivity;
+import dk.adventurealley.app.Model.Utilities.ActivityRepository;
+import dk.adventurealley.app.Model.Utilities.Interfaces.IActivity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +31,17 @@ public class CreateController {
     public String createActivity(Model model) {
         requirements.add(r1);
         requirements.add(r2);
-        model.addAttribute("activity", new Activity());
+        Activity a = new Activity();
+        model.addAttribute("activity", a);
+        model.addAttribute("req", requirements);
+        return "createActivity";
+    }
+
+    @PostMapping("/addReq")
+    public String addRequirement(@ModelAttribute Requirements req, Activity a, Model model) {
+        System.out.println(req.toString());
+        //a.getActivityReq().add(req);
+        model.addAttribute("activity", a);
         model.addAttribute("req", requirements);
         return "createActivity";
     }

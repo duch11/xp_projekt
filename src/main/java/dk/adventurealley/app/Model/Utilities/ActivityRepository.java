@@ -1,13 +1,11 @@
-package dk.adventurealley.app.Model.Services;
+package dk.adventurealley.app.Model.Utilities;
 
 import dk.adventurealley.app.Model.Entities.Activity;
-import dk.adventurealley.app.Model.Services.Interfaces.IActivity;
+import dk.adventurealley.app.Model.Utilities.Interfaces.IActivity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
 
 @Repository
 public class ActivityRepository implements IActivity {

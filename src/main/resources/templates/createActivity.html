@@ -8,14 +8,19 @@
 <body>
 <h2>Opret en Aktivitet og dets krav</h2>
 
-<form method="POST" action="createA"    >
-    <input type="text" name="name" placeholder="Aktivites Navn"/>
+<form method="POST" action="addReq">
     <select>
         <option value="">Vælg Navn</option>
         <option th:each="requirements : ${req}"
                 th:value="${requirements.reqName}"
-                th:text="${requirements.reqName}"></option>
+                th:text="${requirements.reqName}" id="name"></option>
     </select>
+    <input type="text" name="value" placeholder="Kravets værdi"/>
+    <input type="submit" value="Add Requirement"/>
+</form>
+
+<form method="POST" action="createA">
+    <input type="text" name="name" placeholder="Aktivites Navn"/>
     <input type="text" name="equipment" placeholder="Udstyr"/>
     <input type="text" name="description" placeholder="Beskrivelse af aktivitet"/>
     <input type="text" name="imagePath" placeholder="Billede Sti"/>
