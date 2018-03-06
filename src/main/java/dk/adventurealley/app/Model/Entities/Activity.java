@@ -1,4 +1,4 @@
-package dk.adventurealley.app.Entities;
+package dk.adventurealley.app.Model.Entities;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -21,7 +21,19 @@ public class Activity {
         this.description = description;
     }
 
+    public Activity(String name, String equipment, String imagePath, String description) {
+        this.name = name;
+        this.regList = regList;
+        this.equipment = equipment;
+        this.imagePath = imagePath;
+        this.description = description;
+    }
+
     public Activity() {
+    }
+
+    public Activity(String name, String image_path) {
+        
     }
 
     @Override
