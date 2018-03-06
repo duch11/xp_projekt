@@ -1,7 +1,7 @@
-package dk.adventurealley.app;
+package dk.adventurealley.app.Controllers;
 
-import dk.adventurealley.app.models.Activity;
-import dk.adventurealley.app.models.Requirement;
+import dk.adventurealley.app.Model.Entities.Activity;
+import dk.adventurealley.app.Model.Entities.Requirement;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.ArrayList;
 
 @Controller
-public class HomeController {
+public class EditActController {
 
     ArrayList<Requirement> requirements = new ArrayList<>();
 
@@ -29,7 +29,7 @@ public class HomeController {
         }
         model.addAttribute("requirement", new Requirement());
         Activity activity = new Activity("Gokart", requirements, "Hjelm", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFqnVyooVfj3rVcljhdOQSRgcxrowe0GUQJli12phkLzTuh5nL", "haleluja");
-        model.addAttribute("requirements", activity.getRequirements());
+        model.addAttribute("requirements", activity.getRegList());
         model.addAttribute("activity", activity);
         return "editActivity";
     }
