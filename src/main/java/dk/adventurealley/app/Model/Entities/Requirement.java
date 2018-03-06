@@ -3,16 +3,16 @@ package dk.adventurealley.app.Model.Entities;
 /**
  * Created by Ejer on 05-03-2018.
  */
-public class Requirements {
+public class Requirement {
     private String name;
     private String value;
 
-    public Requirements(String name, String value) {
+    public Requirement(String name, String value) {
         this.name = name;
         this.value = value;
     }
 
-    public Requirements() {
+    public Requirement() {
     }
 
     public String getName() {
@@ -33,7 +33,7 @@ public class Requirements {
 
     @Override
     public String toString() {
-        return "Requirements{" +
+        return "Requirement{" +
                 "name='" + name + '\'' +
                 ", value='" + value + '\'' +
                 '}';
