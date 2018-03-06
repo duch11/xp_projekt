@@ -28,11 +28,14 @@ public class Activity {
         this.description = description;
     }
 
+
+
     public Activity() {
     }
 
-    public Activity(String name, String image_path) {
-        
+    public Activity(String name, String imagePath) {
+        this.name = name;
+        this.imagePath = imagePath;
     }
 
     @Override
