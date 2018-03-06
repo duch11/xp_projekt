@@ -11,25 +11,28 @@
 <div class="container">
     <h1 th:text="${activity.getName()}"></h1>
     <form th:action="@{/addRequirement}" method="post" th:object="${requirement}">
-        <div class="form-group form-inline" style="text-align: left">
-            <select class="form-control dropdown" th:field="*{name}">
-                <option th:each="requirement : ${requirements}" th:text="${requirement.name}" th:value="${requirement.name}"></option>
-            </select>
-            <input type="submit" class="btn btn-success" value="Tilføj krav"/>
-        </div>
+
     </form>
 
     <form th:action="@{editActivity}" method="post" th:object="${activity}">
 
-        <a th:href="@{/createRequirement}" class="btn btn-primary float-right">Nyt krav</a>
+
         <div class="form-inline form-group">
+
             <!--<label for="name" class="edit-act-label" style="background: #00045d">Navn: </label>-->
             <h7 class="edit-act-label text form-control" for="reqValue" style="background: #00045d; font-size: 17px; width: 7ch">Navn: </h7>
 
             <input type="text" class="form-control" id="name" th:field="*{name}"/>
+            <a th:href="@{/createRequirement}" class="btn btn-primary float-right" style="margin-left: 100px;" >Nyt krav</a>
         </div>
         <div class="box-model">
             <h3 class="text-in-borderline">Krav</h3>
+            <div class="form-group form-inline" style="text-align: left">
+                <select class="form-control dropdown" th:field="*{name}">
+                    <option th:each="requirement : ${requirements}" th:text="${requirement.name}" th:value="${requirement.name}"></option>
+                </select>
+                <input type="submit" class="btn btn-success" value="Tilføj krav"/>
+            </div>
             <div th:each="req : ${requirements}">
                 <div class="form-inline form-group">
                     <!--<label th:text="${req.name} + ':'" for="reqValue" class="edit-act-label"></label>-->
@@ -38,6 +41,7 @@
                     <input type="text" class="form-control" id="reqValue" th:value="${req.value}"/>
                 </div>
             </div>
+
         </div>
         <div class="form-group">
             <label for="description">Beskrivelse: </label>
@@ -47,7 +51,7 @@
             <label for="imagePath">Billedsti: </label>
             <input type="text" id="imagePath" class="form-control" th:field="*{imagePath}"/>
             <div class="right">
-                <input type="button" class="btn btn-success" value="Gem"/>
+                <input type="button" class="btn btn-success" style="margin-left: 287px;" value="Gem Ændringer"/>
             </div>
         </div>
     </form>
