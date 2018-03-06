@@ -6,8 +6,9 @@
 <body>
 <a href="/">Tilbage</a>
 <h1>Lav et nyt Krav</h1>
-<form method="POST" action="/createrequirement">
-    <label>Titel: <input type="text" th:name="name"/></label>
+<form th:action="@{/createrequirement}" method="post">
+    <label for="name">Titel:</label>
+    <input type="text" id="name" th:name="name"/>
     <label>Værdi: <input type="text" th:name="value"/></label>
     <input type="submit" value="opret krav"/>
 </form>
