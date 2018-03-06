@@ -28,6 +28,8 @@ public class Activity {
         this.description = description;
     }
 
+
+
     public Activity() {
     }
 
