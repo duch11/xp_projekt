@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://java.sun.com/xml/ns/persistence/orm">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Adventure Alley</title>
+</head>
+<body>
+    <h1 align="center">Adventure Alley</h1>
+    <div class="topnav">
+        <a class="active" href="/">Forside</a>
+        <a href="/create"> Opret Aktivitet</a>
+    </div>
+    <h2 align="center">Aktiviteter</h2>
+    <table align="center" th:if="${activities.size() > 0}">
+        <tr th:each="index : ${#numbers.sequence(0, activities.size(), 3)}">
+            <td>
+                <a th:href="@{/activity.html}" class="btn-image"> <!-- Vælg hvor billede skal linke til her -->
+                    <img th:src="${activities.get(index).getImagePath()}" th:alt="${activities.get(index).getImagePath()}" onclick=""
+                         height="175px" width="175px"/>
+                </a>
+                <h3 align="center" th:text="${activities.get(index).getName()}"></h3>
+            </td>
+            <td>
+                <div th:if="${index + 1 lt activities.size()}">
+                    <a th:href="@{/activity.html}" class="btn-image">
+                        <img th:src="${activities.get(index + 1).getImagePath()}" th:alt="${activities.get(index + 1).getImagePath()}" onclick=""
+                             height="175px" width="175px"/>
+                    </a>
+                    <h3 align="center" th:text="${activities.get(index+1).getName()}"></h3>
+                </div>
+            </td>
+            <td>
+                <div th:if="${index + 2 lt activities.size()}">
+                    <a th:href="@{/activity.html}" class="btn-image">
+                        <img th:src="${activities.get(index + 2).getImagePath()}" th:alt="${activities.get(index + 1).getImagePath()}" onclick=""
+                             height="175px" width="175px"/>
+                    </a>
+                    <h3 align="center" th:text="${activities.get(index+2).getName()}"></h3>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
