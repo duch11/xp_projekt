@@ -9,16 +9,18 @@ public class Activity {
     private String equipment;
     private String imagePath;
     private ArrayList<Requirements> activityReq;
+    private String description;
 
     public Activity() {
     }
 
-    public Activity(int id, String name, String equipment, String imagePath, ArrayList<Requirements> activityReq) {
+    public Activity(int id, String name, String equipment, String imagePath, ArrayList<Requirements> activityReq, String description) {
         this.id = id;
         this.name = name;
         this.equipment = equipment;
         this.imagePath = imagePath;
         this.activityReq = activityReq;
+        this.description = description;
     }
 
     public int getId() {
@@ -59,5 +61,13 @@ public class Activity {
 
     public void setActivityReq(ArrayList<Requirements> activityReq) {
         this.activityReq = activityReq;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

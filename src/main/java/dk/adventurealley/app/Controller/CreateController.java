@@ -7,10 +7,7 @@ import dk.adventurealley.app.Model.Services.Interfaces.IActivity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -19,6 +16,8 @@ public class CreateController {
 
     ArrayList<Activity> activities = new ArrayList<>();
     ArrayList<Requirements> requirements  = new ArrayList<>();
+    Requirements r1 = new Requirements("Age", "");
+    Requirements r2 = new Requirements("Weight", "");
 
     @Autowired
     IActivity activityRepo = new ActivityRepository();
@@ -30,16 +29,31 @@ public class CreateController {
 
     @RequestMapping(value = "/createActivity", method = RequestMethod.GET)
     public String createActivity(Model model) {
+        requirements.add(r1);
+        requirements.add(r2);
         model.addAttribute("activity", new Activity());
-        model.addAttribute("req", new Requirements());
+        model.addAttribute("req", requirements);
         return "createActivity";
     }
 
     @PostMapping("/createA")
-    public String activityCreate(@ModelAttribute Activity activity, Requirements requirement) {
+    public String activityCreate(@ModelAttribute Activity activity) {
         //activityRepo.create(activity);
         System.out.println("Tilføjet activity: " + activity.getName());
-        System.out.println("Tilføjet krav: " + requirement.toString());
         return "index";
+    }
+
+    @GetMapping("/createRequirement")
+    public String createRequirement(Model model) {
+        model.addAttribute("activity", new Requirements());
+        return "createRequirement";
+    }
+
+    @PostMapping("/createReq")
+    public String requirementCreate(@ModelAttribute Requirements req, Model model) {
+        requirements.add(req);
+        model.addAttribute("activity", new Activity());
+        model.addAttribute("req", requirements);
+        return "createActivity";
     }
 }

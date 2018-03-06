@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
     <meta charset="UTF-8"/>
     <title>Create Activity</title>
 </head>
 <body>
 <h2>Opret en Aktivitet og dets krav</h2>
 
-<form method="POST" action="createA">
+<form method="POST" action="createA"    >
     <input type="text" name="name" placeholder="Aktivites Navn"/>
-    <input type="text" name="reqName" placeholder="Kravnavn"/>
-    <input type="text" name="value" placeholder="Kravværdi"/>
+    <select>
+        <option value="">Vælg Navn</option>
+        <option th:each="requirements : ${req}"
+                th:value="${requirements.reqName}"
+                th:text="${requirements.reqName}"></option>
+    </select>
+    <input type="text" name="equipment" placeholder="Udstyr"/>
+    <input type="text" name="description" placeholder="Beskrivelse af aktivitet"/>
     <input type="text" name="imagePath" placeholder="Billede Sti"/>
     <input type="submit" value="Add Activity"/>
 </form>
 
 <div>
+    <a href="/createRequirement" class="btn" >Opret et nyt krav</a>
     <a href="/index" class="btn" >Tilbage til Forsiden</a>
 </div>
 </body>
