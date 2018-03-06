@@ -31,9 +31,8 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(String name, String imagePath) {
-        this.name = name;
-        this.imagePath = imagePath;
+    public Activity(String name, String image_path) {
+        
     }
 
     @Override
