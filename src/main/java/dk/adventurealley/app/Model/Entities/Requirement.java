@@ -7,11 +7,20 @@ public class Requirement {
     private String name;
     private String value;
 
+
+    //Full constructor
     public Requirement(String name, String value) {
         this.name = name;
         this.value = value;
     }
 
+    // Lavet af Andreas og Jonas
+    // Bruges til; "Create requirement name" i Requirement repo
+    public Requirement(String name) {
+        this.name = name;
+    }
+
+    // Bruges af Create Controller, til model
     public Requirement() {
     }
 
