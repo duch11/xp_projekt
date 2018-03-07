@@ -13,6 +13,10 @@ public class Requirements {
         this.value = value;
     }
 
+    public Requirements(String reqName) {
+        this.reqName = reqName;
+    }
+
     public String getReqName() {
         return reqName;
     }

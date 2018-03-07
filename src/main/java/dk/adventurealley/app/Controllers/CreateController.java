@@ -1,6 +1,7 @@
 package dk.adventurealley.app.Controllers;
 
 import dk.adventurealley.app.DAO.ActivityRepository;
+import dk.adventurealley.app.DAO.RequirementRepository;
 import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Requirements;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,12 @@ public class CreateController {
     ArrayList<Activity> activities = new ArrayList<>();
     ArrayList<Requirements> requirements  = new ArrayList<>();
     ArrayList<Requirements> activeReqs = new ArrayList<>();
-    Requirements r1 = new Requirements("Age", "");
-    Requirements r2 = new Requirements("Weight", "");
 
     @Autowired
     ActivityRepository activityRepo = new ActivityRepository();
+
+    @Autowired
+    RequirementRepository requireRepo = new RequirementRepository();
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(){
@@ -29,8 +31,7 @@ public class CreateController {
 
     @RequestMapping(value = "/createActivity", method = RequestMethod.GET)
     public String createActivity(Model model) {
-        requirements.add(r1);
-        requirements.add(r2);
+        requirements = requireRepo.readAll();
         Activity a = new Activity();
         model.addAttribute("activity", a);
         model.addAttribute("req", requirements);
@@ -50,7 +51,7 @@ public class CreateController {
     public String activityCreate(@ModelAttribute Activity a) {
         a.setActivityReq(activeReqs);
         activityRepo.create(a);
-        System.out.println("Tilføjet activity: " + a.toString());
+        activeReqs.clear();
         return "index";
     }
 

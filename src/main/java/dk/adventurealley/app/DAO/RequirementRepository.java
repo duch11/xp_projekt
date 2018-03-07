@@ -22,7 +22,7 @@ public class RequirementRepository {
         requirementsList.clear();
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM adventure_alley_db.req_names");
         while (rs.next()) {
-            requirementsList.add(new Requirements());
+            requirementsList.add(new Requirements(rs.getString("name")));
         }
         return requirementsList;
     }
