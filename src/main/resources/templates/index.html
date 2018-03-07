@@ -14,7 +14,7 @@
 <table align="center" th:if="${activities.size() > 0}">
     <tr th:each="index : ${#numbers.sequence(0, activities.size(), 3)}">
         <td>
-            <a th:href="@{/loadActivity(index)}" class="btn-image"> <!-- Vælg hvor billede skal linke til her -->
+            <a th:href="@{/activityPage(id=${index})}" class="btn-image"> <!-- Vælg hvor billede skal linke til her -->
                 <img th:src="${activities.get(index).getImagePath()}" th:alt="${activities.get(index).getImagePath()}" onclick=""
                      height="175px" width="175px"/>
             </a>
@@ -22,7 +22,7 @@
         </td>
         <td>
             <div th:if="${index + 1 lt activities.size()}">
-                <a th:href="@{/loadActivity(index+1)}" class="btn-image">
+                <a th:href="@{/activityPage(id=${index+1})}" class="btn-image">
                     <img th:src="${activities.get(index + 1).getImagePath()}" th:alt="${activities.get(index + 1).getImagePath()}" onclick=""
                          height="175px" width="175px"/>
                 </a>
@@ -31,7 +31,7 @@
         </td>
         <td>
             <div th:if="${index + 2 lt activities.size()}">
-                <a th:href="@{/loadActivity(index+2)}" class="btn-image">
+                <a th:href="@{/activityPage(id=${index+2})}" class="btn-image">
                     <img th:src="${activities.get(index + 2).getImagePath()}" th:alt="${activities.get(index + 1).getImagePath()}" onclick=""
                          height="175px" width="175px"/>
                 </a>

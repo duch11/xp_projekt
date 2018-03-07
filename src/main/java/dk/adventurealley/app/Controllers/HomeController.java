@@ -17,7 +17,6 @@ public class HomeController {
 
     @Autowired
     ActivityRepository activityRepo = new ActivityRepository();
-
     ArrayList<Activity> activities = new ArrayList<>();
 
     @GetMapping("/")
@@ -27,16 +26,17 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping
-    public String loadActivity(int index, Model model){
-        String name = activities.get(index).getName();
-        //model.addAttribute("activity", activityRepo.readActivity(name));
+    @GetMapping("/activityPage")
+    public String activityPage(@RequestParam("id") String id, Model model){
+        Activity temp = activityRepo.read(activities.get(Integer.parseInt(id)).getName());
+        model.addAttribute("activity", temp);
+        model.addAttribute("reqList", temp.getReqList());
         return "activityPage";
     }
-
-    @PostMapping
+    /*
+    @PostMapping("/activityPage")
     public String deleteAcitivity(String name){
         activityRepo.deleteActivity(name);
         return "index";
-    }
+    }*/
 }
