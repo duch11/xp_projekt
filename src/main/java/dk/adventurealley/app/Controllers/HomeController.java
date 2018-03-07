@@ -27,8 +27,14 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping
+    public String loadActivity(String name, Model model){
+        model.addAttribute("activity", activityRepo.readActivity(name));
+        return "activityPage";
+    }
+
     @PostMapping
-    public String deleteAcitivity(@RequestParam("name") String name){
+    public String deleteAcitivity(String name){
         activityRepo.deleteActivity(name);
         return "index";
     }
