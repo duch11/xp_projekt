@@ -29,7 +29,7 @@ public class EditActController {
         }
         model.addAttribute("requirement", new Requirement());
         Activity activity = new Activity("Gokart", requirements, "Hjelm", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFqnVyooVfj3rVcljhdOQSRgcxrowe0GUQJli12phkLzTuh5nL", "haleluja");
-        model.addAttribute("requirements", activity.getRegList());
+        model.addAttribute("requirements", activity.getReqList());
         model.addAttribute("activity", activity);
         return "editActivity";
     }
