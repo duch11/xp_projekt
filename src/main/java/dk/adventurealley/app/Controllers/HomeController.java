@@ -28,8 +28,9 @@ public class HomeController {
     }
 
     @GetMapping
-    public String loadActivity(String name, Model model){
-        model.addAttribute("activity", activityRepo.readActivity(name));
+    public String loadActivity(int index, Model model){
+        String name = activities.get(index).getName();
+        //model.addAttribute("activity", activityRepo.readActivity(name));
         return "activityPage";
     }
 

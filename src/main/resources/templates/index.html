@@ -31,7 +31,7 @@
         </td>
         <td>
             <div th:if="${index + 2 lt activities.size()}">
-                <a th:href="@{/loadActivity(activities.get(index+2).getName())}" class="btn-image">
+                <a th:href="@{/loadActivity(index+2)}" class="btn-image">
                     <img th:src="${activities.get(index + 2).getImagePath()}" th:alt="${activities.get(index + 1).getImagePath()}" onclick=""
                          height="175px" width="175px"/>
                 </a>
