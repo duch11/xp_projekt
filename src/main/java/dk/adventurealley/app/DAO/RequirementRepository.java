@@ -1,6 +1,6 @@
 package dk.adventurealley.app.DAO;
 
-import dk.adventurealley.app.Model.Entities.Requirements;
+import dk.adventurealley.app.Model.Entities.Requirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -15,14 +15,14 @@ public class RequirementRepository {
     @Autowired
     private JdbcTemplate jdbc;
 
-    private ArrayList<Requirements> requirementsList = new ArrayList<>();
+    private ArrayList<Requirement> requirementsList = new ArrayList<>();
 
-    // readAll er kun til requirement names, outputter kun Requirements uden værdier
-    public ArrayList<Requirements> readAll() {
+    // readAll er kun til requirement names, outputter kun Requirement uden værdier
+    public ArrayList<Requirement> readAll() {
         requirementsList.clear();
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM adventure_alley_db.req_names");
         while (rs.next()) {
-            requirementsList.add(new Requirements(rs.getString("name")));
+            requirementsList.add(new Requirement(rs.getString("name")));
         }
         return requirementsList;
     }

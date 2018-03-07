@@ -7,13 +7,13 @@ public class Activity {
     private String name;
     private String equipment;
     private String imagePath;
-    private ArrayList<Requirements> activityReq;
+    private ArrayList<Requirement> activityReq;
     private String description;
 
     public Activity() {
     }
 
-    public Activity(String name, String equipment, String imagePath, ArrayList<Requirements> activityReq, String description) {
+    public Activity(String name, String equipment, String imagePath, ArrayList<Requirement> activityReq, String description) {
         this.name = name;
         this.equipment = equipment;
         this.imagePath = imagePath;
@@ -45,11 +45,11 @@ public class Activity {
         this.imagePath = imagePath;
     }
 
-    public ArrayList<Requirements> getActivityReq() {
+    public ArrayList<Requirement> getActivityReq() {
         return activityReq;
     }
 
-    public void setActivityReq(ArrayList<Requirements> activityReq) {
+    public void setActivityReq(ArrayList<Requirement> activityReq) {
         this.activityReq = activityReq;
     }
 

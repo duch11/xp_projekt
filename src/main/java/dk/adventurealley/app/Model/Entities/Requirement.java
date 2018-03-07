@@ -1,19 +1,19 @@
 package dk.adventurealley.app.Model.Entities;
 
-public class Requirements {
+public class Requirement {
 
     private String reqName;
     private String value;
 
-    public Requirements() {
+    public Requirement() {
     }
 
-    public Requirements(String reqName, String value) {
+    public Requirement(String reqName, String value) {
         this.reqName = reqName;
         this.value = value;
     }
 
-    public Requirements(String reqName) {
+    public Requirement(String reqName) {
         this.reqName = reqName;
     }
 
@@ -35,7 +35,7 @@ public class Requirements {
 
     @Override
     public String toString() {
-        return "Requirements{" +
+        return "Requirement{" +
                 "reqName='" + reqName + '\'' +
                 ", value='" + value + '\'' +
                 '}';

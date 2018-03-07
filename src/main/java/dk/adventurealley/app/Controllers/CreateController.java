@@ -3,7 +3,7 @@ package dk.adventurealley.app.Controllers;
 import dk.adventurealley.app.DAO.ActivityRepository;
 import dk.adventurealley.app.DAO.RequirementRepository;
 import dk.adventurealley.app.Model.Entities.Activity;
-import dk.adventurealley.app.Model.Entities.Requirements;
+import dk.adventurealley.app.Model.Entities.Requirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class CreateController {
 
     ArrayList<Activity> activities = new ArrayList<>();
-    ArrayList<Requirements> requirements  = new ArrayList<>();
-    ArrayList<Requirements> activeReqs = new ArrayList<>();
+    ArrayList<Requirement> requirements  = new ArrayList<>();
+    ArrayList<Requirement> activeReqs = new ArrayList<>();
 
     @Autowired
     ActivityRepository activityRepo = new ActivityRepository();
@@ -40,7 +40,7 @@ public class CreateController {
 
     @PostMapping("/addReq")
     public String addRequirement(@ModelAttribute Activity a, Model model, @RequestParam String reqname, @RequestParam String value) {
-        Requirements r = new Requirements(reqname, value);
+        Requirement r = new Requirement(reqname, value);
         activeReqs.add(r);
         model.addAttribute("activity", a);
         model.addAttribute("req", requirements);
@@ -57,12 +57,12 @@ public class CreateController {
 
     @GetMapping("/createRequirement")
     public String createRequirement(Model model) {
-        model.addAttribute("activity", new Requirements());
+        model.addAttribute("activity", new Requirement());
         return "createRequirement";
     }
 
     @PostMapping("/createReq")
-    public String requirementCreate(@ModelAttribute Requirements req, Model model) {
+    public String requirementCreate(@ModelAttribute Requirement req, Model model) {
         requirements.add(req);
         model.addAttribute("activity", new Activity());
         model.addAttribute("req", requirements);

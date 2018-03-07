@@ -1,7 +1,7 @@
 package dk.adventurealley.app.DAO;
 
 import dk.adventurealley.app.Model.Entities.Activity;
-import dk.adventurealley.app.Model.Entities.Requirements;
+import dk.adventurealley.app.Model.Entities.Requirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -27,7 +27,7 @@ public class ActivityRepository {
 
     public void create(Activity a) {
         jdbc.update("INSERT INTO adventure_alley_db.activities(name, equipment, image_path, description) " + "VALUES ('" + a.getName() + "', '" + a.getEquipment() + "', '" + a.getImagePath() + "', ' " + a.getDescription() + "')");
-        for (Requirements req : a.getActivityReq()) {
+        for (Requirement req : a.getActivityReq()) {
             jdbc.update(" INSERT INTO adventure_alley_db.act_reqs(fk_act_name, fk_req_names_name, req_value) " + "VALUES ('" + a.getName() + "', '" + req.getReqName() + "', '" + req.getValue() + "')");
         }
     }
