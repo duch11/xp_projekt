@@ -22,11 +22,13 @@
 <table align="center" th:if="${activities.size() > 0}">
     <tr th:each="index : ${#numbers.sequence(0, activities.size(), 3)}">
         <td>
+            <div th:if="${index lt activities.size()}">
             <a th:href="@{/activityPage(id=${index})}" class="btn-image"> <!-- Vælg hvor billede skal linke til her -->
                 <img th:src="${activities.get(index).getImagePath()}" th:alt="${activities.get(index).getImagePath()}" onclick=""
                      height="175px" width="175px"/>
             </a>
             <h3 align="center" th:text="${activities.get(index).getName()}"></h3>
+            </div>
         </td>
         <td>
             <div th:if="${index + 1 lt activities.size()}">

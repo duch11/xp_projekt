@@ -33,10 +33,10 @@ public class HomeController {
         model.addAttribute("reqList", temp.getReqList());
         return "activityPage";
     }
-    /*
-    @PostMapping("/activityPage")
+
+    @GetMapping("/deleteActivity")
     public String deleteAcitivity(String name){
         activityRepo.deleteActivity(name);
-        return "index";
-    }*/
+        return "redirect:/";
+    }
 }
