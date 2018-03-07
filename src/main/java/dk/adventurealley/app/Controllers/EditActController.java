@@ -35,6 +35,10 @@ public class EditActController {
     @PostMapping ("/editActivity")
     public String editActivity(@ModelAttribute Activity activity, @ModelAttribute Requirement newReq, Model model){
         System.out.println(newReq);
+        if (newReq.getName().equals(activity.getName())){
+            newReq.setName(null);
+        }
+        System.out.println(newReq);
         if(newReq.getName() != null){
             activity.getRegList().add(newReq);
         }
