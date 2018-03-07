@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
@@ -16,29 +16,36 @@
 
         <div class="form-inline form-group">
 
-            <h7 class="edit-act-label text form-control" for="reqValue"
+            <h7 class="edit-act-label text form-control" for="n"
                 style="background: #00045d; font-size: 17px; width: 7ch">Navn:
             </h7>
 
-            <input type="text" class="form-control" id="name" th:field="*{name}"/>
+            <input type="text" class="form-control" id="n" th:field="*{name}"/>
             <a th:href="@{/createRequirement}" class="btn btn-primary float-right" style="margin-left: 100px;">Nyt
                 krav</a>
         </div>
         <div class="box-model">
             <h3 class="text-in-borderline">Krav</h3>
             <div class="form-group form-inline" style="text-align: left">
-                <select class="form-control dropdown" th:field="*{name}">
+                <select class="form-control dropdown">
                     <option th:each="requirement : ${requirements}" th:text="${requirement.name}"
                             th:value="${requirement.name}"></option>
                 </select>
                 <input type="submit" class="btn btn-success" value="Tilføj krav"/>
             </div>
-            <div th:each="req : ${requirements}">
+            <div th:each="req, stat : *{regList}">
+
                 <div class="form-inline form-group">
-                    <h7 th:text="${req.name} + ':'" class="edit-act-label text min-width" for="reqValue"></h7>
-                    <input type="text" class="form-control" id="reqValue" th:field="${req.value}"/>
+                    <h7 readonly="readonly" th:text="${req.name} + ':'" class="edit-act-label text min-width" for="reqValue"></h7>
+                    <input type="hidden" th:value="${req.name}" th:field="*{regList[__${stat.index}__].name}"/>
+
+                    <input type="text" class="form-control" id="reqValue" th:value="${req.value}" th:field="*{regList[__${stat.index}__].value}"/>
                 </div>
             </div>
+        </div>
+        <div class="form-inline form-group">
+            <h7 class="edit-act-label text min-width" for="equip">Udstyr:</h7>
+            <input type="text" class="form-control" id="equip" th:field="*{equipment}" style="width: 31%"/>
         </div>
         <div class="form-group">
             <label for="description">Beskrivelse: </label>

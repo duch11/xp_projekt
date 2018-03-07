@@ -44,10 +44,14 @@ public class ActivityRepository {
         jdbc.update("UPDATE activities SET name ='"+ activity.getName() +"', equipment ='"+ activity.getEquipment() +"', image_path ='"+ activity.getImagePath() +"', description ='"+ activity.getDescription() +"' WHERE name ='"+ activity.getName() +"'");
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM act_reqs WHERE fk_act_name ='"+ activity.getName() +"'");
         while (rs.next()){
-            jdbc.update("DELETE FROM act_reqs WHERE fk_act_name ='"+ activity.getName() +"'");
+            for (Requirement req : activity.getRegList())
+            jdbc.update("UPDATE act_reqs SET req_value ='"+ req.getValue() +"' WHERE fk_act_name ='"+ activity.getName() +"' AND fk_req_names_name ='"+ req.getName() +"'");
         }
-        for (Requirement req: activity.getRegList()) {
-            jdbc.update("INSERT INTO act_reqs (fk_act_name, fk_req_names_name, req_value) VALUES ('"+ activity.getName() +"', '"+ req.getName() +"', '"+ req.getValue() +"')");
-        }
+//        while (rs.next()){
+//            jdbc.update("DELETE FROM act_reqs WHERE fk_act_name ='"+ activity.getName() +"'");
+//        }
+//        for (Requirement req: activity.getRegList()) {
+//            jdbc.update("INSERT INTO act_reqs (fk_req_names_name, req_value) VALUES ('"+ req.getName() +"', '"+ req.getValue() +"')");
+//        }
     }
 }
