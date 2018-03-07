@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Activity {
 
-    private int id;
     private String name;
     private String equipment;
     private String imagePath;
@@ -14,12 +13,12 @@ public class Activity {
     public Activity() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Activity(String name, String equipment, String imagePath, ArrayList<Requirements> activityReq, String description) {
+        this.name = name;
+        this.equipment = equipment;
+        this.imagePath = imagePath;
+        this.activityReq = activityReq;
+        this.description = description;
     }
 
     public String getName() {
@@ -65,8 +64,7 @@ public class Activity {
     @Override
     public String toString() {
         return "Activity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", equipment='" + equipment + '\'' +
                 ", imagePath='" + imagePath + '\'' +
                 ", activityReq=" + activityReq +

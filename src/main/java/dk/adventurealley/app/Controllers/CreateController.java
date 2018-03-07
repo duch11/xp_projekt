@@ -1,9 +1,8 @@
 package dk.adventurealley.app.Controllers;
 
+import dk.adventurealley.app.DAO.ActivityRepository;
 import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Requirements;
-import dk.adventurealley.app.Model.Utilities.ActivityRepository;
-import dk.adventurealley.app.Model.Utilities.Interfaces.IActivity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +20,7 @@ public class CreateController {
     Requirements r2 = new Requirements("Weight", "");
 
     @Autowired
-    IActivity activityRepo = new ActivityRepository();
+    ActivityRepository activityRepo = new ActivityRepository();
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(){
@@ -50,7 +49,7 @@ public class CreateController {
     @PostMapping("/createA")
     public String activityCreate(@ModelAttribute Activity a) {
         a.setActivityReq(activeReqs);
-        activityRepo.create(a);
+        //activityRepo.create(a);
         System.out.println("Tilføjet activity: " + a.toString());
         return "index";
     }
