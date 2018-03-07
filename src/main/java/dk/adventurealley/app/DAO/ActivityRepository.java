@@ -39,4 +39,15 @@ public class ActivityRepository {
         }
         return null;
     }
+
+    public void update(Activity activity){
+        jdbc.update("UPDATE activities SET name ='"+ activity.getName() +"', equipment ='"+ activity.getEquipment() +"', image_path ='"+ activity.getImagePath() +"', description ='"+ activity.getDescription() +"' WHERE name ='"+ activity.getName() +"'");
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM act_reqs WHERE fk_act_name ='"+ activity.getName() +"'");
+        while (rs.next()){
+            jdbc.update("DELETE FROM act_reqs WHERE fk_act_name ='"+ activity.getName() +"'");
+        }
+        for (Requirement req: activity.getRegList()) {
+            jdbc.update("INSERT INTO act_reqs (fk_act_name, fk_req_names_name, req_value) VALUES ('"+ activity.getName() +"', '"+ req.getName() +"', '"+ req.getValue() +"')");
+        }
+    }
 }

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -19,11 +21,17 @@ public class EditActController {
 
     @GetMapping ("/editActivity")
     public String editActivity(Model model){
-
-        model.addAttribute("requirement", new Requirement());
         Activity activity = aR.read("GokartTest");
         model.addAttribute("requirements", activity.getRegList());
         model.addAttribute("activity", activity);
+        return "editActivity";
+    }
+
+    @PostMapping ("/editActivity")
+    public String editActivity(@ModelAttribute Activity activity, Model model){
+        System.out.println(activity);
+        aR.update(activity);
+        model.addAttribute("activity", aR.read(activity.getName()));
         return "editActivity";
     }
 }
