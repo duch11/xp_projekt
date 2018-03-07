@@ -16,6 +16,7 @@ public class CreateController {
 
     ArrayList<Activity> activities = new ArrayList<>();
     ArrayList<Requirements> requirements  = new ArrayList<>();
+    ArrayList<Requirements> activeReqs = new ArrayList<>();
     Requirements r1 = new Requirements("Age", "");
     Requirements r2 = new Requirements("Weight", "");
 
@@ -38,18 +39,22 @@ public class CreateController {
     }
 
     @PostMapping("/addReq")
-    public String addRequirement(@ModelAttribute Requirements req, Activity a, Model model) {
-        System.out.println(req.toString());
-        //a.getActivityReq().add(req);
+    public String addRequirement(@ModelAttribute Activity a, Model model, @RequestParam String reqname, @RequestParam String value) {
+        Requirements r = new Requirements(reqname, value);
+        System.out.println(r.toString());
+        activeReqs.add(r);
+        a.setActivityReq(activeReqs);
+        System.out.println(a.toString());
         model.addAttribute("activity", a);
         model.addAttribute("req", requirements);
         return "createActivity";
     }
 
     @PostMapping("/createA")
-    public String activityCreate(@ModelAttribute Activity activity) {
+    public String activityCreate(@ModelAttribute Activity a) {
         //activityRepo.create(activity);
-        System.out.println("Tilføjet activity: " + activity.getName());
+        a.setActivityReq(activeReqs);
+        System.out.println("Tilføjet activity: " + a.toString());
         return "index";
     }
 

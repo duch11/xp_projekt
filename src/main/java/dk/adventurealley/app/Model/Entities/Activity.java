@@ -14,15 +14,6 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(int id, String name, String equipment, String imagePath, ArrayList<Requirements> activityReq, String description) {
-        this.id = id;
-        this.name = name;
-        this.equipment = equipment;
-        this.imagePath = imagePath;
-        this.activityReq = activityReq;
-        this.description = description;
-    }
-
     public int getId() {
         return id;
     }
@@ -69,5 +60,17 @@ public class Activity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", equipment='" + equipment + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", activityReq=" + activityReq +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

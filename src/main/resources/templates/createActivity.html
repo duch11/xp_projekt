@@ -8,12 +8,12 @@
 <body>
 <h2>Opret en Aktivitet og dets krav</h2>
 
-<form method="POST" action="addReq">
-    <select>
+<form method="POST" th:action="@{/addReq}">
+    <select th:name="reqname">
         <option value="">Vælg Navn</option>
         <option th:each="requirements : ${req}"
                 th:value="${requirements.reqName}"
-                th:text="${requirements.reqName}" id="name"></option>
+                th:text="${requirements.reqName}"></option>
     </select>
     <input type="text" name="value" placeholder="Kravets værdi"/>
     <input type="submit" value="Add Requirement"/>
