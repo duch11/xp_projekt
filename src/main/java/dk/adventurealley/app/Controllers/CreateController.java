@@ -41,10 +41,7 @@ public class CreateController {
     @PostMapping("/addReq")
     public String addRequirement(@ModelAttribute Activity a, Model model, @RequestParam String reqname, @RequestParam String value) {
         Requirements r = new Requirements(reqname, value);
-        System.out.println(r.toString());
         activeReqs.add(r);
-        a.setActivityReq(activeReqs);
-        System.out.println(a.toString());
         model.addAttribute("activity", a);
         model.addAttribute("req", requirements);
         return "createActivity";
@@ -52,8 +49,8 @@ public class CreateController {
 
     @PostMapping("/createA")
     public String activityCreate(@ModelAttribute Activity a) {
-        //activityRepo.create(activity);
         a.setActivityReq(activeReqs);
+        activityRepo.create(a);
         System.out.println("Tilføjet activity: " + a.toString());
         return "index";
     }
