@@ -1,5 +1,6 @@
 package dk.adventurealley.app.DAO;
 
+import dk.adventurealley.app.*;
 import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Requirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,22 @@ public class ActivityRepository {
 //        for (Requirement req: activity.getRegList()) {
 //            jdbc.update("INSERT INTO act_reqs (fk_req_names_name, req_value) VALUES ('"+ req.getName() +"', '"+ req.getValue() +"')");
 //        }
+    }
+
+    public Activity read(String actId){
+        SqlRowSet rs1 = jdbc.queryForRowSet("SELECT * FROM activities WHERE name = '"+ actId +"'");
+        SqlRowSet rs2 = jdbc.queryForRowSet("SELECT fk_req_names_name, req_value FROM act_reqs WHERE fk_act_name ='"+ actId +"'");
+        ArrayList<Requirement> requirements = new ArrayList<>();
+        if (rs1.next()){
+            while (rs2.next()){
+                requirements.add(new Requirement(rs2.getString("fk_req_names_name"), rs2.getString("req_value")));
+            }
+            return new Activity(rs1.getString("name"), requirements , rs1.getString("equipment"), rs1.getString("image_path"), rs1.getString("description"));
+        }
+        return null;
+    }
+
+    public void deleteActivity(String name){
+        jdbc.update("DELETE FROM activities WHERE name='"+name+"'");
     }
 }

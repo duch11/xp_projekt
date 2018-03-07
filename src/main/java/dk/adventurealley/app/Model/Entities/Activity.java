@@ -7,14 +7,14 @@ import java.util.ArrayList;
  */
 public class Activity {
     private String name;
-    private ArrayList<Requirement> regList;
+    private ArrayList<Requirement> reqList;
     private String equipment;
     private String imagePath;
     private String description;
 
-    public Activity(String name, ArrayList<Requirement> regList, String equipment, String imagePath, String description) {
+    public Activity(String name, ArrayList<Requirement> reqList, String equipment, String imagePath, String description) {
         this.name = name;
-        this.regList = regList;
+        this.reqList = reqList;
         this.equipment = equipment;
         this.imagePath = imagePath;
         this.description = description;
@@ -22,7 +22,7 @@ public class Activity {
 
     public Activity(String name, String equipment, String imagePath, String description) {
         this.name = name;
-        this.regList = regList;
+        this.reqList = reqList;
         this.equipment = equipment;
         this.imagePath = imagePath;
         this.description = description;
@@ -42,7 +42,7 @@ public class Activity {
     public String toString() {
         return "Activity{" +
                 "name='" + name + '\'' +
-                ", regList=" + regList +
+                ", regList=" + reqList +
                 ", equipment='" + equipment + '\'' +
                 ", imagePath='" + imagePath + '\'' +
                 ", description='" + description + '\'' +
@@ -57,12 +57,12 @@ public class Activity {
         this.name = name;
     }
 
-    public ArrayList<Requirement> getRegList() {
-        return regList;
+    public ArrayList<Requirement> getReqList() {
+        return reqList;
     }
 
-    public void setRegList(ArrayList<Requirement> regList) {
-        this.regList = regList;
+    public void setReqList(ArrayList<Requirement> regList) {
+        this.reqList = regList;
     }
 
     public String getEquipment() {
