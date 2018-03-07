@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.20, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: adventure_alley_db
 -- ------------------------------------------------------
--- Server version	5.7.19-log
+-- Server version	5.7.20-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,7 +33,7 @@ CREATE TABLE `act_reqs` (
   KEY `act_reqs_req_names_name_fk` (`fk_req_names_name`),
   CONSTRAINT `act_reqs_activities_name_fk` FOREIGN KEY (`fk_act_name`) REFERENCES `activities` (`name`),
   CONSTRAINT `act_reqs_req_names_name_fk` FOREIGN KEY (`fk_req_names_name`) REFERENCES `req_names` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `act_reqs` (
 
 LOCK TABLES `act_reqs` WRITE;
 /*!40000 ALTER TABLE `act_reqs` DISABLE KEYS */;
+INSERT INTO `act_reqs` VALUES (1,'GokartTest','Højde','200 cm');
 /*!40000 ALTER TABLE `act_reqs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,6 +57,7 @@ CREATE TABLE `activities` (
   `name` varchar(200) NOT NULL,
   `equipment` varchar(500) DEFAULT NULL,
   `image_path` varchar(500) NOT NULL,
+  `description` varchar(500) NOT NULL,
   PRIMARY KEY (`name`),
   UNIQUE KEY `activities_name_uindex` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -67,7 +69,7 @@ CREATE TABLE `activities` (
 
 LOCK TABLES `activities` WRITE;
 /*!40000 ALTER TABLE `activities` DISABLE KEYS */;
-INSERT INTO `activities` VALUES ('BasketballTest','Bold','http://a.espncdn.com/combiner/i?img=/redesign/assets/img/icons/ESPN-icon-basketball.png&w=288&h=288&transparent=true'),('GokartTest','Hjelm','https://img.grouponcdn.com/deal/htzFHaEQ5LVhwTgFS9ZR/5t-1500x900/v1/c700x420.jpg'),('Mini-GolfTest','Kølle','https://www.jesperhus.dk/media/581399/minigolf2016_Galleri.jpg'),('PaintballTest','Hjelm, Våben og Rustning','http://hevansscent.com/wp-content/uploads/2016/06/paintball.jpg'),('Sumo-WrestlingTest','Ble','https://i.ytimg.com/vi/s2i841E1DFQ/maxresdefault.jpg');
+INSERT INTO `activities` VALUES ('BasketballTest','Bold','http://a.espncdn.com/combiner/i?img=/redesign/assets/img/icons/ESPN-icon-basketball.png&w=288&h=288&transparent=true',''),('GokartTest','Hjelm','https://img.grouponcdn.com/deal/htzFHaEQ5LVhwTgFS9ZR/5t-1500x900/v1/c700x420.jpg','YOLO'),('Mini-GolfTest','Kølle','https://www.jesperhus.dk/media/581399/minigolf2016_Galleri.jpg',''),('PaintballTest','Hjelm, Våben og Rustning','http://hevansscent.com/wp-content/uploads/2016/06/paintball.jpg',''),('Sumo-WrestlingTest','Ble','https://i.ytimg.com/vi/s2i841E1DFQ/maxresdefault.jpg','');
 /*!40000 ALTER TABLE `activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,6 +93,7 @@ CREATE TABLE `req_names` (
 
 LOCK TABLES `req_names` WRITE;
 /*!40000 ALTER TABLE `req_names` DISABLE KEYS */;
+INSERT INTO `req_names` VALUES ('Højde');
 /*!40000 ALTER TABLE `req_names` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -103,4 +106,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-06 14:39:56
+-- Dump completed on 2018-03-07 11:07:03
