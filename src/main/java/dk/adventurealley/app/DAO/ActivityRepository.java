@@ -45,29 +45,11 @@ public class ActivityRepository {
         jdbc.update("UPDATE activities SET name ='"+ activity.getName() +"', equipment ='"+ activity.getEquipment() +"', image_path ='"+ activity.getImagePath() +"', description ='"+ activity.getDescription() +"' WHERE name ='"+ activity.getName() +"'");
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM act_reqs WHERE fk_act_name ='"+ activity.getName() +"'");
         while (rs.next()){
-            for (Requirement req : activity.getRegList())
-            jdbc.update("UPDATE act_reqs SET req_value ='"+ req.getValue() +"' WHERE fk_act_name ='"+ activity.getName() +"' AND fk_req_names_name ='"+ req.getName() +"'");
+            for (Requirement req : activity.getReqList())
+            jdbc.update("UPDATE act_reqs SET req_value ='"+ req.getValue() +"' WHERE fk_act_name ='"+ activity.getName() +"' AND fk_req_names_name ='"+ req.getReqName() +"'");
         }
-//        while (rs.next()){
-//            jdbc.update("DELETE FROM act_reqs WHERE fk_act_name ='"+ activity.getName() +"'");
-//        }
-//        for (Requirement req: activity.getRegList()) {
-//            jdbc.update("INSERT INTO act_reqs (fk_req_names_name, req_value) VALUES ('"+ req.getName() +"', '"+ req.getValue() +"')");
-//        }
     }
 
-    public Activity read(String actId){
-        SqlRowSet rs1 = jdbc.queryForRowSet("SELECT * FROM activities WHERE name = '"+ actId +"'");
-        SqlRowSet rs2 = jdbc.queryForRowSet("SELECT fk_req_names_name, req_value FROM act_reqs WHERE fk_act_name ='"+ actId +"'");
-        ArrayList<Requirement> requirements = new ArrayList<>();
-        if (rs1.next()){
-            while (rs2.next()){
-                requirements.add(new Requirement(rs2.getString("fk_req_names_name"), rs2.getString("req_value")));
-            }
-            return new Activity(rs1.getString("name"), requirements , rs1.getString("equipment"), rs1.getString("image_path"), rs1.getString("description"));
-        }
-        return null;
-    }
 
     public void deleteActivity(String name){
         jdbc.update("DELETE FROM activities WHERE name='"+name+"'");

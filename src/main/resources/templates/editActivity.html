@@ -20,26 +20,26 @@
                 style="background: #00045d; font-size: 17px; width: 7ch">Navn:
             </h7>
 
-            <input type="text" required="required" class="form-control" id="n" th:value="*{name}" th:field="*{name}"/>
+            <input type="text" required="required" class="form-control" id="n" th:field="*{name}"/>
             <a th:href="@{/createRequirement}" class="btn btn-primary float-right" style="margin-left: 100px;">Nyt
                 krav</a>
         </div>
         <div class="box-model">
             <h3 class="text-in-borderline">Krav</h3>
             <div class="form-group form-inline" style="text-align: left">
-                <select class="form-control dropdown" th:field="${regList[__*{regList.size()}__].name}">
-                    <option th:each="requirement : ${requirements}" th:text="${requirement.name}"
-                            th:value="${requirement.name}"></option>
+                <select class="form-control dropdown" th:field="${newReq.reqName}">
+                    <option th:each="requirement : ${requirements}" th:text="${requirement.reqName}"
+                            th:value="${requirement.reqName}"></option>
                 </select>
                 <input type="submit" class="btn btn-success" value="Tilføj krav"/>
             </div>
-            <div th:each="req, stat : *{regList}">
+            <div th:each="req, stat : *{reqList}">
 
                 <div class="form-inline form-group">
-                    <h7 readonly="readonly" th:text="${req.name} + ':'" class="edit-act-label text min-width" for="reqValue"></h7>
-                    <input type="hidden" th:value="${req.name}" th:field="*{regList[__${stat.index}__].name}"/>
+                    <h7 readonly="readonly" th:text="${req.reqName} + ':'" class="edit-act-label text min-width" for="reqValue"></h7>
+                    <input type="hidden" th:value="${req.reqName}" th:field="*{reqList[__${stat.index}__].reqName}"/>
 
-                    <input required="required" type="text" class="form-control" id="reqValue" th:value="${req.value}" th:field="*{regList[__${stat.index}__].value}"/>
+                    <input required="required" type="text" class="form-control" id="reqValue" th:value="${req.value}" th:field="*{reqList[__${stat.index}__].value}"/>
                 </div>
             </div>
         </div>
