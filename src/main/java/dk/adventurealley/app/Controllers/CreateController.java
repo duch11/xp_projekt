@@ -49,7 +49,7 @@ public class CreateController {
     @PostMapping("/createA")
     public String activityCreate(@ModelAttribute Activity a) {
         a.setActivityReq(activeReqs);
-        //activityRepo.create(a);
+        activityRepo.create(a);
         System.out.println("Tilføjet activity: " + a.toString());
         return "index";
     }
