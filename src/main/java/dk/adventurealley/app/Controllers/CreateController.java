@@ -47,7 +47,7 @@ public class CreateController {
         a.setActivityReq(activeReqs);
         activityRepo.create(a);
         activeReqs.clear();
-        return "index";
+        return "redirect:/";
     }
     
 }
