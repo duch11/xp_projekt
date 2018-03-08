@@ -54,18 +54,5 @@ public class CreateController {
         activeReqs.clear();
         return "index";
     }
-
-    @GetMapping("/createRequirement")
-    public String createRequirement(Model model) {
-        model.addAttribute("activity", new Requirement());
-        return "createRequirement";
-    }
-
-    @PostMapping("/createReq")
-    public String requirementCreate(@ModelAttribute Requirement req, Model model) {
-        requirements.add(req);
-        model.addAttribute("activity", new Activity());
-        model.addAttribute("req", requirements);
-        return "createActivity";
-    }
+    
 }
