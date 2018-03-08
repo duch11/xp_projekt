@@ -7,14 +7,14 @@
 <h2 align="center" th:text="${activity.name}"></h2>
 <div class="topnav">
     <a class="active" href="/">Forside</a>
-    <a href="/editActivity">Edit</a>
+    <a th:href="@{/editActivity(name=${activity.name})}">Edit</a>
     <a th:href="@{/deleteActivity(name=${activity.name})}">Slet</a>
 </div>
 <div class="container" align="center">
     <table>
         <tr>
             <td>Krav: </td>
-            <td th:text="${reqList}"></td>
+            <td th:text="${activity.reqList}"></td>
         </tr>
         <tr>
             <td>Beskrivelse: </td>

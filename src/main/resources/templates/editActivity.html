@@ -21,7 +21,7 @@
             </h7>
 
             <input type="text" required="required" class="form-control" id="n" th:field="*{name}"/>
-            <a th:href="@{/createRequirement}" class="btn btn-primary float-right" style="margin-left: 100px;">Nyt
+            <a th:href="@{/createrequirement}" class="btn btn-primary float-right" style="margin-left: 100px;">Nyt
                 krav</a>
         </div>
         <div class="box-model">
@@ -31,7 +31,7 @@
                     <option th:each="requirement : ${requirements}" th:text="${requirement.reqName}"
                             th:value="${requirement.reqName}"></option>
                 </select>
-                <input type="submit" class="btn btn-success" value="Tilføj krav"/>
+                <input type="submit" class="btn btn-success" name="action" value="Tilføj krav"/>
             </div>
             <div th:each="req, stat : *{reqList}">
 
@@ -56,7 +56,7 @@
             <label for="imagePath">Billedsti: </label>
             <input type="text" required="required" id="imagePath" class="form-control" th:field="*{imagePath}"/>
             <div class="right">
-                <input type="submit" class="btn btn-success" style="margin-left: 287px;" value="Gem Ændringer"/>
+                <input type="submit" class="btn btn-success" name="action" style="margin-left: 287px;" value="Gem Ændringer"/>
             </div>
         </div>
     </form>

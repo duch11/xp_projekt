@@ -17,7 +17,9 @@ public class ActivityRepository {
     private JdbcTemplate jdbc;
     private ArrayList<Activity> activityList = new ArrayList<>();
     @Autowired
-    private RequirementRepository rP = new RequirementRepository();
+    private RequirementRepository rR = new RequirementRepository();
+    @Autowired
+    private ActivityRequirementsRepo aRR = new ActivityRequirementsRepo();
 
     public ArrayList<Activity> readAll(){
         activityList.clear();
@@ -45,8 +47,18 @@ public class ActivityRepository {
         jdbc.update("UPDATE activities SET name ='"+ activity.getName() +"', equipment ='"+ activity.getEquipment() +"', image_path ='"+ activity.getImagePath() +"', description ='"+ activity.getDescription() +"' WHERE name ='"+ activity.getName() +"'");
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM act_reqs WHERE fk_act_name ='"+ activity.getName() +"'");
         while (rs.next()){
-            for (Requirement req : activity.getReqList())
-            jdbc.update("UPDATE act_reqs SET req_value ='"+ req.getValue() +"' WHERE fk_act_name ='"+ activity.getName() +"' AND fk_req_names_name ='"+ req.getReqName() +"'");
+            for (Requirement req : activity.getReqList()) {
+                jdbc.update("UPDATE act_reqs SET req_value ='" + req.getValue() + "' WHERE fk_act_name ='" + activity.getName() + "' AND fk_req_names_name ='" + req.getReqName() + "'");
+            }
+        }
+        System.out.println(activity.getReqList());
+        System.out.println(aRR.readAllReqNameForOneAct(activity.getName()));
+        if(activity.getReqList() != null) {
+            for (Requirement req : activity.getReqList()) {
+                if (aRR.read(activity.getName(), req.getReqName()) == null) {
+                    jdbc.update("INSERT INTO act_reqs (fk_act_name, fk_req_names_name, req_value) VALUES ('" + activity.getName() + "', '" + req.getReqName() + "', '" + req.getValue() + "')");
+                }
+            }
         }
     }
 
