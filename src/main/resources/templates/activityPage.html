@@ -13,8 +13,8 @@
         <div class="row">
             <div class="col-sm-3">
                 <a class="btn btn-primary"  href="/">Forside</a>
-                <a class="btn btn-primary" href="/editActivity"> Edit</a>
-                <a class="btn btn-primary" th:href="@{/deleteActivity(name=${activity.name})}">Slet</a>
+                <a class="btn btn-primary" th:href="@{/editActivity(name=${activity.name})}"> Edit</a>
+                <a class="btn btn-primary" href="@{/deleteActivity(name=${activity.name})}">Slet</a>
 
             </div>
             <div class="col-sm-6">
@@ -39,7 +39,7 @@
                 <table class="table" >
                     <tr>
                         <td>Krav: </td>
-                        <td th:text="${reqList}"></td>
+                        <td th:text="${activity.reqList}"></td>
                     </tr>
                     <tr>
                         <td>Beskrivelse: </td>

@@ -2,6 +2,9 @@ package dk.adventurealley.app.Controllers;
 
 import dk.adventurealley.app.DAO.ActivityRepository;
 import dk.adventurealley.app.DAO.RequirementRepository;
+import dk.adventurealley.app.DAO.ActivityRepository;
+import dk.adventurealley.app.DAO.ActivityRequirementsRepo;
+import dk.adventurealley.app.DAO.RequirementRepository;
 import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Requirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,12 @@ import java.util.ArrayList;
 
 @Controller
 public class CreateController {
-
+    @Autowired
+    ActivityRepository aR = new ActivityRepository();
+    @Autowired
+    RequirementRepository rR = new RequirementRepository();
+    @Autowired
+    ActivityRequirementsRepo aRR = new ActivityRequirementsRepo();
     ArrayList<Activity> activities = new ArrayList<>();
     ArrayList<Requirement> requirements  = new ArrayList<>();
     ArrayList<Requirement> activeReqs = new ArrayList<>();
