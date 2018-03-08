@@ -23,8 +23,8 @@
                     <select th:name="name" class="form-control">
                         <option value="">Vælg Navn</option>
                         <option th:each="requirements : ${req}"
-                                th:value="${requirements.name}"
-                                th:text="${requirements.name}"></option>
+                                th:value="${requirements.reqName}"
+                                th:text="${requirements.reqName}"></option>
                     </select>
                 </div>
                 <div class="form-group">

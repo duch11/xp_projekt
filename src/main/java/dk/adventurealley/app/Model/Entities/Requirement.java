@@ -4,32 +4,32 @@ package dk.adventurealley.app.Model.Entities;
  * Created by Ejer on 05-03-2018.
  */
 public class Requirement {
-    private String name;
+    private String reqName;
     private String value;
 
 
     //Full constructor
-    public Requirement(String name, String value) {
-        this.name = name;
+    public Requirement(String reqName, String value) {
+        this.reqName = reqName;
         this.value = value;
     }
 
     // Lavet af Andreas og Jonas
     // Bruges til; "Create requirement name" i Requirement repo
-    public Requirement(String name) {
-        this.name = name;
+    public Requirement(String reqName) {
+        this.reqName = reqName;
     }
 
     // Bruges af Create Controller, til model
     public Requirement() {
     }
 
-    public String getName() {
-        return name;
+    public String getReqName() {
+        return reqName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setReqName(String reqName) {
+        this.reqName = reqName;
     }
 
     public String getValue() {
@@ -43,7 +43,7 @@ public class Requirement {
     @Override
     public String toString() {
         return "Requirement{" +
-                "name='" + name + '\'' +
+                "name='" + reqName + '\'' +
                 ", value='" + value + '\'' +
                 '}';
     }
