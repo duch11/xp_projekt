@@ -24,11 +24,6 @@ public class CreateController {
     @Autowired
     RequirementRepository requireRepo = new RequirementRepository();
 
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String index(){
-        return "index";
-    }
-
     @RequestMapping(value = "/createActivity", method = RequestMethod.GET)
     public String createActivity(Model model) {
         requirements = requireRepo.readAll();
