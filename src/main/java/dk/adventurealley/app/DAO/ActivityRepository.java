@@ -17,6 +17,13 @@ public class ActivityRepository {
     private JdbcTemplate jdbc;
     private ArrayList<Activity> activityList = new ArrayList<>();
 
+    public void create(Activity a) {
+        jdbc.update("INSERT INTO adventure_alley_db.activities(name, equipment, image_path, description) " + "VALUES ('" + a.getName() + "', '" + a.getEquipment() + "', '" + a.getImagePath() + "', ' " + a.getDescription() + "')");
+        for (Requirement req : a.getReqList()) {
+            jdbc.update(" INSERT INTO adventure_alley_db.act_reqs(fk_act_name, fk_req_names_name, req_value) " + "VALUES ('" + a.getName() + "', '" + req.getName() + "', '" + req.getValue() + "')");
+        }
+    }
+
     public ArrayList<Activity> readAll(){
         activityList.clear();
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM adventure_alley_db.activities");
@@ -43,3 +50,4 @@ public class ActivityRepository {
         jdbc.update("DELETE FROM activities WHERE name='"+name+"'");
     }
 }
+
