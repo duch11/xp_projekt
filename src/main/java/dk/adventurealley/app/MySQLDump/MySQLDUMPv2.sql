@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.20, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: adventure_alley_db
 -- ------------------------------------------------------
--- Server version	5.7.20-log
+-- Server version	5.7.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,8 +31,8 @@ CREATE TABLE `act_reqs` (
   UNIQUE KEY `act_reqs_id_uindex` (`id`),
   KEY `act_reqs_activities_name_fk` (`fk_act_name`),
   KEY `act_reqs_req_names_name_fk` (`fk_req_names_name`),
-  CONSTRAINT `act_reqs_activities_name_fk` FOREIGN KEY (`fk_act_name`) REFERENCES `activities` (`name`),
-  CONSTRAINT `act_reqs_req_names_name_fk` FOREIGN KEY (`fk_req_names_name`) REFERENCES `req_names` (`name`)
+  CONSTRAINT `act_reqs_activities_name_fk` FOREIGN KEY (`fk_act_name`) REFERENCES `activities` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `act_reqs_req_names_name_fk` FOREIGN KEY (`fk_req_names_name`) REFERENCES `req_names` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -106,4 +106,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-07 11:07:03
+-- Dump completed on 2018-03-08 10:19:07

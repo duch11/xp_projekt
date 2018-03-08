@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
     <title>Adventure Alley</title>
 </head>
 <body>
-<h2 align="center" th:text="${activity.name}"></h2>
-<div class="topnav">
-    <a class="active" href="/">Forside</a>
-    <a th:href="@{/editActivity(name=${activity.name})}">Edit</a>
-    <a th:href="@{/deleteActivity(name=${activity.name})}">Slet</a>
-</div>
-<div class="container" align="center">
-    <table>
-        <tr>
-            <td>Krav: </td>
-            <td th:text="${activity.reqList}"></td>
-        </tr>
-        <tr>
-            <td>Beskrivelse: </td>
-            <td th:text="${activity.description}"></td>
-        </tr>
-        <tr>
-            <td>Udstyr: </td>
-            <td th:text="${activity.equipment}"></td>
-        </tr>
-        <tr>
-            <img th:src="${activity.imagePath}" height="300px" width="300px"/>
-        </tr>
-    </table>
-</div>
+<!--<h2 align="center" th:text="${activity.name}"></h2>-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <a class="btn btn-primary"  href="/">Forside</a>
+                <a class="btn btn-primary" th:href="@{/editActivity(name=${activity.name})}"> Edit</a>
+                <a class="btn btn-primary" href="@{/deleteActivity(name=${activity.name})}">Slet</a>
+
+            </div>
+            <div class="col-sm-6">
+                    <h2 align="center" th:text="${activity.name}"></h2>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-6 col-sm-offset-3">
+                <img class="center-block" th:src="${activity.imagePath}" height="300px" width="300px"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <table class="table" >
+                    <tr>
+                        <td>Krav: </td>
+                        <td th:text="${activity.reqList}"></td>
+                    </tr>
+                    <tr>
+                        <td>Beskrivelse: </td>
+                        <td th:text="${activity.description}"></td>
+                    </tr>
+                    <tr>
+                        <td>Udstyr: </td>
+                        <td th:text="${activity.equipment}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
 <!--
 <h1 align="center" th:text="${activity.name}"></h1>
 <br>
