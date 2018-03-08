@@ -48,9 +48,3 @@ public class Requirement {
                 '}';
     }
 }
-
-    private String reqName;
-    public Requirement(String reqName, String value) {
-    public Requirement(String reqName) {
-    public String getReqName() {
-    public void setReqName(String reqName) {

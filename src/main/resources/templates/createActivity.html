@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
     <meta charset="UTF-8"/>
@@ -9,11 +9,11 @@
 <h2>Opret en Aktivitet og dets krav</h2>
 
 <form method="POST" th:action="@{/addReq}">
-    <select th:name="reqname">
+    <select th:name="name">
         <option value="">Vælg Navn</option>
         <option th:each="requirements : ${req}"
-                th:value="${requirements.reqName}"
-                th:text="${requirements.reqName}"></option>
+                th:value="${requirements.name}"
+                th:text="${requirements.name}"></option>
     </select>
     <input type="text" name="value" placeholder="Kravets værdi"/>
     <input type="submit" value="Add Requirement"/>
@@ -28,8 +28,8 @@
 </form>
 
 <div>
-    <a href="" class="btn" >Opret et nyt krav</a>
-    <a href="/index" class="btn" >Tilbage til Forsiden</a>
+    <a href="/createrequirement" class="btn" >Opret et nyt krav</a>
+    <a href="/" class="btn" >Tilbage til Forsiden</a>
 </div>
 </body>
 </html>

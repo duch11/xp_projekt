@@ -24,7 +24,7 @@ public class CreateController {
     @Autowired
     RequirementRepository requireRepo = new RequirementRepository();
 
-    @RequestMapping(value = "/createActivity", method = RequestMethod.GET)
+    @RequestMapping(value = "/createactivity", method = RequestMethod.GET)
     public String createActivity(Model model) {
         requirements = requireRepo.readAll();
         Activity a = new Activity();
@@ -34,8 +34,8 @@ public class CreateController {
     }
 
     @PostMapping("/addReq")
-    public String addRequirement(@ModelAttribute Activity a, Model model, @RequestParam String reqname, @RequestParam String value) {
-        Requirement r = new Requirement(reqname, value);
+    public String addRequirement(@ModelAttribute Activity a, Model model, @RequestParam String name, @RequestParam String value) {
+        Requirement r = new Requirement(name, value);
         activeReqs.add(r);
         model.addAttribute("activity", a);
         model.addAttribute("req", requirements);
@@ -44,7 +44,7 @@ public class CreateController {
 
     @PostMapping("/createA")
     public String activityCreate(@ModelAttribute Activity a) {
-        a.setActivityReq(activeReqs);
+        a.setReqList(activeReqs);
         activityRepo.create(a);
         activeReqs.clear();
         return "redirect:/";

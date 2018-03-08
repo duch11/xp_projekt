@@ -11,29 +11,6 @@ public class Activity {
     private String equipment;
     private String imagePath;
     private String description;
-    private ArrayList<Requirement> activityReq;
-
-    public Activity(String name, ArrayList<Requirement> reqList, String equipment, String imagePath, String description) {
-        this.name = name;
-        this.reqList = reqList;
-        this.equipment = equipment;
-        this.imagePath = imagePath;
-        this.description = description;
-    }
-
-    public Activity(String name, String equipment, String imagePath, String description) {
-    public Activity(String name, String equipment, String imagePath, ArrayList<Requirement> activityReq, String description) {
-        this.name = name;
-        this.reqList = reqList;
-        this.equipment = equipment;
-        this.imagePath = imagePath;
-        this.description = description;
-        this.imagePath = imagePath;
-        this.activityReq = activityReq;
-        this.description = description;
-    }
-
-
 
     public Activity() {
     }
@@ -43,15 +20,12 @@ public class Activity {
         this.imagePath = imagePath;
     }
 
-    @Override
-    public String toString() {
-        return "Activity{" +
-                "name='" + name + '\'' +
-                ", regList=" + reqList +
-                ", equipment='" + equipment + '\'' +
-                ", imagePath='" + imagePath + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+    public Activity(String name, ArrayList<Requirement> reqList, String equipment, String imagePath, String description) {
+        this.name = name;
+        this.reqList = reqList;
+        this.equipment = equipment;
+        this.imagePath = imagePath;
+        this.description = description;
     }
 
     public String getName() {
@@ -66,8 +40,8 @@ public class Activity {
         return reqList;
     }
 
-    public void setReqList(ArrayList<Requirement> regList) {
-        this.reqList = regList;
+    public void setReqList(ArrayList<Requirement> reqList) {
+        this.reqList = reqList;
     }
 
     public String getEquipment() {
@@ -92,40 +66,5 @@ public class Activity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public ArrayList<Requirement> getActivityReq() {
-        return activityReq;
-    }
-
-    public void setActivityReq(ArrayList<Requirement> activityReq) {
-        this.activityReq = activityReq;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "Activity{" +
-                "name='" + name + '\'' +
-                ", equipment='" + equipment + '\'' +
-                ", imagePath='" + imagePath + '\'' +
-                ", activityReq=" + activityReq +
-                ", description='" + description + '\'' +
-                '}';
     }
 }
