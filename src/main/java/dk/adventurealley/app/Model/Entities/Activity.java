@@ -11,6 +11,7 @@ public class Activity {
     private String equipment;
     private String imagePath;
     private String description;
+    private ArrayList<Requirement> activityReq;
 
     public Activity(String name, ArrayList<Requirement> reqList, String equipment, String imagePath, String description) {
         this.name = name;
@@ -21,10 +22,14 @@ public class Activity {
     }
 
     public Activity(String name, String equipment, String imagePath, String description) {
+    public Activity(String name, String equipment, String imagePath, ArrayList<Requirement> activityReq, String description) {
         this.name = name;
         this.reqList = reqList;
         this.equipment = equipment;
         this.imagePath = imagePath;
+        this.description = description;
+        this.imagePath = imagePath;
+        this.activityReq = activityReq;
         this.description = description;
     }
 
@@ -87,5 +92,40 @@ public class Activity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public ArrayList<Requirement> getActivityReq() {
+        return activityReq;
+    }
+
+    public void setActivityReq(ArrayList<Requirement> activityReq) {
+        this.activityReq = activityReq;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "name='" + name + '\'' +
+                ", equipment='" + equipment + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", activityReq=" + activityReq +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
