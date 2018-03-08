@@ -18,7 +18,7 @@
         <div class="form-inline form-group">
 
             <h7 class="edit-act-label text form-control" for="n"
-                style="background: #00045d; font-size: 17px; width: 7ch">Navn:
+                style="background: #00045d; font-size: 17px; width: 7ch;">Navn:
             </h7>
 
             <input type="text" required="required" class="form-control" id="n" th:field="*{name}"/>
@@ -54,7 +54,7 @@
                       rows="6"></textarea>
         </div>
         <div class="form-inline form-group">
-            <label for="imagePath">Billedsti: </label>
+            <h7 for="imagePath" class="edit-act-label text min-width">Billedsti: </h7>
             <input type="text" required="required" id="imagePath" class="form-control" th:field="*{imagePath}"/>
             <div class="right">
                 <input type="submit" class="btn btn-success" name="action" style="margin-left: 287px;" value="Gem Ændringer"/>
