@@ -2,19 +2,30 @@ package dk.adventurealley.app.Model.Entities;
 
 public class Customer {
 
+  private Integer id;
   private String companyName;
   private String CustomerName;
   private String phone;
 
-  public Customer(String customerName, String phone) {
+  public Customer(Integer id, String customerName, String phone) {
+    this.id = id;
     CustomerName = customerName;
     this.phone = phone;
   }
 
-  public Customer(String companyName, String customerName, String phone) {
+  public Customer(Integer id, String companyName, String customerName, String phone) {
+    this.id = id;
     this.companyName = companyName;
     CustomerName = customerName;
     this.phone = phone;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public String getCompanyName() {
