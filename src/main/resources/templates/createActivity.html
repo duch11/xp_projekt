@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
+
+    <meta charset="UTF-8"/>
+    <title>Lav en Aktivitet</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="/" class="btn btn-primary">Forside</a>
+            <a href="/createrequirement" class="btn btn-primary">Opret nyt krav</a>
+        </div>
+        <div class="col-sm-6">
+            <h2>Opret en Aktivitet og dets krav</h2>
+
+            <form method="POST" th:action="@{/addReq}">
+                <div class="form-group">
+                    <select th:name="name" class="form-control">
+                        <option value="">Vælg Navn</option>
+                        <option th:each="requirements : ${req}"
+                                th:value="${requirements.reqName}"
+                                th:text="${requirements.reqName}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="value" class="form-control" placeholder="Kravets værdi"/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Add Requirement"/>
+                </div>
+
+            </form>
+
+            <form method="POST" action="createA">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" placeholder="Aktivites Navn"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="equipment" placeholder="Udstyr"/>
+               </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="description" placeholder="Beskrivelse af aktivitet"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="imagePath" placeholder="Billede Sti"/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Add Activity"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

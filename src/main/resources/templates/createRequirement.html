@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Lav en ny kravs type</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- LAVET AF ANDREAS OG JONAS -->
+                    <a class="btn btn-primary" href="/">Tilbage</a>
+                    <h1>Lav en ny Kravstype</h1>
+
+                    <form class="" th:action="@{/createrequirement}" method="post">
+                        <div class="form-group">
+                            <label for="name">Titel:</label>
+                            <input  class="form-control" type="text" id="name" th:name="name"/>
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="opret krav"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

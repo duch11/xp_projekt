@@ -1,0 +1,21 @@
+body{
+    background-color: #1C1F24;
+}
+
+p, h1, h2, h3, a, form {
+    color: #CCCCCC;
+}
+
+.btn-success {
+    background-color: #004401;
+    color: #CCCCCC;
+}
+
+.btn-primary {
+    background-color: #000c36;
+    color: #CCCCCC;
+    margin-top: 12px;
+}
+table{
+    color: white;
+}
