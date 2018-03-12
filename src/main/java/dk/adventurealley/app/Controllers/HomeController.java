@@ -47,7 +47,6 @@ public class HomeController {
 
     @GetMapping ("/editActivity")
     public String editActivity(@RequestParam("id") String id, Model model){
-
         model.addAttribute("newReq", new Requirement());
         model.addAttribute("requirements", rR.readAll());
         model.addAttribute("activity", aR.read(Integer.parseInt(id)));
@@ -57,6 +56,7 @@ public class HomeController {
     @PostMapping ("/editActivity")
     public String editActivity(@RequestParam("action") String action, @ModelAttribute Activity activity, @ModelAttribute Requirement newReq, Model model){
         System.out.println(action);
+        newReq.setId(rR.readReqID(newReq.getReqName()));
         ArrayList<String> reqNames = new ArrayList<>();
         if(activity.getReqList() != null) {
             for (Requirement requirement : activity.getReqList()) {
@@ -80,7 +80,9 @@ public class HomeController {
         }
         else if (action.equals("Gem Ændringer")){
             System.out.println(2);
-
+            for (Requirement req : activity.getReqList()){
+                req.setId(rR.readReqID(req.getReqName()));
+            }
             aR.update(activity);
         }
         model.addAttribute("activity", activity);

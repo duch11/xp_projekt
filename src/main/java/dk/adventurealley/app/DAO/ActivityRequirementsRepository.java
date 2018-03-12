@@ -40,13 +40,13 @@ public class ActivityRequirementsRepository {
         deleteActivityRequirements(activityID);
         for (Requirement req : reqList){
             jdbc.update("INSERT INTO act_reqs (fk_act_id, fk_req_id, req_value) " +
-                    "VALUES ('" + activityID+"', '" + req.getId() + "', '" + req.getValue() +"')");
+                    "VALUES ('" + activityID +"', '" + req.getId() + "', '" + req.getValue() +"')");
         }
     }
 
     // Deletes Requirements belonging to given Activity in DB
     public void deleteActivityRequirements(Integer activityID){
-        jdbc.update("DELETE * FROM act_reqs WHERE fk_act_id="+activityID);
+        jdbc.update("DELETE FROM act_reqs WHERE fk_act_id='"+ activityID + "'");
     }
 
     /*

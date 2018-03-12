@@ -20,7 +20,7 @@ public class RequirementRepository {
     // readAll er kun til requirement names, outputter kun Requirements uden værdier
     public ArrayList<Requirement> readAll() {
         requirementsList.clear();
-        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM adventure_alley_db.requirements");
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM requirements");
         while (rs.next()) {
             requirementsList.add(new Requirement(rs.getInt("id"), rs.getString("name")));
         }
