@@ -22,7 +22,8 @@ public class Requirement {
 
     // Lavet af Andreas og Jonas
     // Bruges til; "Create requirement name" i Requirement repo
-    public Requirement(String reqName) {
+    public Requirement(Integer id, String reqName) {
+        this.id = id;
         this.reqName = reqName;
     }
 

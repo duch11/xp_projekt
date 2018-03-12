@@ -1,6 +1,5 @@
 package dk.adventurealley.app.DAO;
 
-import dk.adventurealley.app.*;
 import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Requirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +18,64 @@ public class ActivityRepository {
     @Autowired
     private RequirementRepository rR = new RequirementRepository();
     @Autowired
-    private ActivityRequirementsRepo aRR = new ActivityRequirementsRepo();
+    private ActivityRequirementsRepository aRR = new ActivityRequirementsRepository();
 
+    // write Activity to DB
+    public void create(Activity a) {
+        jdbc.update("INSERT INTO activities(name, equipment, description, imagePath) " + "VALUES ('" + a.getName() + "', '" + a.getEquipment() + "', '" + a.getDescription() + "', ' " + a.getImagePath() +"')");
+        for (Requirement req : a.getReqList()) {
+            jdbc.update(" INSERT INTO act_reqs(fk_act_id, fk_req_id, req_value) " + "VALUES ('" + readActivityID(a.getName()) + "', '" + rR.readReqID(req.getReqName()) + "', '" + req.getValue() + "')");
+        }
+    }
+
+    // find out what ID the Activity has
+    public Integer readActivityID(String name){
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT id FROM activities WHERE name='" + name + "'");
+        while (rs.next()){
+            return rs.getInt("id");
+        }
+        return null;
+    }
+
+    // return specific Activity
+    public Activity read(Integer id){
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM activities WHERE id="+id);
+        while(rs.next()) {
+            return new Activity(rs.getInt("id"), rs.getString("name"), aRR.readAllReqForActivity(id),
+                    rs.getString("equipment"), rs.getString("imagePath"), rs.getString("description"));
+        }
+        return null;
+    }
+
+    // Returns a list of Activities with name and image (used in front-page for display)
+    public ArrayList<Activity> readAll(){
+        activityList.clear();
+        activityList.add(new Activity());
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM activities");
+        while(rs.next()){
+            activityList.add(new Activity(rs.getInt("id"), rs.getString("name"), rs.getString("imagePath")));
+        }
+        return activityList;
+    }
+
+    // Updates Activity in DB with given Activity
+    public void update(Activity activity){
+        jdbc.update("UPDATE activities SET name ='"+ activity.getName() +"', equipment ='"+ activity.getEquipment() +"', " +
+                "imagePath ='"+ activity.getImagePath() +"', description ='"+ activity.getDescription() +"' WHERE id ='"+ activity.getId() +"'");
+        aRR.updateActivityRequirements(readActivityID(activity.getName()), activity.getReqList());
+    }
+
+    // Delete specific Activity
+    public void deleteActivity(Integer id){
+        jdbc.update("DELETE FROM activities WHERE id='"+id+"'");
+    }
+
+    /*
     public void create(Activity a) {
         jdbc.update("INSERT INTO adventure_alley_db.activities(name, equipment, description, imagePath) " + "VALUES ('" + a.getName() + "', '" + a.getEquipment() + "', '" + a.getDescription() + "', ' " + a.getImagePath() +"')");
         for (Requirement req : a.getReqList()) {
             jdbc.update(" INSERT INTO adventure_alley_db.act_reqs(fk_act_id, fk_req_id, req_value) " + "VALUES ('" + a.getId() + "', '" + req.getId() + "', '" + req.getValue() + "')");
         }
-    }
-
-    public ArrayList<Activity> readAll(){
-        activityList.clear();
-        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM adventure_alley_db.activities");
-        while(rs.next()){
-            activityList.add(new Activity(rs.getInt("id"), rs.getString("name"), rs.getString("imagePath")));
-        }
-        return activityList;
     }
 
     public Activity read(String actName){
@@ -68,11 +109,6 @@ public class ActivityRepository {
                 }
             }
         }
-    }
-
-
-    public void deleteActivity(String id){
-        jdbc.update("DELETE FROM activities WHERE id='"+id+"'");
-    }
+    } */
 }
 
