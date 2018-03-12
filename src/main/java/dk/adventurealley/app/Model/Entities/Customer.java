@@ -60,7 +60,7 @@ public class Customer {
     return "Customer{" +
             "id=" + id +
             ", companyName='" + companyName + '\'' +
-            ", CustomerName='" + CustomerName + '\'' +
+            ", CustomerName='" + customerName + '\'' +
             ", phone='" + phone + '\'' +
             '}';
   }
