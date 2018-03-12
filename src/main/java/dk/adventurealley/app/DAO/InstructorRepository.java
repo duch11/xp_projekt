@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public class InstructorRepository {
 
     @Autowired
-    JdbcTemplate jdbc = new JdbcTemplate();
+    JdbcTemplate jdbc;
 
     public void createInstructor (String name){
         jdbc.update("INSERT INTO adventure_alley_db.instructor (name) VALUES (?)", name);
