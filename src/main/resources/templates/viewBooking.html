@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>View Booking</title>
+</head>
+<body>
+<div class="container">
+
+    <h1 align="center">Bookinger</h1>
+    <tabel>
+        <tr>
+            <th>Aktivitet</th>
+            <th>Tidspunkt</th>
+            <th>Kontakt Person</th>
+            <th>Details</th>
+            <th>Slet</th>
+        </tr>
+        <tr th:each="bookingArray : ${booking}">
+            <td th:date="${bookingArray.date}"></td>
+            <td th:text="${bookingArray.activity.name}"></td>
+            <td th:text="${bookingArray.customer.name}"></td>
+            <td>
+                <a th:href="@{/bookingDetails(id=${bookingArray.id})}"></a>
+                <a th:href="@{/bookingDelete(id=${bookingArray.id})}"></a>
+            </td>
+        </tr>
+    </tabel>
+
+</div>
+</body>
+</html>
