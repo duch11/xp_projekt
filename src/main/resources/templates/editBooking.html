@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
+    <title>Edit booking</title>
+</head>
+<body>
+<div class="container">
+    <a th:href="@{/bookings}"></a>
+    <a th:href="@{/bookingPage}"></a>
+    <h1>Rediger booking</h1>
+
+    <form th:action="@{/editBooking}" th:method="post" th:object="${booking}">
+        <h3>Aktivitet</h3>
+        <select class="form-control dropdown" th:field="${newActivity.name}">
+            <option th:each="activity : ${activities}" th:text="${activity.name}"
+                    th:value="${activity.name}"></option>
+        </select>
+        <input type="submit" name="action" value="Ændrer aktivitet"/>
+        <h7>Valgte aktivitet</h7>
+        <input type="text" readonly="readonly" th:field="*{activity.name}"/>
+
+
+
+        <h7>Antal deltagere</h7>
+        <input type="number" th:field="*{numOfParticipants}" required="required"/>
+
+        <h7>Dato og tid</h7>
+        <input type="datetime-local" required="required" th:field="*{date}"/>
+
+        <h3>Kunde oplysninger</h3>
+        <div th:if="${isCompany}">
+            <h7>Firma navn:</h7>
+            <input type="text" required="required" th:field="*{customer.companyName}"/>
+        </div>
+        <h7>Kontaktperson:</h7>
+        <input type="text" required="required" th:field="*{customer.customerName}"/>
+
+        <h7>Tlf:</h7>
+        <input type="text" required="required" th:field="*{customer.phone}"/>
+
+        <input type="submit" name="action" value="Gem Ændringer"/>
+    </form>
+</div>
+</body>
+</html>
