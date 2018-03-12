@@ -16,7 +16,7 @@ public class CreateInstructorController {
     InstructorRepository intstructorRepo;
 
     // Shows createInstructor Page
-    @GetMapping
+    @GetMapping("/createInstructor")
     public String showCreateInstructor(){
         return "createInstructor";
     }
