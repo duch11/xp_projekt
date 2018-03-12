@@ -18,7 +18,7 @@
 
         </div>
         <div class="col-sm-6">
-            <h2 th:text="'Detaljer for: ' + ${booking.name}">Detaljer for: firma tmj</h2>
+            <h2 th:text="'Detaljer for: ' + ${booking.description}">Detaljer for: firma tmj</h2>
         </div>
 
     </div>
@@ -43,7 +43,11 @@
                 </tr>
                 <tr>
                     <td>Kontakt person:</td>
-                    <td th:utext="${customer.customerName} + '<br>' +${customer.phone}">Casper flint <br>22489704</td>
+                    <td th:utext="${customer.customerName} + '&lt;br&gt;' + ${customer.phone}">Casper flint <br/>22489704</td>
+                </tr>
+                <tr th:if="${customer.companyName} != null">
+                    <td>Firma:</td>
+                    <td th:text="${customer.companyName}">Novo nordisk</td>
                 </tr>
             </table>
         </div>
