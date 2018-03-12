@@ -14,21 +14,22 @@ public class ActivityRequirementsRepo {
     private JdbcTemplate jdbc;
     private ArrayList<Requirement> requirements = new ArrayList<>();
 
-    public ArrayList<Requirement> readAllReqNameForOneAct(String actName){
+    public ArrayList<Requirement> readAllReqNameForOneAct(String id){
         requirements.clear();
-        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM act_reqs WHERE fk_act_name ='"+ actName +"'");
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM act_reqs WHERE fk_act_id ='"+ id +"'");
+        SqlRowSet rs2 = jdbc.queryForRowSet("SELECT * FROM requirements WHERE id ="+rs.getInt("fk_req_id"));
 
         while (rs.next()){
-            requirements.add(new Requirement(rs.getString("fk_req_names_name"), rs.getString("req_value")));
+            requirements.add(new Requirement(rs.getInt("fk_req_id"), rs2.getString("name"), rs.getString("req_value")));
         }
         return requirements;
     }
 
-    public Requirement read(String actName, String reqName){
-        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM act_reqs WHERE fk_act_name ='"+ actName +"' AND fk_req_names_name ='"+ reqName +"'");
-
+    public Requirement read(String actID, String reqID){
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM act_reqs WHERE fk_act_id ='"+ actID +"' AND fk_req_id ='"+ reqID +"'");
+        SqlRowSet rs2 = jdbc.queryForRowSet("SELECT * FROM requirements WHERE id ="+rs.getInt("fk_req_id"));
         if (rs.next()){
-            return new Requirement(rs.getString("fk_req_names_name"), rs.getString("req_value"));
+            return new Requirement(rs.getInt("fk_req_id"), rs2.getString("name"), rs.getString("req_value"));
         }
 
         return null;

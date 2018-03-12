@@ -32,7 +32,7 @@ CREATE TABLE `act_reqs` (
   KEY `act_reqs_activities_name_fk` (`fk_act_name`),
   KEY `act_reqs_req_names_name_fk` (`fk_req_names_name`),
   CONSTRAINT `act_reqs_activities_name_fk` FOREIGN KEY (`fk_act_name`) REFERENCES `activities` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `act_reqs_req_names_name_fk` FOREIGN KEY (`fk_req_names_name`) REFERENCES `req_names` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `act_reqs_req_names_name_fk` FOREIGN KEY (`fk_req_names_name`) REFERENCES requirements (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,7 +90,7 @@ CREATE TABLE `booking` (
   `instructorID` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `instructorID___fk` (`instructorID`),
-  CONSTRAINT `instructorID___fk` FOREIGN KEY (`instructorID`) REFERENCES `instructor` (`id`)
+  CONSTRAINT `instructorID___fk` FOREIGN KEY (`instructorID`) REFERENCES instructors (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -151,7 +151,7 @@ CREATE TABLE `instructor` (
 
 LOCK TABLES `instructor` WRITE;
 /*!40000 ALTER TABLE `instructor` DISABLE KEYS */;
-INSERT INTO `instructor` VALUES (1,'Jens'),(2,'John'),(3,'Lars'),(4,'Andreas'),(5,'Carsten'),(6,'Henning'),(7,'Morten');
+INSERT INTO instructors VALUES (1,'Jens'),(2,'John'),(3,'Lars'),(4,'Andreas'),(5,'Carsten'),(6,'Henning'),(7,'Morten');
 /*!40000 ALTER TABLE `instructor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +175,7 @@ CREATE TABLE `req_names` (
 
 LOCK TABLES `req_names` WRITE;
 /*!40000 ALTER TABLE `req_names` DISABLE KEYS */;
-INSERT INTO `req_names` VALUES ('Højde'),('vægt');
+INSERT INTO requirements VALUES ('Højde'),('vægt');
 /*!40000 ALTER TABLE `req_names` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

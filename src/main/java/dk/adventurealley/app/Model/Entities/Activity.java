@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Created by Ejer on 05-03-2018.
  */
 public class Activity {
+    private Integer id;
     private String name;
     private ArrayList<Requirement> reqList;
     private String equipment;
@@ -15,17 +16,27 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(String name, String imagePath) {
+    public Activity(Integer id, String name, String imagePath) {
+        this.id = id;
         this.name = name;
         this.imagePath = imagePath;
     }
 
-    public Activity(String name, ArrayList<Requirement> reqList, String equipment, String imagePath, String description) {
+    public Activity(Integer id, String name, ArrayList<Requirement> reqList, String equipment, String imagePath, String description) {
+        this.id = id;
         this.name = name;
         this.reqList = reqList;
         this.equipment = equipment;
         this.imagePath = imagePath;
         this.description = description;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
