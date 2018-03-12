@@ -4,7 +4,7 @@ public class Customer {
 
   private Integer id;
   private String companyName;
-  private String CustomerName;
+  private String customerName;
   private String phone;
 
   public Customer() {
@@ -12,14 +12,14 @@ public class Customer {
 
   public Customer(Integer id, String customerName, String phone) {
     this.id = id;
-    CustomerName = customerName;
+    this.customerName = customerName;
     this.phone = phone;
   }
 
   public Customer(Integer id, String companyName, String customerName, String phone) {
     this.id = id;
     this.companyName = companyName;
-    CustomerName = customerName;
+    this.customerName = customerName;
     this.phone = phone;
   }
 
@@ -40,11 +40,11 @@ public class Customer {
   }
 
   public String getCustomerName() {
-    return CustomerName;
+    return customerName;
   }
 
   public void setCustomerName(String customerName) {
-    CustomerName = customerName;
+    this.customerName = customerName;
   }
 
   public String getPhone() {
