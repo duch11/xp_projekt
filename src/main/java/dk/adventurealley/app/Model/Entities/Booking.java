@@ -9,7 +9,7 @@ public class Booking {
   private Activity activity;
   private Customer customer;
   private LocalDate date;
-  private String Description;
+  private String description;
   private int numOfParticipants;
 
   public Booking(Integer id, Activity activity,
@@ -18,7 +18,7 @@ public class Booking {
     this.activity = activity;
     this.customer = customer;
     this.date = date;
-    Description = description;
+    this.description = description;
     this.numOfParticipants = numOfParticipants;
   }
 
@@ -55,11 +55,11 @@ public class Booking {
   }
 
   public String getDescription() {
-    return Description;
+    return description;
   }
 
   public void setDescription(String description) {
-    Description = description;
+    this.description = description;
   }
 
   public int getNumOfParticipants() {
