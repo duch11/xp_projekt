@@ -67,4 +67,15 @@ public class Activity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "name='" + name + '\'' +
+                ", reqList=" + reqList +
+                ", equipment='" + equipment + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

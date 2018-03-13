@@ -42,8 +42,18 @@ public class EditBookingController {
     }
 
     @PostMapping("/editBooking")
-    public String editBooking(@RequestParam("action") String action, @ModelAttribute Booking booking){
+    public String editBooking(@RequestParam("action") String action, @ModelAttribute Activity newActivity, @ModelAttribute Booking booking, Model model){
         System.out.println(booking);
+        if (action.equals("Ændrer aktivitet")){
+            booking.setActivity(newActivity);
+            model.addAttribute("newActivity", new Activity());
+            model.addAttribute("activities", activities);
+            model.addAttribute("booking", booking);
+            return "editBooking";
+        }
+        model.addAttribute("newActivity", new Activity());
+        model.addAttribute("activities", activities);
+        model.addAttribute("booking", booking);
         return "editBooking";
     }
 }
