@@ -37,18 +37,14 @@ public class BookingController {
         instructors = intRepo.readAll();
         model.addAttribute("book", new Booking());
         model.addAttribute("cust", new Customer());
-        model.addAttribute("acti", new Activity());
         model.addAttribute("ilist", instructors);
         model.addAttribute("alist", activities);
         return "booking";
     }
 
     @PostMapping("/createB")
-    public String bookingCreate(@ModelAttribute Booking b, Customer c, Activity a, @RequestParam String intName, @RequestParam String actiName) {
-        System.out.println("Tilføjet Booking: " + b.toString());
-        System.out.println("Tilføjet Kunde: " + c.toString());
-        System.out.println("Tilføjet Aktivitet: " + a.getName());
-        bookRepo.create(b, c);
+    public String bookingCreate(@ModelAttribute Booking b, Customer c, @RequestParam String intName, @RequestParam String actiName) {
+        bookRepo.create(b, c, intName, actiName);
         return "redirect:/";
     }
 
