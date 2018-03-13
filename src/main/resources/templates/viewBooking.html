@@ -19,7 +19,7 @@
             <td th:text="${bookingArray.date}"></td>
             <td th:text="${bookingArray.customer.customerName}"></td>
             <td>
-                <a th:href="@{/bookingDetails(id=${bookingArray.id})}">Details</a>
+                <a th:href="@{/bookingdetails(id=${bookingArray.id})}">Details</a>
                 <a th:href="@{/deleteBooking(id=${bookingArray.id})}">Slet</a>
             </td>
         </tr>
