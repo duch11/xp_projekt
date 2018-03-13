@@ -16,8 +16,8 @@ public class BookingCreateRepository {
     private JdbcTemplate jdbc;
 
     public void create (Booking b, Customer c) {
-        jdbc.update("INSERT INTO adventure_alley_db.customer(name, companyName, phone) " + "VALUES ('" + c.getCustomerName() + "', '" + c.getCompanyName() + "', '" + c.getPhone() + "')");
-        SqlRowSet sr1 = jdbc.queryForRowSet("SELECT * FROM customer WHERE phone = '" + c.getPhone() + "'");
+        jdbc.update("INSERT INTO adventure_alley_db.customers(name, companyName, phone) " + "VALUES ('" + c.getCustomerName() + "', '" + c.getCompanyName() + "', '" + c.getPhone() + "')");
+        SqlRowSet sr1 = jdbc.queryForRowSet("SELECT * FROM customers WHERE phone = '" + c.getPhone() + "'");
         Customer cnew = new Customer();
 
         if(sr1.next()) {
