@@ -12,12 +12,11 @@
             <th>Aktivitet</th>
             <th>Tidspunkt</th>
             <th>Kontakt Person</th>
-            <th>Details</th>
-            <th>Slet</th>
+            <th></th>
         </tr>
         <tr th:each="bookingArray : ${booking}">
-            <td th:date="${bookingArray.date}"></td>
             <td th:text="${bookingArray.activity.name}"></td>
+            <td th:date="${bookingArray.date}"></td>
             <td th:text="${bookingArray.customer.name}"></td>
             <td>
                 <a th:href="@{/bookingDetails(id=${bookingArray.id})}"></a>
