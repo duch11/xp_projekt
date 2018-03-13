@@ -1,119 +1,196 @@
-DROP TABLE IF EXISTS booking;
-DROP TABLE IF EXISTS bookings;
-DROP TABLE IF EXISTS act_reqs;
-DROP TABLE IF EXISTS activities;
-DROP TABLE IF EXISTS req_names;
-DROP TABLE IF EXISTS requirements;
-DROP TABLE IF EXISTS instructors;
-DROP TABLE IF EXISTS instructor;
-DROP TABLE IF EXISTS customers;
-DROP TABLE IF EXISTS customer;
+-- MySQL dump 10.13  Distrib 5.7.19, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: adventure_alley_db
+-- ------------------------------------------------------
+-- Server version	5.7.19-log
 
-CREATE TABLE act_reqs
-(
-  id        INT AUTO_INCREMENT
-    PRIMARY KEY,
-  fk_act_id INT          NULL,
-  fk_req_id INT          NULL,
-  req_value VARCHAR(200) NULL,
-  CONSTRAINT act_reqs_id_uindex
-  UNIQUE (id)
-)
-  ENGINE = InnoDB;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE INDEX act_id
-  ON act_reqs (fk_act_id);
+--
+-- Table structure for table `act_reqs`
+--
 
-CREATE INDEX req_id
-  ON act_reqs (fk_req_id);
+DROP TABLE IF EXISTS `act_reqs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `act_reqs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_act_id` int(11) DEFAULT NULL,
+  `fk_req_id` int(11) DEFAULT NULL,
+  `req_value` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `act_reqs_id_uindex` (`id`),
+  KEY `act_id` (`fk_act_id`),
+  KEY `req_id` (`fk_req_id`),
+  CONSTRAINT `act_id` FOREIGN KEY (`fk_act_id`) REFERENCES `activities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `req_id` FOREIGN KEY (`fk_req_id`) REFERENCES `requirements` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-CREATE TABLE activities
-(
-  id          INT AUTO_INCREMENT
-    PRIMARY KEY,
-  name        VARCHAR(200) NULL,
-  equipment   VARCHAR(500) NULL,
-  description VARCHAR(500) NULL,
-  imagePath   VARCHAR(200) NULL,
-  CONSTRAINT activities_id_uindex
-  UNIQUE (id)
-)
-  ENGINE = InnoDB;
+--
+-- Dumping data for table `act_reqs`
+--
 
-ALTER TABLE act_reqs
-  ADD CONSTRAINT act_id
-FOREIGN KEY (fk_act_id) REFERENCES activities (id)
-  ON UPDATE CASCADE
-  ON DELETE CASCADE;
+LOCK TABLES `act_reqs` WRITE;
+/*!40000 ALTER TABLE `act_reqs` DISABLE KEYS */;
+INSERT INTO `act_reqs` VALUES (1,1,4,'140'),(2,2,4,'20'),(3,2,2,'200'),(4,3,3,'120'),(5,4,1,'20');
+/*!40000 ALTER TABLE `act_reqs` ENABLE KEYS */;
+UNLOCK TABLES;
 
-CREATE TABLE bookings
-(
-  id                INT AUTO_INCREMENT
-    PRIMARY KEY,
-  date              DATETIME     NULL,
-  customerID        INT          NOT NULL,
-  numOfParticipants INT          NULL,
-  description       VARCHAR(500) NULL,
-  activityID        INT          NOT NULL,
-  instructorID      INT          NOT NULL,
-  CONSTRAINT bookings_id_uindex
-  UNIQUE (id),
-  CONSTRAINT bookings_activities_id_fk
-  FOREIGN KEY (activityID) REFERENCES activities (id)
-)
-  ENGINE = InnoDB;
+--
+-- Table structure for table `activities`
+--
 
-CREATE INDEX bookings_customers_id_fk
-  ON bookings (customerID);
+DROP TABLE IF EXISTS `activities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `activities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) DEFAULT NULL,
+  `equipment` varchar(500) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
+  `imagePath` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `activities_id_uindex` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-CREATE INDEX bookings_activities_id_fk
-  ON bookings (activityID);
+--
+-- Dumping data for table `activities`
+--
 
-CREATE INDEX bookings_instructors_id_fk
-  ON bookings (instructorID);
+LOCK TABLES `activities` WRITE;
+/*!40000 ALTER TABLE `activities` DISABLE KEYS */;
+INSERT INTO `activities` VALUES (1,'Skak','Bræt','Hjernevrider spil som folk der hedder magnus er god til',' http://vidsteduat.dk/wp-content/uploads/skak.jpg'),(2,'Basketball','bold og sko','kast bolde i et hoop',' https://soroeakademi.dk/fileadmin/user_upload/images/Cards/Fag/basketball.jpg'),(3,'Sumo-Wrestling','Ble','Skub fede mænd ud af en ring',' https://static01.nyt.com/images/2016/01/27/sports/27SUMOweb1/27SUMOweb1-master768-v2.jpg'),(4,'Paintball','Våben og Kevlar','Skyd hinanden i face med farve skud',' https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/SupAir_Player.jpg/1200px-SupAir_Player.jpg');
+/*!40000 ALTER TABLE `activities` ENABLE KEYS */;
+UNLOCK TABLES;
 
-CREATE TABLE customers
-(
-  id          INT AUTO_INCREMENT
-    PRIMARY KEY,
-  name        VARCHAR(250) NULL,
-  companyName VARCHAR(250) NULL,
-  phone       VARCHAR(50)  NULL,
-  CONSTRAINT customer_id_uindex
-  UNIQUE (id)
-)
-  ENGINE = InnoDB;
+--
+-- Table structure for table `bookings`
+--
 
-ALTER TABLE bookings
-  ADD CONSTRAINT bookings_customers_id_fk
-FOREIGN KEY (customerID) REFERENCES customers (id);
+DROP TABLE IF EXISTS `bookings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bookings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime DEFAULT NULL,
+  `customerID` int(11) NOT NULL,
+  `numOfParticipants` int(11) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
+  `activityID` int(11) NOT NULL,
+  `instructorID` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `bookings_id_uindex` (`id`),
+  KEY `bookings_customers_id_fk` (`customerID`),
+  KEY `bookings_activities_id_fk` (`activityID`),
+  KEY `bookings_instructors_id_fk` (`instructorID`),
+  CONSTRAINT `bookings_activities_id_fk` FOREIGN KEY (`activityID`) REFERENCES `activities` (`id`),
+  CONSTRAINT `bookings_customers_id_fk` FOREIGN KEY (`customerID`) REFERENCES `customers` (`id`),
+  CONSTRAINT `bookings_instructors_id_fk` FOREIGN KEY (`instructorID`) REFERENCES `instructors` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-CREATE TABLE instructors
-(
-  id   INT AUTO_INCREMENT
-    PRIMARY KEY,
-  name VARCHAR(250) NULL,
-  CONSTRAINT instructor_id_uindex
-  UNIQUE (id)
-)
-  ENGINE = InnoDB;
+--
+-- Dumping data for table `bookings`
+--
 
-ALTER TABLE bookings
-  ADD CONSTRAINT bookings_instructors_id_fk
-FOREIGN KEY (instructorID) REFERENCES instructors (id);
+LOCK TABLES `bookings` WRITE;
+/*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
+UNLOCK TABLES;
 
-CREATE TABLE requirements
-(
-  id   INT AUTO_INCREMENT
-    PRIMARY KEY,
-  name VARCHAR(250) NULL,
-  CONSTRAINT requirements_id_uindex
-  UNIQUE (id)
-)
-  ENGINE = InnoDB;
+--
+-- Table structure for table `customers`
+--
 
-ALTER TABLE act_reqs
-  ADD CONSTRAINT req_id
-FOREIGN KEY (fk_req_id) REFERENCES requirements (id)
-  ON UPDATE CASCADE
-  ON DELETE CASCADE;
+DROP TABLE IF EXISTS `customers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) DEFAULT NULL,
+  `companyName` varchar(250) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `customer_id_uindex` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customers`
+--
+
+LOCK TABLES `customers` WRITE;
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `instructors`
+--
+
+DROP TABLE IF EXISTS `instructors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `instructors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `instructor_id_uindex` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `instructors`
+--
+
+LOCK TABLES `instructors` WRITE;
+/*!40000 ALTER TABLE `instructors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `instructors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `requirements`
+--
+
+DROP TABLE IF EXISTS `requirements`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `requirements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `requirements_id_uindex` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `requirements`
+--
+
+LOCK TABLES `requirements` WRITE;
+/*!40000 ALTER TABLE `requirements` DISABLE KEYS */;
+INSERT INTO `requirements` VALUES (1,'Alder'),(2,'Højde'),(3,'Vægt'),(4,'IQ');
+/*!40000 ALTER TABLE `requirements` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-03-13 13:33:00

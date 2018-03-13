@@ -35,10 +35,10 @@ public class BookingController {
     public String createBooking(Model model) {
         activities = actiRepo.readAll();
         instructors = intRepo.readAll();
-        model.addAttribute("book", new Booking());
-        model.addAttribute("cust", new Customer());
-        model.addAttribute("ilist", instructors);
-        model.addAttribute("alist", activities);
+        model.addAttribute("booking", new Booking());
+        model.addAttribute("customer", new Customer());
+        model.addAttribute("instructorlist", instructors);
+        model.addAttribute("activitylist", activities);
         return "booking";
     }
 

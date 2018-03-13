@@ -3,6 +3,7 @@ package dk.adventurealley.app.Model.Entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 public class Booking {
@@ -10,8 +11,8 @@ public class Booking {
   private Integer id;
   private Activity activity;
   private Customer customer;
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
-  private LocalDate date;
+  @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+  private LocalDateTime date;
   private String description;
   private int numOfParticipants;
 
@@ -19,7 +20,7 @@ public class Booking {
   }
 
   public Booking(Integer id, Activity activity,
-                 Customer customer, LocalDate date, String description, int numOfParticipants) {
+                 Customer customer, LocalDateTime date, String description, int numOfParticipants) {
     this.id = id;
     this.activity = activity;
     this.customer = customer;
@@ -52,11 +53,11 @@ public class Booking {
     this.customer = customer;
   }
 
-  public LocalDate getDate() {
+  public LocalDateTime getDate() {
     return date;
   }
 
-  public void setDate(LocalDate date) {
+  public void setDate(LocalDateTime date) {
     this.date = date;
   }
 
