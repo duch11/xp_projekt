@@ -18,17 +18,33 @@
             <h2>Opret Booking</h2>
 
             <form method="POST" action="/createB">
-                <div class="form-group">
+                <!--<div class="form-group">
                     <input type="text" class="form-control" name="name" placeholder="Aktivites Navn"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="InstructorID" placeholder="Instruktør ID"/>
+                    <input type="text" class="form-control" name="InstructorID" placeholder="Instruktør Navn"/>
+                </div>-->
+                <div class="form-group">
+                    <select th:name="actiName" class="form-control">
+                        <option value="">Vælg aktivitet</option>
+                        <option th:each="activities : ${activitylist}"
+                                th:value="${activities.name}"
+                                th:text="${activities.name}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select th:name="intName" class="form-control">
+                        <option value="">vælg Instruktør</option>
+                        <option th:each="instructors : ${instructorlist}"
+                                th:value="${instructors.name}"
+                                th:text="${instructors.name}"></option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="numOfParticipants" placeholder="Deltager"/>
                 </div>
                 <div class="form-group">
-                    <input type="date" class="form-control" name="date" placeholder="Dato"/>
+                    <input type="datetime-local" class="form-control" name="date" placeholder="Dato"/>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="description" placeholder="Event"/>
