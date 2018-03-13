@@ -15,7 +15,7 @@ public class BookingCreateRepository {
     @Autowired
     private JdbcTemplate jdbc;
 
-    public void create (Booking b, Customer c, String instructorid) {
+    public void create (Booking b, Customer c) {
         jdbc.update("INSERT INTO adventure_alley_db.customer(name, companyName, phone) " + "VALUES ('" + c.getCustomerName() + "', '" + c.getCompanyName() + "', '" + c.getPhone() + "')");
         SqlRowSet sr1 = jdbc.queryForRowSet("SELECT * FROM customer WHERE phone = '" + c.getPhone() + "'");
         Customer cnew = new Customer();
@@ -25,7 +25,7 @@ public class BookingCreateRepository {
         }
 
 
-    jdbc.update("INSERT INTO adventure_alley_db.booking(date, customerID, numOfParticipants, description, instructorID) " + "VALUES ('" + b.getDate() + "', '" + cnew.getId() + "', '" + b.getNumOfParticipants() + "', '" + b.getDescription() + "', '" + instructorid + "')");
+    jdbc.update("INSERT INTO adventure_alley_db.booking(date, customerID, numOfParticipants, description, instructorID) " + "VALUES ('" + b.getDate() + "', '" + cnew.getId() + "', '" + b.getNumOfParticipants() + "', '" + b.getDescription() + "')");
     }
 
 }
