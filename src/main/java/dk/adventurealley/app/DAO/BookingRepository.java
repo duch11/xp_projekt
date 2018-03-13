@@ -1,6 +1,8 @@
 package dk.adventurealley.app.DAO;
 
+import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Booking;
+import dk.adventurealley.app.Model.Entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -33,25 +35,23 @@ public class BookingRepository {
         jdbc.update("DELETE FROM booking WHERE id = " + id);
     }
 
-    @Autowired
-    private JdbcTemplate jdbc;
-    private ArrayList<Activity> activityList;
-
-    private Activity golfactivity = new Activity("Minigolf","/");
-    private Customer costumer = new Customer(1, "Mærsk","Hassan Jensen", "+33 41 41 22 11");
-    private LocalDateTime localDateTime = LocalDateTime.of(2018, 3, 12, 12, 20, 0);
-    private Booking booking = new Booking(1, golfactivity, costumer, localDateTime.toLocalDate(), "Firmafrokost", 12);
-    @Autowired
-    private ActivityRepository activityRepository;
-
     public Booking read(int id){
         SqlRowSet rowset1 = jdbc.queryForRowSet("SELECT * FROM booking WHERE id = ?",id);
+        Booking booking = new Booking();
         while (rowset1.next()){
-            Activity activity = activityRepository.read(String.valueOf(id));
-            new Booking(
-                    id,activity,costumer,
-            )
+            Activity activity = activityRepository.read(rowset1.getString("activityID"));
+            Customer costumer = customerRepository.read(String.valueOf(rowset1.getInt("customerID")));
+            booking = new Booking(
+                    id,
+                    activity,
+                    costumer,
+                    rowset1.getDate("date").toLocalDate(),
+                    rowset1.getString("description"),
+                    rowset1.getInt("numOfParticipants")
+            );
         }
+        System.out.println(booking.toString()+booking.getActivity()+booking.getCustomer());
+        return booking;
     }
 
 }

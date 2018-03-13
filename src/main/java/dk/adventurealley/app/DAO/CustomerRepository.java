@@ -15,8 +15,12 @@ public class CustomerRepository {
 
     public Customer read(String customerId){
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM customer WHERE id =" + customerId);
-        return new Customer(sqlRowSet.getInt("id"), sqlRowSet.getString("companyName"),
-                sqlRowSet.getString("name"), sqlRowSet.getString("phone"));
+
+        if(sqlRowSet.next()) {
+            return new Customer(sqlRowSet.getInt("id"), sqlRowSet.getString("companyName"),
+                    sqlRowSet.getString("name"), sqlRowSet.getString("phone"));
+        }
+        return null;
     }
 
 }

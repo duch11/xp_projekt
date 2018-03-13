@@ -22,6 +22,10 @@ public class Booking {
     this.numOfParticipants = numOfParticipants;
   }
 
+  public Booking() {
+
+  }
+
   public Integer getId() {
     return id;
   }
