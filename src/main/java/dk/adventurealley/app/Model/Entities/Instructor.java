@@ -5,6 +5,9 @@ public class Instructor {
   private Integer id;
   private String name;
 
+  public Instructor() {
+  }
+
   public Instructor(Integer id, String name) {
     this.id = id;
     this.name = name;
