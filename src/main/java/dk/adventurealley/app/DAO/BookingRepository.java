@@ -32,4 +32,26 @@ public class BookingRepository {
     public void deleteBooking(int id){
         jdbc.update("DELETE FROM booking WHERE id = " + id);
     }
+
+    @Autowired
+    private JdbcTemplate jdbc;
+    private ArrayList<Activity> activityList;
+
+    private Activity golfactivity = new Activity("Minigolf","/");
+    private Customer costumer = new Customer(1, "Mærsk","Hassan Jensen", "+33 41 41 22 11");
+    private LocalDateTime localDateTime = LocalDateTime.of(2018, 3, 12, 12, 20, 0);
+    private Booking booking = new Booking(1, golfactivity, costumer, localDateTime.toLocalDate(), "Firmafrokost", 12);
+    @Autowired
+    private ActivityRepository activityRepository;
+
+    public Booking read(int id){
+        SqlRowSet rowset1 = jdbc.queryForRowSet("SELECT * FROM booking WHERE id = ?",id);
+        while (rowset1.next()){
+            Activity activity = activityRepository.read(String.valueOf(id));
+            new Booking(
+                    id,activity,costumer,
+            )
+        }
+    }
+
 }
