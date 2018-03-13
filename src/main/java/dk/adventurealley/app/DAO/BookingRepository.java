@@ -29,5 +29,7 @@ public class BookingRepository {
         }
         return bookingList;
     }
-
+    public void deleteBooking(int id){
+        jdbc.update("DELETE FROM booking WHERE id = " + id);
+    }
 }
