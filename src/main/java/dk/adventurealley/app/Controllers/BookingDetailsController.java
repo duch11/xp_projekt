@@ -19,7 +19,7 @@ public class BookingDetailsController {
     @Autowired
     BookingRepository bookingRepository;
 
-    @GetMapping("/details/booking")
+    @GetMapping("/bookingdetails")
     public String showBookingDetails(@RequestParam int id, Model model){
         Booking booking = bookingRepository.read(id);
         model.addAttribute("booking", booking);
