@@ -24,7 +24,7 @@ public class Booking {
     this.activity = activity;
     this.customer = customer;
     this.date = date;
-    Description = description;
+    this.description = description;
     this.numOfParticipants = numOfParticipants;
   }
 
@@ -61,11 +61,11 @@ public class Booking {
   }
 
   public String getDescription() {
-    return Description;
+    return description;
   }
 
   public void setDescription(String description) {
-    Description = description;
+    this.description = description;
   }
 
   public int getNumOfParticipants() {

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
+
+    <meta charset="UTF-8"/>
+    <title>Opret en booking</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="/" class="btn btn-primary">Forside</a>
+        </div>
+        <div class="col-sm-6">
+            <h2>Opret Booking</h2>
+
+            <form method="POST" action="/createB">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" placeholder="Aktivites Navn"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="InstructorID" placeholder="Instruktør ID"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="numOfParticipants" placeholder="Deltager"/>
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" name="date" placeholder="Dato"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="description" placeholder="Event"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="CustomerName" placeholder="Kunde Navn"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="companyName" placeholder="Firma Navn"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="phone" placeholder="Nummer"/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="opret Booking"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
