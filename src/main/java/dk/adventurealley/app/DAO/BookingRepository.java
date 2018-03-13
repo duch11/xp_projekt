@@ -25,9 +25,13 @@ public class BookingRepository {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM bookings");
         while(sqlRowSet.next()){
             //getDate() format skal muligvis laves om
-            bookingList.add(new Booking(sqlRowSet.getInt("id"),activityRepository.read(sqlRowSet.getInt("activityID")),
-                    customerRepository.read(sqlRowSet.getString("customerID")),sqlRowSet.getDate("date").toLocalDate(),
-                    sqlRowSet.getString("description"),sqlRowSet.getInt("numOfParticipants")));
+            bookingList.add(
+                    new Booking(
+                            sqlRowSet.getInt("id"),
+                            activityRepository.read(sqlRowSet.getInt("activityID")),
+                            customerRepository.read(sqlRowSet.getString("customerID")),
+                            sqlRowSet.getTimestamp("date").toLocalDateTime(),
+                            sqlRowSet.getString("description"),sqlRowSet.getInt("numOfParticipants")));
         }
         return bookingList;
     }
@@ -45,7 +49,7 @@ public class BookingRepository {
                     id,
                     activity,
                     costumer,
-                    rowset1.getDate("date").toLocalDate(),
+                    rowset1.getTimestamp("date").toLocalDateTime(),
                     rowset1.getString("description"),
                     rowset1.getInt("numOfParticipants")
             );
