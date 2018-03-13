@@ -2,9 +2,12 @@ DROP TABLE IF EXISTS booking;
 DROP TABLE IF EXISTS bookings;
 DROP TABLE IF EXISTS act_reqs;
 DROP TABLE IF EXISTS activities;
+DROP TABLE IF EXISTS req_names;
 DROP TABLE IF EXISTS requirements;
 DROP TABLE IF EXISTS instructors;
+DROP TABLE IF EXISTS instructor;
 DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS customer;
 
 CREATE TABLE act_reqs
 (
