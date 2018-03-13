@@ -22,8 +22,9 @@ public class HomeController {
     RequirementRepository rR = new RequirementRepository();
     @Autowired
     ActivityRequirementsRepository aRR = new ActivityRequirementsRepository();
-
+    // Globale Attributter
     ArrayList<Activity> activities = new ArrayList<>();
+    String globalID;
 
     @GetMapping("/")
     public String index(Model model){
@@ -35,6 +36,7 @@ public class HomeController {
     @GetMapping("/activityPage")
     public String activityPage(@RequestParam("id") String id, Model model){
         Activity temp = aR.read(activities.get(Integer.parseInt(id)).getId());
+        globalID = id;
         model.addAttribute("activity", temp);
         return "activityPage";
     }
@@ -55,7 +57,7 @@ public class HomeController {
 
     @PostMapping ("/editActivity")
     public String editActivity(@RequestParam("action") String action, @ModelAttribute Activity activity, @ModelAttribute Requirement newReq, Model model){
-        System.out.println(action);
+        activity.setId(activities.get(Integer.parseInt(globalID)).getId()); // sets the Activity objects ID to what the activity has in DB
         newReq.setId(rR.readReqID(newReq.getReqName()));
         ArrayList<String> reqNames = new ArrayList<>();
         if(activity.getReqList() != null) {
@@ -64,7 +66,6 @@ public class HomeController {
             }
         }
         if (!newReq.getReqName().equals(null) && !reqNames.contains(newReq.getReqName()) && action.equals("Tilføj krav")) {
-            System.out.println(1);
             if(activity.getReqList() == null){
                 activity.setReqList(new ArrayList<Requirement>());
                 activity.getReqList().add(newReq);
@@ -79,14 +80,12 @@ public class HomeController {
 
         }
         else if (action.equals("Gem Ændringer")){
-            System.out.println(2);
             for (Requirement req : activity.getReqList()){
                 req.setId(rR.readReqID(req.getReqName()));
             }
             aR.update(activity);
         }
         model.addAttribute("activity", activity);
-
         return "activityPage";
     }
 }
