@@ -16,14 +16,10 @@ import java.time.LocalDateTime;
 @Controller
 public class BookingDetailsController {
 
-    private Activity golfactivity = new Activity("Minigolf","/");
-    private Customer costumer = new Customer(1, "Mærsk","Hassan Jensen", "+33 41 41 22 11");
-    private LocalDateTime localDateTime = LocalDateTime.of(2018, 3, 12, 12, 20, 0);
-    private Booking booking = new Booking(1, golfactivity, costumer, localDateTime.toLocalDate(), "Firmafrokost", 12);
     @Autowired
     BookingRepository bookingRepository;
 
-    @GetMapping("/booking")
+    @GetMapping("/details/booking")
     public String showBookingDetails(@RequestParam int id, Model model){
         Booking booking = bookingRepository.read(id);
         model.addAttribute("booking", booking);
