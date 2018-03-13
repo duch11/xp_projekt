@@ -1,7 +1,7 @@
 package dk.adventurealley.app.Controllers;
 
 import dk.adventurealley.app.DAO.ActivityRepository;
-import dk.adventurealley.app.DAO.ActivityRequirementsRepo;
+import dk.adventurealley.app.DAO.ActivityRequirementsRepository;
 import dk.adventurealley.app.DAO.RequirementRepository;
 import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Requirement;
@@ -21,7 +21,7 @@ public class HomeController {
     @Autowired
     RequirementRepository rR = new RequirementRepository();
     @Autowired
-    ActivityRequirementsRepo aRR = new ActivityRequirementsRepo();
+    ActivityRequirementsRepository aRR = new ActivityRequirementsRepository();
 
     ArrayList<Activity> activities = new ArrayList<>();
 
@@ -34,29 +34,29 @@ public class HomeController {
 
     @GetMapping("/activityPage")
     public String activityPage(@RequestParam("id") String id, Model model){
-        Activity temp = aR.read(activities.get(Integer.parseInt(id)).getName());
+        Activity temp = aR.read(activities.get(Integer.parseInt(id)).getId());
         model.addAttribute("activity", temp);
         return "activityPage";
     }
 
     @GetMapping("/deleteActivity")
-    public String deleteAcitivity(String name){
-        aR.deleteActivity(name);
+    public String deleteActivity(String id){
+        aR.deleteActivity(Integer.parseInt(id));
         return "redirect:/";
     }
 
     @GetMapping ("/editActivity")
-    public String editActivity(@RequestParam("name") String name, Model model){
-
+    public String editActivity(@RequestParam("id") String id, Model model){
         model.addAttribute("newReq", new Requirement());
         model.addAttribute("requirements", rR.readAll());
-        model.addAttribute("activity", aR.read(name));
+        model.addAttribute("activity", aR.read(Integer.parseInt(id)));
         return "editActivity";
     }
 
     @PostMapping ("/editActivity")
     public String editActivity(@RequestParam("action") String action, @ModelAttribute Activity activity, @ModelAttribute Requirement newReq, Model model){
         System.out.println(action);
+        newReq.setId(rR.readReqID(newReq.getReqName()));
         ArrayList<String> reqNames = new ArrayList<>();
         if(activity.getReqList() != null) {
             for (Requirement requirement : activity.getReqList()) {
@@ -80,7 +80,9 @@ public class HomeController {
         }
         else if (action.equals("Gem Ændringer")){
             System.out.println(2);
-
+            for (Requirement req : activity.getReqList()){
+                req.setId(rR.readReqID(req.getReqName()));
+            }
             aR.update(activity);
         }
         model.addAttribute("activity", activity);
