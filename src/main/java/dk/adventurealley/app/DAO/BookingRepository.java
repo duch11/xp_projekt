@@ -20,16 +20,16 @@ public class BookingRepository {
 
     public ArrayList<Booking> readAll(){
         ArrayList<Booking> bookingList = new ArrayList<>();
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM booking");
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM bookings");
         while(sqlRowSet.next()){
             //getDate() format skal muligvis laves om
-            bookingList.add(new Booking(sqlRowSet.getInt("id"),activityRepository.read(sqlRowSet.getString("activityID")),
+            bookingList.add(new Booking(sqlRowSet.getInt("id"),activityRepository.read(sqlRowSet.getInt("activityID")),
                     customerRepository.read(sqlRowSet.getString("customerID")),sqlRowSet.getDate("date").toLocalDate(),
                     sqlRowSet.getString("description"),sqlRowSet.getInt("numOfParticipants")));
         }
         return bookingList;
     }
     public void deleteBooking(int id){
-        jdbc.update("DELETE FROM booking WHERE id = " + id);
+        jdbc.update("DELETE FROM bookings WHERE id = " + id);
     }
 }

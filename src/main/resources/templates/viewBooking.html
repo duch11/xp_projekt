@@ -7,23 +7,23 @@
 <div class="container">
 
     <h1 align="center">Bookinger</h1>
-    <tabel>
+    <table>
         <tr>
             <th>Aktivitet</th>
             <th>Tidspunkt</th>
-            <th>Kontakt Person</th>
+            <th>Kontakt person</th>
             <th></th>
         </tr>
         <tr th:each="bookingArray : ${booking}">
             <td th:text="${bookingArray.activity.name}"></td>
-            <td th:date="${bookingArray.date}"></td>
-            <td th:text="${bookingArray.customer.name}"></td>
+            <td th:text="${bookingArray.date}"></td>
+            <td th:text="${bookingArray.customer.customerName}"></td>
             <td>
-                <a th:href="@{/bookingDetails(id=${bookingArray.id})}"></a>
-                <a th:href="@{/bookingDelete(id=${bookingArray.id})}"></a>
+                <a th:href="@{/bookingDetails(id=${bookingArray.id})}">Details</a>
+                <a th:href="@{/deleteBooking(id=${bookingArray.id})}">Slet</a>
             </td>
         </tr>
-    </tabel>
+    </table>
 
 </div>
 </body>
