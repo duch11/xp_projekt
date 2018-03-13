@@ -7,6 +7,9 @@ public class Customer {
   private String customerName;
   private String phone;
 
+  public Customer() {
+  }
+
   public Customer(Integer id, String customerName, String phone) {
     this.id = id;
     this.customerName = customerName;
@@ -50,5 +53,15 @@ public class Customer {
 
   public void setPhone(String phone) {
     this.phone = phone;
+  }
+
+  @Override
+  public String toString() {
+    return "Customer{" +
+            "id=" + id +
+            ", companyName='" + companyName + '\'' +
+            ", CustomerName='" + customerName + '\'' +
+            ", phone='" + phone + '\'' +
+            '}';
   }
 }

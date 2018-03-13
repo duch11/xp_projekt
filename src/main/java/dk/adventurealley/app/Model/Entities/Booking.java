@@ -1,5 +1,7 @@
 package dk.adventurealley.app.Model.Entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 
@@ -8,12 +10,16 @@ public class Booking {
   private Integer id;
   private Activity activity;
   private Customer customer;
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate date;
   private String description;
   private int numOfParticipants;
 
+  public Booking() {
+  }
+
   public Booking(Integer id, Activity activity,
-      Customer customer, LocalDate date, String description, int numOfParticipants) {
+                 Customer customer, LocalDate date, String description, int numOfParticipants) {
     this.id = id;
     this.activity = activity;
     this.customer = customer;
@@ -68,5 +74,17 @@ public class Booking {
 
   public void setNumOfParticipants(int numOfParticipants) {
     this.numOfParticipants = numOfParticipants;
+  }
+
+  @Override
+  public String toString() {
+    return "Booking{" +
+            "id=" + id +
+            ", activity=" + activity +
+            ", customer=" + customer +
+            ", date=" + date +
+            ", description='" + description + '\'' +
+            ", numOfParticipants=" + numOfParticipants +
+            '}';
   }
 }
