@@ -30,6 +30,7 @@ public class ViewBookingController {
     public String viewBooking(Model model){
         bookingArray = bookingRepository.readAll();
         model.addAttribute("booking", bookingArray);
+        model.addAttribute("isbookingpage", true);
         return "viewBooking";
     }
 

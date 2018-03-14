@@ -31,7 +31,7 @@ public class BookingController {
     ArrayList<Activity> activities = new ArrayList<>();
     ArrayList<Instructor> instructors = new ArrayList<>();
 
-    @RequestMapping(value = "/booking", method = RequestMethod.GET)
+    @RequestMapping(value = "/createbooking", method = RequestMethod.GET)
     public String createBooking(Model model) {
         activities = actiRepo.readAll();
         instructors = intRepo.readAll();
