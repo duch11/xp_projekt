@@ -1,9 +1,8 @@
 package dk.adventurealley.app.DAO;
 
-import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Booking;
-import dk.adventurealley.app.Model.Entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.session.SessionProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
@@ -16,46 +15,53 @@ public class BookingRepository {
     @Autowired
     private JdbcTemplate jdbc;
     @Autowired
-    private CustomerRepository customerRepository = new CustomerRepository();
+    private ActivityRepository aR;
     @Autowired
-    private ActivityRepository activityRepository = new ActivityRepository();
+    private ActivityRequirementsRepository aRR;
+    @Autowired
+    private CustomerRepository cR;
+    @Autowired
+    private InstructorRepository iR;
 
-    public ArrayList<Booking> readAll(){
+    public Booking read(Integer id) {
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM bookings WHERE id ='" + id + "'");
+        if (rs.next()) {
+            return new Booking(rs.getInt("id"), aR.read(rs.getInt("activityID")), cR.read(rs.getInt("customerID")), rs.getTimestamp("date").toLocalDateTime(),
+                    rs.getString("description"), rs.getInt("numOfParticipants"), iR.read(rs.getInt("instructorID")));
+        }
+        return null;
+    }
+
+    public void update(Booking booking) {
+
+        jdbc.update("UPDATE bookings SET activityID ='" + booking.getActivity().getId() + "', " +
+                "customerID ='" + booking.getCustomer().getId() + "', " +
+                "date ='" + booking.getDate() + "', description ='" + booking.getDescription() + "', " +
+                "numOfParticipants ='" + booking.getNumOfParticipants() + "'," +
+                "instructorID ='" + booking.getInstructor().getId() + "' WHERE id ='" + booking.getId() + "'");
+
+        cR.update(booking.getCustomer());
+    }
+
+    public ArrayList<Booking> readAll() {
         ArrayList<Booking> bookingList = new ArrayList<>();
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM bookings");
-        while(sqlRowSet.next()){
+        while (sqlRowSet.next()) {
             //getDate() format skal muligvis laves om
             bookingList.add(
                     new Booking(
                             sqlRowSet.getInt("id"),
-                            activityRepository.read(sqlRowSet.getInt("activityID")),
-                            customerRepository.read(sqlRowSet.getString("customerID")),
+                            aR.read(sqlRowSet.getInt("activityID")),
+                            cR.read(sqlRowSet.getInt("customerID")),
                             sqlRowSet.getTimestamp("date").toLocalDateTime(),
-                            sqlRowSet.getString("description"),sqlRowSet.getInt("numOfParticipants")));
+                            sqlRowSet.getString("description"), sqlRowSet.getInt("numOfParticipants"),
+                            iR.read(sqlRowSet.getInt("instructorID"))));
         }
         return bookingList;
     }
-    public void deleteBooking(int id){
-        jdbc.update("DELETE FROM bookings WHERE id = " + id);
-    }
 
-    public Booking read(int id){
-        SqlRowSet rowset1 = jdbc.queryForRowSet("SELECT * FROM bookings WHERE id = ?",id);
-        Booking booking = new Booking();
-        while (rowset1.next()){
-            Activity activity = activityRepository.read(rowset1.getInt("activityID"));
-            Customer costumer = customerRepository.read(String.valueOf(rowset1.getInt("customerID")));
-            booking = new Booking(
-                    id,
-                    activity,
-                    costumer,
-                    rowset1.getTimestamp("date").toLocalDateTime(),
-                    rowset1.getString("description"),
-                    rowset1.getInt("numOfParticipants")
-            );
-        }
-        System.out.println(booking.toString()+booking.getActivity()+booking.getCustomer());
-        return booking;
+    public void deleteBooking(int id) {
+        jdbc.update("DELETE FROM bookings WHERE id = " + id);
     }
 
 }

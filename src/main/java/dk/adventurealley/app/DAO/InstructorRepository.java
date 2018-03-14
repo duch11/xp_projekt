@@ -1,6 +1,5 @@
 package dk.adventurealley.app.DAO;
 
-import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Instructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,19 +14,38 @@ public class InstructorRepository {
     ArrayList<Instructor> intlist = new ArrayList<>();
 
     @Autowired
-    JdbcTemplate jdbc;
+    private JdbcTemplate jdbc;
 
     public void createInstructor (String name){
         jdbc.update("INSERT INTO adventure_alley_db.instructors(name) VALUES (?)", name);
     }
 
+    public Instructor read(int instructorID){
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM instructors WHERE id ='"+ instructorID +"'");
 
-    public ArrayList<Instructor> readAll() {
-        intlist.clear();
-        SqlRowSet sqlrowset = jdbc.queryForRowSet("SELECT * FROM instructors");
-        while (sqlrowset.next()) {
-            intlist.add(new Instructor(sqlrowset.getInt("id"), sqlrowset.getString("name")));
+        if (rs.next()){
+            return new Instructor(rs.getInt("id"), rs.getString("name"));
         }
-        return intlist;
+        return null;
+    }
+
+    public Instructor readOutFromName(String instructorName){
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM instructors WHERE name ='"+ instructorName +"'");
+
+        if (rs.next()){
+            return new Instructor(rs.getInt("id"), rs.getString("name"));
+        }
+        return null;
+    }
+
+    public ArrayList<Instructor> readAll(){
+        ArrayList<Instructor> instructors = new ArrayList<>();
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM instructors");
+
+        while (rs.next()){
+            instructors.add(new Instructor(rs.getInt("id"), rs.getString("name")));
+        }
+
+        return instructors;
     }
 }

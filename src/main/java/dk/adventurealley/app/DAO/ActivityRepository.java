@@ -50,7 +50,7 @@ public class ActivityRepository {
     // Returns a list of Activities with name and image (used in front-page for display)
     public ArrayList<Activity> readAll(){
         activityList.clear();
-        activityList.add(new Activity());
+//        activityList.add(new Activity());
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM activities");
         while(rs.next()){
             activityList.add(new Activity(rs.getInt("id"), rs.getString("name"), rs.getString("imagePath")));

@@ -27,6 +27,10 @@
                     <td th:text="${activity.name}">Go cart</td>
                 </tr>
                 <tr>
+                    <td>Instruktør: </td>
+                    <td th:text="${booking.instructor.name}"></td>
+                </tr>
+                <tr>
                     <td>Dato: </td>
                     <td th:text="${booking.date}"> 11/4</td>
                 </tr>
@@ -38,7 +42,7 @@
                     <td>Kontakt person:</td>
                     <td th:utext="${customer.customerName} + '&lt;br&gt;' + ${customer.phone}">Casper flint <br/>22489704</td>
                 </tr>
-                <tr th:if="${customer.companyName} != null">
+                <tr th:if="${customer.companyName != null}">
                     <td>Firma:</td>
                     <td th:text="${customer.companyName}">Novo nordisk</td>
                 </tr>
@@ -46,24 +50,5 @@
         </div>
     </div>
 </div>
-
-<!--
-<h1 align="center" th:text="${activity.name}"></h1>
-<br>
-<button type="button">Forside</button>
-<button type="button">Edit</button>
-<br>
-
-<textarea readonly name="Requirements" rows="10" cols="90" th:text="${activity.reqList}">
-</textarea>
-
-<img th:src="${activity.imagePath}" height="300px" width="300px"/>
-<br>
-<textarea readonly name="Description" rows="10" cols="90" th:text="${activity.description}">
-</textarea>
-<br>
-<textarea readonly name="Equipment" rows="10" cols="90" th:text="${activity.equipment}">
-</textarea>
--->
 </body>
 </html>

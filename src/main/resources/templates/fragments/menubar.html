@@ -25,8 +25,8 @@
                     <li class="slet" th:if="${isactivitydetailspage}">
                         <a th:href="@{/deleteActivity(id=${activity.id})}">Slet</a>
                     </li>
-                    <li class="edit" th:if="${isbookingdetailspage}"><a th:href="@{/editActivity(name=${activity.name})}">Rediger</a></li>
-                    <li class="slet" th:if="${isbookingdetailspage}"><a th:href="@{/deleteActivity(name=${activity.name})}">Slet</a></li>
+                    <li class="edit" th:if="${isbookingdetailspage}"><a th:href="@{/editBooking(id=${booking.id})}">Rediger</a></li>
+                    <li class="slet" th:if="${isbookingdetailspage}"><a th:href="@{/deleteBooking(id=${booking.id})}">Slet</a></li>
                 </ul>
             </div>
         </nav>

@@ -39,18 +39,6 @@ public class Activity {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Activity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", reqList=" + reqList +
-                ", equipment='" + equipment + '\'' +
-                ", imagePath='" + imagePath + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
-
     public String getName() {
         return name;
     }
@@ -89,5 +77,17 @@ public class Activity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", reqList=" + reqList +
+                ", equipment='" + equipment + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
