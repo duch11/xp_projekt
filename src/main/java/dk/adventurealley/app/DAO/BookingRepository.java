@@ -15,12 +15,29 @@ public class BookingRepository {
     @Autowired
     private ActivityRepository aR;
     @Autowired
-    private ActivityRequirementsRepo aRR;
+    private ActivityRequirementsRepository aRR;
+    @Autowired
+    private CustomerRepository cR;
+    @Autowired
+    private InstructorRepository iR;
 
-//    public Booking read(Integer id){
-//        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM bookings WHERE id ='"+ id +"'");
-//        if (rs.next()){
-////            return new Booking(rs.getInt("id"), aR.read(rs.getInt("activityID")))0
-//        }
-//    }
+    public Booking read(Integer id) {
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM bookings WHERE id ='" + id + "'");
+        if (rs.next()) {
+            return new Booking(rs.getInt("id"), aR.read(rs.getInt("activityID")), cR.read(rs.getInt("customerID")), rs.getTimestamp("date").toLocalDateTime(),
+                    rs.getString("description"), rs.getInt("numOfParticipants"), iR.read(rs.getInt("instructorID")));
+        }
+        return null;
+    }
+
+    public void update(Booking booking){
+
+        jdbc.update("UPDATE bookings SET activityID ='"+ booking.getActivity().getId() +"', " +
+                "customerID ='"+ booking.getCustomer().getId() +"', " +
+                "date ='"+ booking.getDate() +"', description ='"+ booking.getDescription() +"', " +
+                "numOfParticipants ='"+ booking.getNumOfParticipants() +"'," +
+                "instructorID ='"+ booking.getInstructor().getId() +"' WHERE id ='"+ booking.getId() +"'");
+
+        cR.update(booking.getCustomer());
+    }
 }
