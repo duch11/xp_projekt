@@ -6,12 +6,12 @@
     <title>Edit booking</title>
 </head>
 <body>
+<div th:replace="fragments/menubar::menubar"/>
+
 <div class="container">
-    <a th:href="@{/bookings}"></a>
-    <a th:href="@{/bookingPage}"></a>
     <h1>Rediger booking</h1>
 
-    <form th:action="@{/editBooking}" th:method="post" th:object="${booking}">
+    <form th:action="@{/editBooking(id=${booking.id})}" th:method="post" th:object="${booking}">
         <input type="hidden" th:field="*{id}"/>
         <h3>Aktivitet</h3>
         <select class="form-control dropdown" th:field="*{activity.name}">
@@ -49,7 +49,7 @@
         <h7>Tlf:</h7>
         <input type="text" required="required" th:field="*{customer.phone}"/>
 
-        <input type="submit" name="action" value="Gem Ændringer"/>
+        <input type="submit" class="btn btn-success" name="action" value="Gem Ændringer"/>
     </form>
 </div>
 </body>

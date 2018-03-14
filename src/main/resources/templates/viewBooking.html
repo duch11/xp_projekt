@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
+    <title>View Booking</title>
+</head>
+<body>
+<div th:replace="fragments/menubar::menubar"/>
+<div class="container">
+
+    <h1 align="center">Reservationer</h1>
+    <table class="table">
+        <tr>
+            <th>Aktivitet</th>
+            <th>Tidspunkt</th>
+            <th>Kontakt person</th>
+            <th></th>
+        </tr>
+        <tr th:each="bookingArray : ${booking}">
+            <td th:text="${bookingArray.activity.name}"></td>
+            <td th:text="${bookingArray.date}"></td>
+            <td th:text="${bookingArray.customer.customerName}"></td>
+            <td>
+                <div class="btn-group btn-group-justified" style="width: 200px">
+                    <a class="btn btn-primary " th:href="@{/bookingdetails(id=${bookingArray.id})}">Details</a>
+                    <a class="btn btn-danger" th:href="@{/deleteBooking(id=${bookingArray.id})}">Slet</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

@@ -82,7 +82,8 @@ public class Activity {
     @Override
     public String toString() {
         return "Activity{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", reqList=" + reqList +
                 ", equipment='" + equipment + '\'' +
                 ", imagePath='" + imagePath + '\'' +

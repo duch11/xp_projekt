@@ -11,11 +11,13 @@ import java.util.ArrayList;
 @Repository
 public class InstructorRepository {
 
+    ArrayList<Instructor> intlist = new ArrayList<>();
+
     @Autowired
     private JdbcTemplate jdbc;
 
     public void createInstructor (String name){
-        jdbc.update("INSERT INTO adventure_alley_db.instructors (name) VALUES (?)", name);
+        jdbc.update("INSERT INTO adventure_alley_db.instructors(name) VALUES (?)", name);
     }
 
     public Instructor read(int instructorID){

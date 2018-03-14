@@ -1,14 +1,19 @@
 package dk.adventurealley.app.Controllers;
 
 
+import dk.adventurealley.app.DAO.ActivityRepository;
 import dk.adventurealley.app.DAO.BookingCreateRepository;
+import dk.adventurealley.app.DAO.InstructorRepository;
 import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Booking;
 import dk.adventurealley.app.Model.Entities.Customer;
+import dk.adventurealley.app.Model.Entities.Instructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @Controller
 public class BookingController {
@@ -16,22 +21,33 @@ public class BookingController {
     @Autowired
     BookingCreateRepository bookRepo = new BookingCreateRepository();
 
-    @RequestMapping(value = "/booking", method = RequestMethod.GET)
+    @Autowired
+    ActivityRepository actiRepo = new ActivityRepository();
+
+    @Autowired
+    InstructorRepository intRepo = new InstructorRepository();
+
+
+    ArrayList<Activity> activities = new ArrayList<>();
+    ArrayList<Instructor> instructors = new ArrayList<>();
+
+    @RequestMapping(value = "/createbooking", method = RequestMethod.GET)
     public String createBooking(Model model) {
-        model.addAttribute("book", new Booking());
-        model.addAttribute("cust", new Customer());
-        model.addAttribute("acti", new Activity());
+        activities = actiRepo.readAll();
+        instructors = intRepo.readAll();
+        model.addAttribute("booking", new Booking());
+        model.addAttribute("customer", new Customer());
+        model.addAttribute("instructorlist", instructors);
+        model.addAttribute("activitylist", activities);
         return "booking";
     }
 
     @PostMapping("/createB")
-    public String bookingCreate(@ModelAttribute Booking b, Customer c, Activity a, @RequestParam String InstructorID) {
-        System.out.println("Tilføjet Booking: " + b.toString());
-        System.out.println("Tilføjet Kunde: " + c.toString());
-        System.out.println("Tilføjet Aktivitet: " + a.getName());
-        System.out.println("Tilføjet Instructor ID: " + InstructorID);
-        bookRepo.create(b, c, InstructorID);
+    public String bookingCreate(@ModelAttribute Booking b, Customer c, @RequestParam String intName, @RequestParam String actiName) {
+        bookRepo.create(b, c, intName, actiName);
         return "redirect:/";
     }
+
+
 
 }

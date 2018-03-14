@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.time.LocalDateTime;
@@ -26,11 +27,13 @@ public class EditBookingController {
     private ActivityRepository aR;
     @Autowired
     private InstructorRepository iR;
+    RedirectAttributes redirectAttributes;
+
 
     @GetMapping("/editBooking")
-    public String editBooking(Model model){
+    public String editBooking(@RequestParam("id") int id, Model model){
 
-        model.addAttribute("booking", bR.read(2));
+        model.addAttribute("booking", bR.read(id));
         model.addAttribute("activities", aR.readAll());
         model.addAttribute("instructors", iR.readAll());
         System.out.println(bR.read(1));
@@ -38,13 +41,10 @@ public class EditBookingController {
     }
 
     @PostMapping("/editBooking")
-    public String editBooking(@ModelAttribute Instructor newInstructor, @ModelAttribute Activity newActivity, @ModelAttribute Booking booking, Model model){
+    public String editBooking(@RequestParam("id") int id, @ModelAttribute Instructor newInstructor, @ModelAttribute Activity newActivity, @ModelAttribute Booking booking, Model model){
         booking.setInstructor(iR.readOutFromName(booking.getInstructor().getName()));
         booking.getActivity().setId(aR.readActivityID(booking.getActivity().getName()));
         bR.update(booking);
-        model.addAttribute("activities", aR.readAll());
-        model.addAttribute("instructors", iR.readAll());
-        model.addAttribute("booking", bR.read(2));
-        return "editBooking";
+        return "redirect:/bookingdetails?id=" + booking.getId();
     }
 }
