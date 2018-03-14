@@ -23,6 +23,7 @@ public class BookingDetailsController {
     public String showBookingDetails(@RequestParam int id, Model model){
         Booking booking = bookingRepository.read(id);
         model.addAttribute("booking", booking);
+        model.addAttribute("isbookingdetailspage", true);
         model.addAttribute("customer", booking.getCustomer());
         model.addAttribute("activity", booking.getActivity());
         return "bookingDetails";

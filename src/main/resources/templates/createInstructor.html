@@ -2,16 +2,15 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Opret Instruktør</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
 </head>
 <body>
+<div th:replace="fragments/menubar::menubar"/>
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
             <!-- LAVET AF ANDREAS OG NICHLAS -->
-            <a class="btn btn-primary" href="/">Tilbage</a>
             <h1>Opret en ny Instruktør</h1>
 
             <form class="" th:action="@{/createInstructor}" method="post">

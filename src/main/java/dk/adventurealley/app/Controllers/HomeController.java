@@ -30,6 +30,7 @@ public class HomeController {
     public String index(Model model){
         activities = aR.readAll();
         model.addAttribute("activities", activities);
+        model.addAttribute("isactivitypage", true);
         return "index";
     }
 
@@ -38,6 +39,7 @@ public class HomeController {
         Activity temp = aR.read(activities.get(Integer.parseInt(id)).getId());
         globalID = id;
         model.addAttribute("activity", temp);
+        model.addAttribute("isactivitydetailspage", true);
         return "activityPage";
     }
 
