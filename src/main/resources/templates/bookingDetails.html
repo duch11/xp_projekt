@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
+    <title>Adventure Alley</title>
+</head>
+<body>
+<!--<h2 align="center" th:text="${activity.name}"></h2>-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="btn btn-primary"  href="/">Forside</a>
+            <a class="btn btn-primary" th:href="@{/editActivity(name=${activity.name})}"> Edit</a>
+            <a class="btn btn-primary" th:href="@{/deleteActivity(name=${activity.name})}">Slet</a>
+
+        </div>
+        <div class="col-sm-6">
+            <h2 th:text="'Detaljer for: ' + ${booking.name}">Detaljer for: firma tmj</h2>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <table class="table" >
+                <tr>
+                    <td>Aktivitet: </td>
+                    <td th:text="${activity.name}">Go cart</td>
+                </tr>
+                <tr>
+                    <td>Dato: </td>
+                    <td th:text="${booking.date}"> 11/4</td>
+                </tr>
+                <tr>
+                    <td>Antal deltager:  </td>
+                    <td th:text="${booking.numOfParticipants}">10</td>
+                </tr>
+                <tr>
+                    <td>Kontakt person:</td>
+                    <td th:utext="${customer.customerName} + '<br>' +${customer.phone}">Casper flint <br>22489704</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--
+<h1 align="center" th:text="${activity.name}"></h1>
+<br>
+<button type="button">Forside</button>
+<button type="button">Edit</button>
+<br>
+
+<textarea readonly name="Requirements" rows="10" cols="90" th:text="${activity.reqList}">
+</textarea>
+
+<img th:src="${activity.imagePath}" height="300px" width="300px"/>
+<br>
+<textarea readonly name="Description" rows="10" cols="90" th:text="${activity.description}">
+</textarea>
+<br>
+<textarea readonly name="Equipment" rows="10" cols="90" th:text="${activity.equipment}">
+</textarea>
+-->
+</body>
+</html>

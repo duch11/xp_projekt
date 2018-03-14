@@ -13,6 +13,8 @@
             <div class="col-sm-4">
                 <a class="btn btn-primary"  href="/">Forside</a>
                 <a class="btn btn-primary" href="/createactivity">Opret Aktivitet</a>
+                <a class="btn btn-primary" href="/booking">Opret Booking</a>
+
             </div>
             <div class="col-sm-4">
                 <h1 class="text-center">Adventure Alley</h1>
@@ -26,7 +28,7 @@
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
                 <table class="text-center" th:if="${activities.size() > 0}">
-                    <tr th:each="index : ${#numbers.sequence(0, activities.size(), 3)}">
+                    <tr th:each="index : ${#numbers.sequence(1, activities.size(), 3)}">
                         <td>
                             <div th:if="${index lt activities.size()}">
                                 <a th:href="@{/activityPage(id=${index})}" class="btn-image"> <!-- Vælg hvor billede skal linke til her -->
