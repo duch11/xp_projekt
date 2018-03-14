@@ -50,7 +50,7 @@
                         <td>
                             <div th:if="${index + 2 lt activities.size()}">
                                 <a th:href="@{/activityPage(id=${index+2})}" class="btn-image">
-                                    <img th:src="${activities.get(index + 2).getImagePath()}" th:alt="${activities.get(index + 1).getImagePath()}" onclick=""
+                                    <img th:src="${activities.get(index + 2).getImagePath()}" th:alt="${activities.get(index + 2).getImagePath()}" onclick=""
                                          height="175px" width="175px"/>
                                 </a>
                                 <h3  th:text="${activities.get(index+2).getName()}"></h3>

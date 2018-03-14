@@ -34,9 +34,9 @@ public class ViewBookingController {
     }
 
     @GetMapping("/deleteBooking")
-    public String deleteBooking(@RequestParam("id") Integer id, Model model){
+    public String deleteBooking(@RequestParam("id") Integer id){
         bookingRepository.deleteBooking(id);
-        return "redirect/viewBooking";
+        return "redirect:/viewBooking";
     }
 
 }
