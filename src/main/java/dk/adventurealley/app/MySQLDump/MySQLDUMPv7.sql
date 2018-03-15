@@ -33,7 +33,7 @@ CREATE TABLE `act_reqs` (
   KEY `req_id` (`fk_req_id`),
   CONSTRAINT `act_id` FOREIGN KEY (`fk_act_id`) REFERENCES `activities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `req_id` FOREIGN KEY (`fk_req_id`) REFERENCES `requirements` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `act_reqs` (
 
 LOCK TABLES `act_reqs` WRITE;
 /*!40000 ALTER TABLE `act_reqs` DISABLE KEYS */;
-INSERT INTO `act_reqs` VALUES (1,1,4,'140'),(2,2,4,'20'),(3,2,2,'200'),(4,3,3,'120'),(5,4,1,'20');
+INSERT INTO `act_reqs` VALUES (2,2,4,'20'),(3,2,2,'200'),(23,3,3,'120'),(24,3,1,'12'),(32,8,4,'140'),(33,9,1,'18');
 /*!40000 ALTER TABLE `act_reqs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `activities` (
   `imagePath` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `activities_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `activities` (
 
 LOCK TABLES `activities` WRITE;
 /*!40000 ALTER TABLE `activities` DISABLE KEYS */;
-INSERT INTO `activities` VALUES (1,'Skak','Bræt','Hjernevrider spil som folk der hedder magnus er god til',' http://vidsteduat.dk/wp-content/uploads/skak.jpg'),(2,'Basketball','bold og sko','kast bolde i et hoop',' https://soroeakademi.dk/fileadmin/user_upload/images/Cards/Fag/basketball.jpg'),(3,'Sumo-Wrestling','Ble','Skub fede mænd ud af en ring',' https://static01.nyt.com/images/2016/01/27/sports/27SUMOweb1/27SUMOweb1-master768-v2.jpg'),(4,'Paintball','Våben og Kevlar','Skyd hinanden i face med farve skud',' https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/SupAir_Player.jpg/1200px-SupAir_Player.jpg');
+INSERT INTO `activities` VALUES (2,'Basketball','bold og sko','kast bolde i et hoop',' https://soroeakademi.dk/fileadmin/user_upload/images/Cards/Fag/basketball.jpg'),(3,'Sumo-Wrestling','Ble','Skub fede mænd ud af en ring',' https://static01.nyt.com/images/2016/01/27/sports/27SUMOweb1/27SUMOweb1-master768-v2.jpg'),(8,'Skak','Bræt','Hjernevrider spil som folk der hedder magnus er god til',' http://vidsteduat.dk/wp-content/uploads/skak.jpg'),(9,'Paintball','Våben og Kevlar','Skyd hinanden i face med farve skud',' https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/SupAir_Player.jpg/1200px-SupAir_Player.jpg');
 /*!40000 ALTER TABLE `activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,6 +160,32 @@ LOCK TABLES `instructors` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `imagePath` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `products_id_uindex` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `requirements`
 --
 
@@ -183,6 +209,31 @@ LOCK TABLES `requirements` WRITE;
 INSERT INTO `requirements` VALUES (1,'Alder'),(2,'Højde'),(3,'Vægt'),(4,'IQ');
 /*!40000 ALTER TABLE `requirements` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `sales`
+--
+
+DROP TABLE IF EXISTS `sales`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sales` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` date DEFAULT NULL,
+  `totalPrice` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `sales_id_uindex` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sales`
+--
+
+LOCK TABLES `sales` WRITE;
+/*!40000 ALTER TABLE `sales` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sales` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -193,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-13 13:33:00
+-- Dump completed on 2018-03-15 12:55:49
