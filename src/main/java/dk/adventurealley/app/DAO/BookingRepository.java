@@ -45,7 +45,7 @@ public class BookingRepository {
 
     public ArrayList<Booking> readAll() {
         ArrayList<Booking> bookingList = new ArrayList<>();
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM bookings");
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM bookings ORDER BY date");
         while (sqlRowSet.next()) {
             //getDate() format skal muligvis laves om
             bookingList.add(
