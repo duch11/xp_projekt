@@ -23,7 +23,7 @@
             <td th:text="${bookingArray.customer.customerName}"></td>
             <td>
                 <div class="btn-group btn-group-justified" style="width: 200px">
-                    <a class="btn btn-primary " th:href="@{/bookingdetails(id=${bookingArray.id})}">Details</a>
+                    <a class="btn btn-primary " th:href="@{/bookingdetails(id=${bookingArray.id})}">Detaljer</a>
                     <a class="btn btn-danger" th:href="@{/deleteBooking(id=${bookingArray.id})}">Slet</a>
                 </div>
             </td>
