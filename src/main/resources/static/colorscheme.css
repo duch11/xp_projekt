@@ -6,8 +6,18 @@ p, h1, h2, h3, a, form {
     color: #CCCCCC;
 }
 
-.btn-success {
+.btn-success, .ny {
     background-color: #004401;
+    color: #CCCCCC;
+}
+
+.btn-danger, .btn-danger:hover, .slet {
+    background-color: #780200;
+    color: #CCCCCC;
+}
+
+.btn-warning, .btn-warning:hover, .edit {
+    background-color: #aa6b00;
     color: #CCCCCC;
 }
 
