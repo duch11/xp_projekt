@@ -12,7 +12,7 @@
     <h1>Rediger booking</h1>
 
     <form th:action="@{/editBooking(id=${booking.id})}" th:method="post" th:object="${booking}">
-        <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{id}"/>
         <h3>Aktivitet</h3>
         <select class="form-control dropdown" th:field="*{activity.name}">
             <option th:value="*{activity.name}" th:text="*{activity.name}"></option>
