@@ -21,7 +21,7 @@
             <td th:text="${product.price}"></td>
             <td align="right">
                 <div class="btn-group btn-group-justified" style="width: 200px">
-                    <a class="btn btn-primary " th:href="@{(id=${product.id})}">Rediger</a>
+                    <a class="btn btn-primary " th:href="@{/editProduct(id=${product.id})}">Rediger</a>
                     <a class="btn btn-danger" th:href="@{/deleteProduct(id=${product.id})}">Slet</a>
                 </div>
             </td>
