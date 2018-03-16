@@ -8,12 +8,12 @@ public class Sale {
     private Integer id;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
-    private int totalPrice;
+    private double totalPrice;
 
     // Constructors
     public Sale(){
     }
-    public Sale(Integer id, LocalDate date, int totalPrice) {
+    public Sale(Integer id, LocalDate date, double totalPrice) {
         this.id = id;
         this.date = date;
         this.totalPrice = totalPrice;
@@ -45,11 +45,11 @@ public class Sale {
         this.date = date;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 }
