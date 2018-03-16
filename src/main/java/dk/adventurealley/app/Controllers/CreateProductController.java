@@ -22,10 +22,7 @@ public class CreateProductController {
     }
 
     @PostMapping("/createP")
-    public String productCreate (@ModelAttribute String name, String price, String productImagePath) {
-        // creates product object
-        Product p = new Product(null, name, proRepo.fixComma(price), productImagePath);
-        // write to db
+    public String productCreate (@ModelAttribute Product p) {
         proRepo.create(p);
         return "redirect:/";
     }
