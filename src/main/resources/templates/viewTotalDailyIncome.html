@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
+    <title>View Daily Income</title>
+
+</head>
+<body>
+<div class="container">
+<h1>Oversigt over daglig omsæstning</h1>
+    <table class="table">
+        <tr>
+            <th>Dato</th>
+            <th>Samlet Indkomst</th>
+        </tr>
+        <tr th:each="dailyIncome : ${dailyIncomeArray}">
+            <td th:text="${dailyIncome.date}"></td>
+            <td th:text="${dailyIncome.totalPrice}"></td>
+
+        </tr>
+    </table>
+
+</div>
+
+
+</body>
+</html>
