@@ -18,6 +18,7 @@
                     <li class="ny" th:if="${isactivitypage}"><a href="/createactivity">Ny aktivitet</a></li>
                     <li class="ny" th:if="${isactivitypage}"><a href="/createInstructor">Ny instruktør</a></li>
                     <li class="ny" th:if="${isactivitypage}"><a href="/createrequirement">Nyt krav</a></li>
+                    <li class="ny" th:if="${isactivitypage}"><a href="/createProduct">Nyt Produkt</a></li>
                     <!--Edit og slet booking-->
                     <li class="edit" th:if="${isactivitydetailspage}">
                         <a th:href="@{/editActivity(id=${activity.id})}">Rediger</a>
