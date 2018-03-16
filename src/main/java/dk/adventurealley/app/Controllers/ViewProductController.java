@@ -20,9 +20,10 @@ public class ViewProductController {
 
     @GetMapping("/viewProducts")
     public String viewProducts(Model model){
+        //System.out.println("productList size: "+pr.readAll().size());
         productList = pr.readAll();
         model.addAttribute("productList", productList);
-        //model.addAttribute("isProductsPage", true);
+        model.addAttribute("isProductsPage", true);
         return "viewProducts";
     }
 

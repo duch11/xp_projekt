@@ -1,6 +1,7 @@
 package dk.adventurealley.app.DAO;
 
 import dk.adventurealley.app.Model.Entities.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
@@ -9,9 +10,10 @@ import java.util.ArrayList;
 
 @Repository
 public class ProductRepository {
+    @Autowired
+    JdbcTemplate jdbc = new JdbcTemplate();
 
-    ArrayList<Product> productList;
-    JdbcTemplate jdbc;
+    ArrayList<Product> productList = new ArrayList<>();
 
     // Returns a list of Products with name and price (used in product-page for display)
     public ArrayList<Product> readAll(){

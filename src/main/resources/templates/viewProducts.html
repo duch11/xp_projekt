@@ -16,13 +16,13 @@
             <th>Pris</th>
             <th></th>
         </tr>
-        <tr th:each="productList : ${product}">
-            <td th:text="${productList.product.name}"></td>
-            <td align="right" th:text="${productList.price}"></td>
-            <td>
+        <tr th:each="product : ${productList}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td align="right">
                 <div class="btn-group btn-group-justified" style="width: 200px">
-                    <!--<a class="btn btn-primary " th:href="@{/editProduct(id=${productList.id})}">Rediger</a>-->
-                    <a class="btn btn-danger" th:href="@{/deleteProduct(id=${productList.id})}">Slet</a>
+                    <a class="btn btn-primary " th:href="@{(id=${product.id})}">Rediger</a>
+                    <a class="btn btn-danger" th:href="@{/deleteProduct(id=${product.id})}">Slet</a>
                 </div>
             </td>
         </tr>
