@@ -17,11 +17,11 @@
             <th></th>
         </tr>
         <tr th:each="productList : ${product}">
-            <td th:text="${productList.activity.name}"></td>
-            <td align="right" th:text="${productList.date}"></td>
+            <td th:text="${productList.product.name}"></td>
+            <td align="right" th:text="${productList.price}"></td>
             <td>
                 <div class="btn-group btn-group-justified" style="width: 200px">
-                    <a class="btn btn-primary " th:href="@{/editProduct(id=${productList.id})}">Rediger</a>
+                    <!--<a class="btn btn-primary " th:href="@{/editProduct(id=${productList.id})}">Rediger</a>-->
                     <a class="btn btn-danger" th:href="@{/deleteProduct(id=${productList.id})}">Slet</a>
                 </div>
             </td>
