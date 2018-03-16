@@ -2,19 +2,15 @@ package dk.adventurealley.app.Model.Entities;
 
 public class Product {
     // Attributes
-    private int id;
+    private Integer id;
     private String name;
     private int price;
     private String productImagePath;
 
     // Constructors
     public Product(){
-        id=0;
-        name="";
-        price=0;
-        productImagePath="";
     }
-    public Product(int id, String name, int price, String productImagePath) {
+    public Product(Integer id, String name, int price, String productImagePath) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -32,11 +28,11 @@ public class Product {
                 '}';
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

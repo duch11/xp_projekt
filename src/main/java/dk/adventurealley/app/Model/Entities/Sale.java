@@ -1,16 +1,19 @@
 package dk.adventurealley.app.Model.Entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Sale {
-    private int id;
+    private Integer id;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
     private int totalPrice;
 
     // Constructors
     public Sale(){
     }
-    public Sale(int id, LocalDate date, int totalPrice) {
+    public Sale(Integer id, LocalDate date, int totalPrice) {
         this.id = id;
         this.date = date;
         this.totalPrice = totalPrice;
@@ -26,11 +29,11 @@ public class Sale {
                 '}';
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
