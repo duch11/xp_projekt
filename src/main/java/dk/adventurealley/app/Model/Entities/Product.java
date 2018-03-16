@@ -4,20 +4,13 @@ public class Product {
     // Attributes
     private Integer id;
     private String name;
-    private int price;
+    private double price;
     private String productImagePath;
 
     // Constructors
     public Product(){
     }
-
-    public Product(Integer id, String name, int price) {
-        this.id=id;
-        this.name = name;
-        this.price = price;
-    }
-
-    public Product(Integer id, String name, int price, String productImagePath) {
+    public Product(Integer id, String name, double price, String productImagePath) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -51,11 +44,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
