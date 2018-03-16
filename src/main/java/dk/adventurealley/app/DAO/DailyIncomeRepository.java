@@ -15,7 +15,7 @@ public class DailyIncomeRepository {
 
     //Læser alle daglige indkomster/omsætning fra sales tabellen
     public ArrayList<Sale> readAll(){
-        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM sales");
+        SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM sales ORDER BY date DESC ");
         ArrayList<Sale> sales = new ArrayList<>();
         while (rs.next()){
             sales.add(new Sale(rs.getInt("id"),rs.getDate("date").toLocalDate(), rs.getDouble("totalPrice")));

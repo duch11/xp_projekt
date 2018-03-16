@@ -7,15 +7,16 @@
 
 </head>
 <body>
+<div th:replace="fragments/menubar::menubar"/>
 <div class="container">
-<h1>Oversigt over daglig omsæstning</h1>
+<h1 align="center">Oversigt over daglig omsæstning</h1>
     <table class="table">
         <tr>
             <th>Dato</th>
             <th>Samlet Indkomst</th>
         </tr>
         <tr th:each="dailyIncome : ${dailyIncomeArray}">
-            <td th:text="${dailyIncome.date}"></td>
+            <td th:text="${dailyIncome.date.getDayOfMonth() + '/' + dailyIncome.date.getMonthValue() + '-' + dailyIncome.date.getYear()}"></td>
             <td th:text="${dailyIncome.totalPrice}"></td>
 
         </tr>
