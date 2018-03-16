@@ -20,7 +20,7 @@ public class ProductRepository {
         productList.clear();
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM products");
         while(rs.next()){
-            productList.add(new Product(rs.getInt("id"), rs.getString("name"), rs.getInt("price")));
+            productList.add(new Product(rs.getInt("id"), rs.getString("name"), rs.getDouble("price")));
         }
         return productList;
     }
