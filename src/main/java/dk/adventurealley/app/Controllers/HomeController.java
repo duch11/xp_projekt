@@ -26,6 +26,12 @@ public class HomeController {
     ArrayList<Activity> activities = new ArrayList<>();
     String globalID;
 
+    @GetMapping("/mainpage")
+    public String mainPage(){
+
+        return "mainPage";
+    }
+
     @GetMapping("/")
     public String index(Model model){
         activities = aR.readAll();
