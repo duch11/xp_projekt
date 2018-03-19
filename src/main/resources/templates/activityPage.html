@@ -7,8 +7,6 @@
 </head>
 <body>
 <div th:replace="fragments/menubar::menubar"/>
-<!--<h2 align="center" th:text="${activity.name}"></h2>-->
-
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
@@ -32,8 +30,12 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <table class="table" >
                     <tr>
-                        <td>Krav: </td>
-                        <td th:text="${activity.reqList}"></td>
+                        <td width="30%">Krav: </td>
+                        <td width="70%">
+                            <table th:each="req : ${activity.reqList}">
+                                <tr th:text="${req}" ></tr>
+                            </table>
+                        </td>
                     </tr>
                     <tr>
                         <td>Beskrivelse: </td>
@@ -47,24 +49,5 @@
             </div>
         </div>
     </div>
-
-<!--
-<h1 align="center" th:text="${activity.name}"></h1>
-<br>
-<button type="button">Forside</button>
-<button type="button">Edit</button>
-<br>
-
-<textarea readonly name="Requirements" rows="10" cols="90" th:text="${activity.reqList}">
-</textarea>
-
-<img th:src="${activity.imagePath}" height="300px" width="300px"/>
-<br>
-<textarea readonly name="Description" rows="10" cols="90" th:text="${activity.description}">
-</textarea>
-<br>
-<textarea readonly name="Equipment" rows="10" cols="90" th:text="${activity.equipment}">
-</textarea>
--->
 </body>
 </html>
