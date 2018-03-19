@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
+    <link rel="stylesheet" href="" th:href="@{salespagestyle.css}"/>
+    <title>Sales page</title>
+</head>
+<body>
+<div th:replace="fragments/menubar::menubar"/>
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-7">
+            <h2>Produkter</h2>
+
+            <div class="productlist">
+                <div class="product">
+                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
+                    <h4>Popkorn</h4>
+                </div>
+                <div class="product">
+                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
+                    <h4>Popkorn</h4>
+                </div>
+                <div class="product">
+                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
+                    <h4>Popkorn</h4>
+                </div>
+                <div class="product">
+                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
+                    <h4>Popkorn</h4>
+                </div>
+                <div class="product">
+                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
+                    <h4>Popkorn</h4>
+                </div>
+                <div class="product">
+                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
+                    <h4>Popkorn</h4>
+                </div>
+                <div class="product">
+                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
+                    <h4>Popkorn</h4>
+                </div>
+                <div class="product">
+                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
+                    <h4>Popkorn</h4>
+                </div>
+                <div class="product">
+                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
+                    <h4>Popkorn</h4>
+                </div>
+                <div class="product">
+                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
+                    <h4>Popkorn</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="salesCart">
+                <h2>Indkøbskurv</h2>
+                <div class="salesCartItem">
+                    <form>
+                        <input class="deleteButton" type="submit" value="X"/>
+                    </form>
+                    <h4>Popcorn-bil</h4>
+                    <p class="noOfItems">2</p>
+                    <p class="noOfItemsLabel">stk</p>
+                    <p class="price">10</p>
+                    <p class="crowns">kr</p>
+                </div>
+                <div class="salesCartItem">
+                    <form>
+                        <input class="deleteButton" type="submit" value="X"/>
+                    </form>
+                    <h4>Popcorn-bil</h4>
+                    <p class="noOfItems">102</p>
+                    <p class="noOfItemsLabel">stk</p>
+                    <p class="price">300</p>
+                    <p class="crowns">kr</p>
+                </div>
+                <div class="salesCartItem">
+                    <form>
+                        <input class="deleteButton" type="submit" value="X"/>
+                    </form>
+                    <h4>Popcorn-bil</h4>
+                    <p class="noOfItems">2</p>
+                    <p class="noOfItemsLabel">stk</p>
+                    <p class="price">1000</p>
+                    <p class="crowns">kr</p>
+                </div>
+                <div class="salesCartItem">
+                    <form>
+                        <input class="deleteButton" type="submit" value="X"/>
+                    </form>
+                    <h4>Popcorn-bil</h4>
+                    <p class="noOfItems">2</p>
+                    <p class="noOfItemsLabel">stk</p>
+                    <p class="price">10.000</p>
+                    <p class="crowns">kr</p>
+                </div>
+                <div class="salesCartTotal">
+                    <h5>Total:</h5>
+                    <p class="price">200</p>
+                    <p class="crowns">kr</p>
+                </div>
+                <!--hacky class-->
+                <input class="col-sm-12 buyButton" type="submit" form="buyForm" VALUE="Betal"/>
+            </div>
+            <div>
+                <form id="buyForm">
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!--
+    <table class="table">
+        <tr>
+            <th>Aktivitet</th>
+            <th>Tidspunkt</th>
+            <th>Kontakt person</th>
+            <th></th>
+        </tr>
+        <tr th:each="bookingArray : ${booking}">
+            <td th:text="${bookingArray.activity.name}"></td>
+            <td th:text="${bookingArray.date}"></td>
+            <td th:text="${bookingArray.customer.customerName}"></td>
+            <td>
+                <div class="btn-group btn-group-justified" style="width: 200px">
+                    <a class="btn btn-primary " th:href="@{/bookingdetails(id=${bookingArray.id})}">Details</a>
+                    <a class="btn btn-danger" th:href="@{/deleteBooking(id=${bookingArray.id})}">Slet</a>
+                </div>
+            </td>
+        </tr>
+    </table>-->
+
+</div>
+</body>
+</html>
