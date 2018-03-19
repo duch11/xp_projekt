@@ -85,9 +85,10 @@ p.price {
 div.salesCart {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 79px;
 
 }
+
 div.salesCartTotal{
     background-color: whitesmoke;
     height: 50px;
