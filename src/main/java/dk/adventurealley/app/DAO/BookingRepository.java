@@ -64,4 +64,49 @@ public class BookingRepository {
         jdbc.update("DELETE FROM bookings WHERE id = " + id);
     }
 
+    public ArrayList<Booking> searchBooking(Booking searchBooking, String da){
+        ArrayList<Booking> bookingArray = new ArrayList<>();
+        bookingArray = this.readAll();
+        ArrayList<Booking> searchedBookings = new ArrayList<>();
+
+        for (Booking b : bookingArray) {
+            if (b.getActivity().getName().toLowerCase().equals(searchBooking.getActivity().getName().toLowerCase()) &&
+                    b.getCustomer().getCustomerName().toLowerCase().equals(searchBooking.getCustomer().getCustomerName().toLowerCase()) &&
+                    b.getDate().toLocalDate().toString().equals(da)){
+                searchedBookings.add(b);
+            }
+            else if (da.isEmpty() && searchBooking.getCustomer().getCustomerName().isEmpty()){
+                if (b.getActivity().getName().toLowerCase().equals(searchBooking.getActivity().getName().toLowerCase())){
+                    searchedBookings.add(b);
+                }
+            }
+            else if (searchBooking.getActivity().getName().isEmpty() && searchBooking.getCustomer().getCustomerName().isEmpty()){
+                if (b.getDate().toLocalDate().toString().equals(da)){
+                    searchedBookings.add(b);
+                }
+            }
+            else if (searchBooking.getActivity().getName().isEmpty() && da.isEmpty()){
+                if (b.getCustomer().getCustomerName().toLowerCase().equals(searchBooking.getCustomer().getCustomerName().toLowerCase())){
+                    searchedBookings.add(b);
+                }
+            }
+            else if (searchBooking.getActivity().getName().isEmpty()){
+                if (b.getCustomer().getCustomerName().toLowerCase().equals(searchBooking.getCustomer().getCustomerName().toLowerCase()) && b.getDate().toLocalDate().toString().equals(da)) {
+                    searchedBookings.add(b);
+                }
+            }
+            else if (searchBooking.getCustomer().getCustomerName().isEmpty()){
+                if (b.getDate().toLocalDate().toString().equals(da) && b.getActivity().getName().toLowerCase().equals(searchBooking.getActivity().getName().toLowerCase())) {
+                    searchedBookings.add(b);
+                }
+            }
+            else if (da.isEmpty()){
+                if (b.getCustomer().getCustomerName().toLowerCase().equals(searchBooking.getCustomer().getCustomerName().toLowerCase()) && b.getActivity().getName().toLowerCase().equals(searchBooking.getActivity().getName().toLowerCase())) {
+                    searchedBookings.add(b);
+                }
+            }
+        }
+        return searchedBookings;
+    }
+
 }

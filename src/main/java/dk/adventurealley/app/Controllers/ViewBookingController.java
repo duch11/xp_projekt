@@ -48,48 +48,9 @@ public class ViewBookingController {
 
     @PostMapping("/viewBooking")
     public String searchBooking(@RequestParam (value = "da", required = false)  String da, @ModelAttribute Booking searchBooking, Model model){
-        ArrayList<Booking> searchedBookings = new ArrayList<>();
         model.addAttribute("isbookingpage", true);
         model.addAttribute("searchBooking", new Booking());
-
-        for (Booking b : bookingArray) {
-            if (b.getActivity().getName().toLowerCase().equals(searchBooking.getActivity().getName().toLowerCase()) &&
-                    b.getCustomer().getCustomerName().toLowerCase().equals(searchBooking.getCustomer().getCustomerName().toLowerCase()) &&
-                    b.getDate().toLocalDate().toString().equals(da)){
-                searchedBookings.add(b);
-            }
-            else if (da.isEmpty() && searchBooking.getCustomer().getCustomerName().isEmpty()){
-                if (b.getActivity().getName().toLowerCase().equals(searchBooking.getActivity().getName().toLowerCase())){
-                    searchedBookings.add(b);
-                }
-            }
-            else if (searchBooking.getActivity().getName().isEmpty() && searchBooking.getCustomer().getCustomerName().isEmpty()){
-                if (b.getDate().toLocalDate().toString().equals(da)){
-                    searchedBookings.add(b);
-                }
-            }
-            else if (searchBooking.getActivity().getName().isEmpty() && da.isEmpty()){
-                if (b.getCustomer().getCustomerName().toLowerCase().equals(searchBooking.getCustomer().getCustomerName().toLowerCase())){
-                    searchedBookings.add(b);
-                }
-            }
-            else if (searchBooking.getActivity().getName().isEmpty()){
-                if (b.getCustomer().getCustomerName().toLowerCase().equals(searchBooking.getCustomer().getCustomerName().toLowerCase()) && b.getDate().toLocalDate().toString().equals(da)) {
-                    searchedBookings.add(b);
-                }
-            }
-            else if (searchBooking.getCustomer().getCustomerName().isEmpty()){
-                if (b.getDate().toLocalDate().toString().equals(da) && b.getActivity().getName().toLowerCase().equals(searchBooking.getActivity().getName().toLowerCase())) {
-                    searchedBookings.add(b);
-                }
-            }
-            else if (da.isEmpty()){
-                if (b.getCustomer().getCustomerName().toLowerCase().equals(searchBooking.getCustomer().getCustomerName().toLowerCase()) && b.getActivity().getName().toLowerCase().equals(searchBooking.getActivity().getName().toLowerCase())) {
-                    searchedBookings.add(b);
-                }
-            }
-        }
-        model.addAttribute("booking", searchedBookings);
+        model.addAttribute("booking", bookingRepository.searchBooking(searchBooking, da));
         return "viewBooking";
     }
 }
