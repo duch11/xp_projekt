@@ -10,6 +10,11 @@
 <div class="container">
 
     <h1 align="center">Reservationer</h1>
+    <form th:action="@{/viewBooking}" method="post" th:object="${searchBooking}">
+        <input type="text" th:field="*{activity.name}" /> <input type="submit" name="searchButton" value="søg aktivitet" />
+        <input type="text" th:field="*{customer.customerName}" /> <input type="submit" name="searchButton" value="søg navn" />
+        <input type="datetime-local" th:field="*{date}" /> <input type="submit" name="searchButton" value="søg dato" />
+    </form>
     <table class="table">
         <tr>
             <th>Aktivitet</th>
