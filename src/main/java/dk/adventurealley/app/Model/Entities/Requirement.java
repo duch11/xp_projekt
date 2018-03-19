@@ -57,10 +57,6 @@ public class Requirement {
 
     @Override
     public String toString() {
-        return "Requirement{" +
-                /*"id='" + id + '\'' + */
-                "name='" + reqName + '\'' +
-                ", value='" + value + '\'' +
-                '}';
+        return  reqName + ": " + value;
     }
 }
