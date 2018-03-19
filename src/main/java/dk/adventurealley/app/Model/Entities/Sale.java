@@ -19,6 +19,11 @@ public class Sale {
         this.totalPrice = totalPrice;
     }
 
+    public Sale(LocalDate date, double totalPrice) {
+        this.date = date;
+        this.totalPrice = totalPrice;
+    }
+
     // Methods
     @Override
     public String toString() {
