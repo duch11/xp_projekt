@@ -1,8 +1,5 @@
 package dk.adventurealley.app.Model.Entities;
 
-import dk.adventurealley.app.DAO.BookingRepository;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -15,14 +12,12 @@ public class SalesCart {
     public SalesCart() {
         list = new ArrayList<>();
     }
+
     public Sale makeSale(){
-        double sum = 0;
-        for(SaleItem saleItem: list){
-            sum = sum + saleItem.getTotal();
-        }
         LocalDate localDate = LocalDate.now();
-        return new Sale(localDate,sum);
+        return new Sale(localDate, calculateTotal());
     }
+
     public void addProductToCart(Product product){
         boolean containsProduct = false;
         for(SaleItem saleItem: list){
@@ -72,4 +67,11 @@ public class SalesCart {
                 '}';
     }
 
+    public double calculateTotal() {
+        double sum = 0;
+        for(SaleItem saleItem: list){
+            sum = sum + saleItem.getSubTotal();
+        }
+        return sum;
+    }
 }

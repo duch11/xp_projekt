@@ -48,7 +48,7 @@ public class SaleItem {
                 '}';
     }
 
-    public double getTotal() {
+    public double getSubTotal() {
         return product.getPrice() * amount;
     }
 

@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="" th:href="@{colorscheme.css}"/>
     <link rel="stylesheet" href="" th:href="@{salespagestyle.css}"/>
+
     <title>Sales page</title>
 </head>
 <body>
@@ -15,13 +16,17 @@
             <h2>Produkter</h2>
 
             <div class="productlist">
-                <div class="product">
+
+                <div th:each="product : ${productList}" class="product">
+                    <form action="/addProduct" method="post">
+                        // WE WERE HERE!
+                        <button type="submit" value="hej">
+
+                        </button>
+                    </form>
                     <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
                     <h4>Popkorn</h4>
-                </div>
-                <div class="product">
-                    <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
-                    <h4>Popkorn</h4>
+
                 </div>
                 <div class="product">
                     <img src="http://3.bp.blogspot.com/-f5if0xq5HRg/UAWPDTzw9BI/AAAAAAAAFeg/yjimmpRlw8Q/s320/1.jpg" alt="Billede af produkt"/>
@@ -265,5 +270,6 @@
     </table>-->
 
 </div>
+<!--<script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js" integrity="sha384-0AJY8UERsBUKdWcyF3o2kisLKeIo6G4Tbd8Y6fbyw6qYmn4WBuqcvxokp8m2UzSD" crossorigin="anonymous"></script>-->
 </body>
 </html>
