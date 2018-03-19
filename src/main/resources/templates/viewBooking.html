@@ -13,13 +13,16 @@
     <table class="table">
         <tr>
             <th>Aktivitet</th>
+            <th>Dato</th>
             <th>Tidspunkt</th>
             <th>Kontakt person</th>
             <th></th>
         </tr>
         <tr th:each="bookingArray : ${booking}">
             <td th:text="${bookingArray.activity.name}"></td>
-            <td th:text="${bookingArray.date}"></td>
+            <td th:text="${bookingArray.date.getDayOfMonth() + '/' + bookingArray.date.getMonthValue() + '-' + bookingArray.date.getYear()}"></td>
+            <td th:if="${bookingArray.date.getHour() gt 9}" th:text="${bookingArray.date.getHour() + ':' + bookingArray.date.getMinute()}"></td>
+            <td th:if="${bookingArray.date.getHour() lt 10}" th:text="${'0' + bookingArray.date.getHour() + ':' + bookingArray.date.getMinute()}"></td>
             <td th:text="${bookingArray.customer.customerName}"></td>
             <td>
                 <div class="btn-group btn-group-justified" style="width: 200px">
