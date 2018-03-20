@@ -15,7 +15,6 @@ public class SalesCart {
 
     public Sale makeSale(){
         LocalDate localDate = LocalDate.now();
-        localDate = LocalDate.of(2018, 03, 23);
         return new Sale(localDate, calculateTotal());
     }
 
