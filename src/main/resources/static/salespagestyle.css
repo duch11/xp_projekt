@@ -93,6 +93,10 @@ div.salesCartTotal{
     background-color: whitesmoke;
     height: 50px;
 }
+
+div.salesCartTotal > p.price {
+    width: 205px;
+}
 .salesCartTotal p,
 .salesCartTotal h5{
     font-size: 32px;

@@ -15,6 +15,7 @@ public class SalesCart {
 
     public Sale makeSale(){
         LocalDate localDate = LocalDate.now();
+        localDate = LocalDate.of(2018, 03, 23);
         return new Sale(localDate, calculateTotal());
     }
 
@@ -38,11 +39,11 @@ public class SalesCart {
     public void setList(ArrayList<SaleItem> list) {
         this.list = list;
     }
-    public void removeProduct(Product product){
+    public void removeProduct(int id){
         boolean delete = false;
         SaleItem itemToRemove = null;
         for(SaleItem saleItem : list){
-            if(saleItem.getProduct().getId() == product.getId()){
+            if(saleItem.getProduct().getId() == id){
                 if(saleItem.getAmount() > 1){
                     saleItem.countOneDown();
                 }
@@ -74,4 +75,5 @@ public class SalesCart {
         }
         return sum;
     }
+
 }
