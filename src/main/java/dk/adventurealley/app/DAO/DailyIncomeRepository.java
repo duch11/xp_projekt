@@ -1,5 +1,6 @@
 package dk.adventurealley.app.DAO;
 
+import dk.adventurealley.app.Model.Entities.Activity;
 import dk.adventurealley.app.Model.Entities.Sale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,4 +23,5 @@ public class DailyIncomeRepository {
         }
         return sales;
     }
+
 }

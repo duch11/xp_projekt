@@ -18,7 +18,7 @@ public class DailyIncomeController {
     private DailyIncomeRepository dIR;
     @GetMapping("/dailyincome")
     public String dailyIncome(Model model){
-        System.out.println(dIR.readAll().get(1).getDate().getMonthValue());
+
 
         model.addAttribute("dailyIncomeArray", dIR.readAll());
         return "viewTotalDailyIncome";
