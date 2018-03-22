@@ -16,7 +16,7 @@ public class BookingCreateRepository {
 
     @Autowired
     private JdbcTemplate jdbc;
-
+    // write booking object to DB
     public void create (Booking b, Customer c, String intName, String actiName) {
         Customer cnew = new Customer();
         Activity anew = new Activity();

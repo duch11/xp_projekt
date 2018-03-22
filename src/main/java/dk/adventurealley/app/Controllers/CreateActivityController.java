@@ -13,32 +13,57 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @Controller
-public class CreateController {
+public class CreateActivityController {
     @Autowired
     ActivityRepository aR = new ActivityRepository();
     @Autowired
     RequirementRepository rR = new RequirementRepository();
     @Autowired
     ActivityRequirementsRepository aRR = new ActivityRequirementsRepository();
-    ArrayList<Activity> activities = new ArrayList<>();
+
     ArrayList<Requirement> requirements  = new ArrayList<>();
-    ArrayList<Requirement> activeReqs = new ArrayList<>();
-
-    @Autowired
-    ActivityRepository activityRepo = new ActivityRepository();
-
-    @Autowired
-    RequirementRepository requireRepo = new RequirementRepository();
 
     @RequestMapping(value = "/createactivity", method = RequestMethod.GET)
     public String createActivity(Model model) {
-        requirements = requireRepo.readAll();
+        requirements = rR.readAll();
         Activity a = new Activity();
         model.addAttribute("activity", a);
         model.addAttribute("req", requirements);
+        model.addAttribute("newReq",new Requirement());
         return "createActivity";
     }
+    @PostMapping ("/createactivity")
+    public String editActivity(@RequestParam("action") String action, @ModelAttribute Activity activity, @ModelAttribute Requirement newReq, Model model){
+        ArrayList<String> reqNames = new ArrayList<>();
+        if(activity.getReqList() != null) {
+            for (Requirement requirement : activity.getReqList()) {
+                reqNames.add(requirement.getReqName());
+            }
+        }
+        if (!newReq.getReqName().equals(null) && !reqNames.contains(newReq.getReqName()) && action.equals("Tilføj krav")) {
+            if(activity.getReqList() == null){
+                activity.setReqList(new ArrayList<Requirement>());
+                activity.getReqList().add(newReq);
+            }
+            else {
+                activity.getReqList().add(newReq);
+            }
+            model.addAttribute("req", requirements);
+            model.addAttribute("newReq", new Requirement());
+            model.addAttribute("activity", activity);
+            return "createActivity";
 
+        }
+        else if (action.equals("Opret Aktivitet")){
+            for (Requirement req : activity.getReqList()){
+                req.setId(rR.readReqID(req.getReqName()));
+            }
+            aR.create(activity);
+        }
+        model.addAttribute("activity", activity);
+        return "activityPage";
+    }
+    /*
     @PostMapping("/addReq")
     public String addRequirement(@ModelAttribute Activity a, Model model, @RequestParam String name, @RequestParam String value) {
         Requirement r = new Requirement(name, value);
@@ -54,6 +79,5 @@ public class CreateController {
         activityRepo.create(a);
         activeReqs.clear();
         return "redirect:/";
-    }
-    
+    }*/
 }
