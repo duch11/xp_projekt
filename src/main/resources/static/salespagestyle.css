@@ -85,12 +85,17 @@ p.price {
 div.salesCart {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 79px;
 
 }
+
 div.salesCartTotal{
     background-color: whitesmoke;
     height: 50px;
+}
+
+div.salesCartTotal > p.price {
+    width: 205px;
 }
 .salesCartTotal p,
 .salesCartTotal h5{
@@ -123,4 +128,15 @@ input.deleteButton {
 
 .salesCartItem form {
 
+}
+
+div.product > form > button {
+    display: block;
+    height: 200px;
+    width: 200px;
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    border-radius: 0;
+    z-index: 10;
 }
