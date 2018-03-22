@@ -17,7 +17,7 @@
         </tr>
         <tr th:each="dailyIncome : ${dailyIncomeArray}">
             <td th:text="${dailyIncome.date.getDayOfMonth() + '/' + dailyIncome.date.getMonthValue() + '-' + dailyIncome.date.getYear()}"></td>
-            <td th:text="${dailyIncome.totalPrice}"></td>
+            <td th:text="${#numbers.formatDecimal(dailyIncome.totalPrice, 0, 2)}"></td>
 
         </tr>
     </table>
