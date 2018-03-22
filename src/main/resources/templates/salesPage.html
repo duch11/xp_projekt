@@ -54,31 +54,6 @@
             </form>
         </div>
     </div>
-
-
-
-    <!--
-    <table class="table">
-        <tr>
-            <th>Aktivitet</th>
-            <th>Tidspunkt</th>
-            <th>Kontakt person</th>
-            <th></th>
-        </tr>
-        <tr th:each="bookingArray : ${booking}">
-            <td th:text="${bookingArray.activity.name}"></td>
-            <td th:text="${bookingArray.date}"></td>
-            <td th:text="${bookingArray.customer.customerName}"></td>
-            <td>
-                <div class="btn-group btn-group-justified" style="width: 200px">
-                    <a class="btn btn-primary " th:href="@{/bookingdetails(id=${bookingArray.id})}">Details</a>
-                    <a class="btn btn-danger" th:href="@{/deleteBooking(id=${bookingArray.id})}">Slet</a>
-                </div>
-            </td>
-        </tr>
-    </table>-->
-
 </div>
-<!--<script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js" integrity="sha384-0AJY8UERsBUKdWcyF3o2kisLKeIo6G4Tbd8Y6fbyw6qYmn4WBuqcvxokp8m2UzSD" crossorigin="anonymous"></script>-->
 </body>
 </html>

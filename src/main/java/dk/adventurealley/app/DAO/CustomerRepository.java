@@ -13,6 +13,7 @@ public class CustomerRepository {
     @Autowired
     private JdbcTemplate jdbc;
 
+    //returns a customer based on id
     public Customer read(int customerID){
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM customers WHERE id ='"+ customerID +"'");
 
@@ -22,6 +23,7 @@ public class CustomerRepository {
         return null;
     }
 
+    //updates a customer in the db
     public void update(Customer customer){
         jdbc.update("UPDATE customers SET name ='"+ customer.getCustomerName() +"', " +
                 "companyName ='"+ customer.getCompanyName() +"', " +

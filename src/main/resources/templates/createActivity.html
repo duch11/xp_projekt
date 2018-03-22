@@ -7,10 +7,10 @@
     <title>Opret Aktivitet</title>
 </head>
 <body>
-<h1>Opret Aktivitet</h1>
 <div th:replace="fragments/menubar::menubar"/>
+<h1 align="center">Opret Aktivitet</h1>
+
 <div class="container">
-    <h1 th:text="${activity.getName()}"></h1>
 
     <form th:action="@{/createactivity}" th:method="post" th:object="${activity}">
 

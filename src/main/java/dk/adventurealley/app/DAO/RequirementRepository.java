@@ -27,6 +27,7 @@ public class RequirementRepository {
         return requirementsList;
     }
 
+    //reads a specific requirement id out from name attribute
     public Integer readReqID(String name){
         SqlRowSet rs = jdbc.queryForRowSet("SELECT id FROM requirements WHERE name='" + name + "'");
         while (rs.next()) {

@@ -12,16 +12,12 @@ public class ProductCreateRepository {
     @Autowired
     private JdbcTemplate jdbc;
 
-    public Double fixComma(String price){
-        price.replaceAll(",",".");
-        return Double.parseDouble(price);
-    }
-
+    //writes a new product object to db
     public void create(Product p) {
-
         jdbc.update("INSERT INTO adventure_alley_db.products(name, price, imagePath)" + "VALUES ('" + p.getName() + "', '" + p.getPrice() + "', '" + p.getProductImagePath() + "')");
     }
 
+    //returns a specific Product out from id attribute
     public Product readSpecific(int id) {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM adventure_alley_db.products WHERE id =" + id + "");
 
@@ -31,6 +27,7 @@ public class ProductCreateRepository {
         return new Product();
     }
 
+    //updates a booking out from booking id
     public void updateProduct(Product p) {
         jdbc.update("UPDATE adventure_alley_db.products set name = '"+ p.getName() +"', price = '"+ p.getPrice() + "', imagePath = '"+ p.getProductImagePath() + "' WHERE id =" + p.getId() +"");
     }

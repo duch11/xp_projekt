@@ -16,10 +16,10 @@
             <h2>Opret et produkt</h2>
             <form method="POST" action="createP">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Varens Navn"/>
+                    <input type="text" required="required" class="form-control" name="name" placeholder="Varens Navn"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="price" placeholder="Varens pris"/>
+                    <input type="number" step="0.01" class="form-control" name="price" placeholder="Varens pris"/>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="productImagePath" placeholder="Billede Sti"/>

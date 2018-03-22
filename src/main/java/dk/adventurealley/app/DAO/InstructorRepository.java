@@ -16,10 +16,12 @@ public class InstructorRepository {
     @Autowired
     private JdbcTemplate jdbc;
 
+    //creates/inserts a instructor in db
     public void createInstructor (String name){
         jdbc.update("INSERT INTO adventure_alley_db.instructors(name) VALUES (?)", name);
     }
 
+    //returns a instructor from db with specific id
     public Instructor read(int instructorID){
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM instructors WHERE id ='"+ instructorID +"'");
 
@@ -29,6 +31,7 @@ public class InstructorRepository {
         return null;
     }
 
+    //returns a instructor from db with specific name
     public Instructor readOutFromName(String instructorName){
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM instructors WHERE name ='"+ instructorName +"'");
 
@@ -38,6 +41,7 @@ public class InstructorRepository {
         return null;
     }
 
+    //returns ArrayList with all intructors from db
     public ArrayList<Instructor> readAll(){
         ArrayList<Instructor> instructors = new ArrayList<>();
         SqlRowSet rs = jdbc.queryForRowSet("SELECT * FROM instructors");

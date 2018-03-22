@@ -31,6 +31,7 @@ public class BookingController {
     ArrayList<Activity> activities = new ArrayList<>();
     ArrayList<Instructor> instructors = new ArrayList<>();
 
+    //loader booking.html til at oprette en booking
     @RequestMapping(value = "/createbooking", method = RequestMethod.GET)
     public String createBooking(Model model) {
         activities = actiRepo.readAll();
@@ -41,7 +42,7 @@ public class BookingController {
         model.addAttribute("activitylist", activities);
         return "booking";
     }
-
+    //post metode til at oprette en booking
     @PostMapping("/createB")
     public String bookingCreate(@ModelAttribute Booking b, Customer c, @RequestParam String intName, @RequestParam String actiName) {
         bookRepo.create(b, c, intName, actiName);
